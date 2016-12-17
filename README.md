@@ -8,6 +8,8 @@ This is a jQuery plugin that adds methods for manipulating WAI-ARIA methods. Unl
 - `.removeAria()`, `.removeAriaRef()` and `.removeAriaState()` for removing WAI-ARIA methods.
 - `.ariaVisible()` and `.ariaFocusable()` for toggling common features.
 - `.identify()` for generating element IDs as necessary.
-- `jQuery.normaliseAria()` for simplifying the WAI-ARIA attributes.
+- `jQuery.normaliseAria()` and `jQuery.normalizeAria()` for simplifying the WAI-ARIA attributes.
 
-**[jQuery WAI-ARIA documentation](https://skateside.github.io/jquery-aria/doc/)**
+## Full Documentation
+
+[jQuery WAI-ARIA documentation](https://skateside.github.io/jquery-aria/doc/)
