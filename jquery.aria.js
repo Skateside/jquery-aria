@@ -263,14 +263,14 @@
              * unchanged (other than normal string coercion) and the
              * <code>name</code> is normalised into a WAI-ARIA property (see
              * [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}).
-             *
+             * <br><br>
              * If <code>element</code> is not an element (see {@link isElement})
              * then no action will be taken.
-             *
+             * <br><br>
              * If <code>value</code> is a function, it is treated like an
              * {@link Attribute_callback}. This is for consistency with
              * [jQuery#attr]{@link http://api.jquery.com/attr/}.
-             *
+             * <br><br>
              * A <code>convert</code> function can also be passed. That function
              * will convert <code>value</code> (if <code>value</code> is a
              * function, <code>convert</code> will convert the result) before
@@ -474,7 +474,7 @@
              * [jQuery#identify]{@link external:jQuery#identify}) with the ID of
              * the first match being used. There is also no <code>convert</code>
              * parameter.
-             *
+             * <br><br>
              * The <code>name</code> is still normalised (see
              * [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}). If
              * <code>element</code> is not an element (see {@link isElement})
@@ -734,13 +734,13 @@
      * a setter and passes the appropriate arguments to the {@link handlers}
      * methods based on <code>type</code> (which will default to
      * {@link handlers.property} if ommitted or not recognised).
-     *
+     * <br><br>
      * The return value is based on the type of action being performed. If this
      * function is setting then a jQuery object of the matches is returned
      * (which is almost always <code>jQelements</code>); if the function is a
      * getter then the results are returned for the first element in
      * <code>jQelements</code>.
-     *
+     * <br><br>
      * Although this description is not especially extensive and does not offer
      * and examples, the code is very easy to follow and commented should there
      * be any need to modify it. Once the correct arguments are being passed to
@@ -876,11 +876,11 @@
          * If the elements don't have an ID attribute, a unique one is
          * generated. The <code>jQuery</code> object is returned to allow
          * chaining.
-         *
+         * <br><br>
          * IDs are a concatenation of "anonymous" and a hidden counter that is
          * increased each time. If the ID already exists on the page, that ID is
          * skipped and not assigned to a second element.
-         *
+         * <br><br>
          * If a numeric <code>index</code> is passed, the ID of the element at
          * that index is returned as a string. If there is no element at that
          * <code>index</code>, <code>undefined</code> is returned. Any
@@ -973,7 +973,7 @@
          * [jQuery#ariaRef]{@link external:jQuery#ariaRef}
          * or [jQuery#ariaState]{@link external:jQuery#ariaState} which will
          * interpret the values).
-         *
+         * <br><br>
          * To set WAI-ARIA properties, pass either a
          * <code>property</code>/<code>value</code> pair of arguments or an
          * object containing those pairs. When this is done, the attributes are
@@ -988,7 +988,7 @@
          * (or nothing) then no action is taken for that element. This can be
          * useful for selectively setting values only when certain criteria are
          * met.
-         *
+         * <br><br>
          * To get WAI-ARIA properties, only pass the <code>property</code> that
          * you want to get. If there is no matching property,
          * <code>undefined</code> is returned. All properties are normalised
@@ -1056,21 +1056,21 @@
          * [jQuery#aria]{@link external:jQuery#aria} with the main difference
          * being that an element may be passed as the <code>value</code> when
          * setting and that a jQuery object is returned when getting.
-         *
+         * <br><br>
          * Because WAI-ARIA references work with IDs, IDs are worked out using
          * [jQuery#identify]{@link external:jQuery#identify}. Be aware that any
          * string passed to [jQuery#ariaRef]{@link external:jQuery#ariaRef} will
          * be treated like a CSS selector and looked up with the results being
          * used to set the property. If you already have the ID and wish to set
          * it without the lookup, use [jQuery#aria]{@link external:jQuery#aria}.
-         *
+         * <br><br>
          * If <code>value</code> is a function then the resulting value is
          * identified. This can be particularly useful for performing DOM
          * traversal to find the reference (see examples below).
          * As with [jQuery#aria]{@link external:jQuery#aria}, if the
          * <code>value</code> function returns nothing or returns
          * <code>undefined</code> then no action is taken.
-         *
+         * <br><br>
          * When accessing the attribute using this function, a
          * <code>jQuery</code> object representing the reference is returned. If
          * there are multiple elements in the collection, only the reference for
@@ -1183,11 +1183,11 @@
          * "mixed" (any case) which will set the state to "mixed". The differs
          * from [jQuery#aria]{@link external:jQuery#aria} which will simply set
          * the attribute(s) without converting the value.
-         *
+         * <br><br>
          * After setting the state(s), a jQuery object representing the affected
          * elements is returned. The state for the first matching element is
          * returned when getting.
-         *
+         * <br><br>
          * All attributes are normalised - see
          * [jQuery.normaliseAria]{@link external:jQuery.normaliseAria} for full
          * details.
@@ -1277,7 +1277,7 @@
          * [jQuery#attr]{@link http://api.jquery.com/attr/}, the
          * <code>role</code> parameter can actually be any value type that the
          * official documentation mentions.
-         *
+         * <br><br>
          * According to the WAI-ARIA specs, an element can have mutliple roles
          * as a space-separated list. This method will only set the role
          * attribute to the given string when setting. If you want to modify the
@@ -1485,11 +1485,11 @@
          * Strings, numbers and booleans are understood as <code>state</code> -
          * see [jQuery#ariaState]{@link external:jQuery#ariaState} for full
          * details as the algorythm is the same.
-         *
+         * <br><br>
          * Note that according to the WAI-ARIA specs, declaring an element to be
          * visible should be done by removing the <code>aria-hidden</code>
          * attribute rather than setting the value to <code>false</code>.
-         *
+         * <br><br>
          * Be aware that this function will only modify the
          * <code>aria-hidden</code> of the matching elements. It's possible that
          * after running this function, the element cannot be seen visually or
@@ -1541,7 +1541,7 @@
          * numbers and booleans are understood as <code>state</code> - see
          * [jQuery#ariaState]{@link external:jQuery#ariaState} for full details
          * as the algorythm is the same.
-         *
+         * <br><br>
          * Be aware this this function will only modify the matching elements,
          * it will not check any parents or modify any other elements that could
          * affect the focusability of the element.
