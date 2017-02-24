@@ -1,3 +1,38 @@
+/**
+ * @file
+ * This is a jQuery plugin that adds methods for manipulating WAI-ARIA
+ * attributes. Unlike other plugins that do similar things, this plugin has been
+ * designed to match jQuery's style making it much easier to pick up. The plugin
+ * includes:
+ * <br>[jQuery#aria]{@link external:jQuery#aria} for getting and setting
+ * WAI-ARIA attributes.
+ * <br>[jQuery#ariaRef]{@link external:jQuery#ariaRef} for getting and setting
+ * references to other elements.
+ * <br>[jQuery#ariaState]{@link external:jQuery#ariaState} for getting and
+ * setting states.
+ * <br>[jQuery#removeAria]{@link external:jQuery#removeAria},
+ * [jQuery#removeAriaRef]{@link external:jQuery#removeAriaRef} and
+ * [jQuery#removeAriaState]{@link external:jQuery#removeAriaState} for removing
+ * WAI-ARIA attributes.
+ * <br>[jQuery#ariaVisible]{@link external:jQuery#ariaVisible} and
+ * [jQuery#ariaFocusable]{@link external:jQuery#ariaFocusable} for toggling
+ * common features.
+ * <br>[jQuery#identify]{@link external:jQuery#identify} for generating element
+ * IDs as necessary.
+ * <br>[jQuery#role]{@link external:jQuery#role},
+ * [jQuery#addRole]{@link external:jQuery#addRole} and
+ * [jQuery#removeRole]{@link external:jQuery#removeRole} handling WAI-ARIA
+ * landmarks.
+ * <br>[jQuery.normaliseAria]{@link external:jQuery.normaliseAria} for
+ * simplifying the WAI-ARIA attributes
+ * <br><br>
+ * The files can be downloaded on
+ * [GitHub]{@link https://github.com/skatesde/jquery-aria}.
+ *
+ * @author James "Skateside" Long <sk85ide@hotmail.com>
+ * @version 0.2.0a
+ * @license [MIT License]{@link https://github.com/skateside/jquery-aria/blob/master/LICENSE}
+ */
 (function ($) {
 
     "use strict";
@@ -833,7 +868,6 @@
      * [jQuery#removeAriaRef]{@link external:jQuery#removeAriaRef} and
      * [jQuery#removeAriaState]{@link external:jQuery#removeAriaState}.
      *
-     * @chainable
      * @alias removeAria
      * @memberof external:jQuery
      * @instance
@@ -888,7 +922,6 @@
          * [jQuery.isNumeric]{@link https://api.jquery.com/jQuery.isNumeric/})
          * is ignored and treated as if no <code>index</code> were given.
          *
-         * @chainable
          * @param  {Number|String} [index]
          *         Index of the matching element whose ID should be returned.
          * @return {jQuery|String|undefined}
@@ -979,22 +1012,15 @@
          * object containing those pairs. When this is done, the attributes are
          * set on all elements in the collection and the <code>jQuery</code>
          * object is returned to allow for chaining. If <code>value</code> is a
-         * function, the result of the function will be set as the value. The
-         * function is called with the element as the context and passed the
-         * index of the element within the collection and the normalised
-         * attribute name. This is done to keep consistency with the
-         * [jQuery#attr]{@link http://api.jquery.com/attr/} function. If the
-         * <code>value</code> function returns <code>undefined</code>
-         * (or nothing) then no action is taken for that element. This can be
-         * useful for selectively setting values only when certain criteria are
-         * met.
+         * function and returns <code>undefined</code> (or nothing) then no
+         * action is taken for that element. This can be useful for selectively
+         * setting values only when certain criteria are met.
          * <br><br>
          * To get WAI-ARIA properties, only pass the <code>property</code> that
          * you want to get. If there is no matching property,
          * <code>undefined</code> is returned. All properties are normalised
          * (see [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}).
          *
-         * @chainable
          * @param  {Object|String} property
          *         Either the properties to set in key/value pairs or the name
          *         of the property to get/set.
@@ -1078,7 +1104,6 @@
          * rather than the element, use
          * [jQuery#aria]{@link external:jQuery#aria}.
          *
-         * @chainable
          * @param  {Object|String} property
          *         Either the properties to set in key/value pairs or the name
          *         of the property to set.
@@ -1192,7 +1217,6 @@
          * [jQuery.normaliseAria]{@link external:jQuery.normaliseAria} for full
          * details.
          *
-         * @chainable
          * @param  {Object|String} property
          *         Either a key/value combination properties to set or the name
          *         of the WAI-ARIA state to set.
@@ -1284,7 +1308,6 @@
          * roles, use [jQuery#addRole]{@link external:jQuery#addRole} and
          * [jQuery#removeRole]{@link external:jQuery#removeRole}.
          *
-         * @chainable
          * @param  {Attribute_Callback|String} [role]
          *         Role to get or function to set the role.
          * @return {jQuery|String|undefined}
@@ -1330,7 +1353,6 @@
          * if the element already has that role. In that way it's similar to
          * [jQuery#addClass]{@link https://api.jquery.com/addClass/}.
          *
-         * @chainable
          * @param  {Attribute_Callback|String} role
          *         Role(s) to add to the matching elements or function to
          *         generate the role(s) to add.
@@ -1394,7 +1416,6 @@
          * removed. Be aware that this is not the same as passing a function
          * which returns undefined - such an action will have no effect.
          *
-         * @chainable
          * @param  {Attribute_Callback|String} [role]
          *         Role(s) to remove or a function to generate the role(s) to
          *         remove.
@@ -1495,7 +1516,6 @@
          * after running this function, the element cannot be seen visually or
          * is still hidden to WAI-ARIA devices.
          *
-         * @chainable
          * @param  {Attribute_Callback|Boolean|Number|String} state
          *         State to set.
          * @return {jQuery}
@@ -1546,7 +1566,6 @@
          * it will not check any parents or modify any other elements that could
          * affect the focusability of the element.
          *
-         * @chainable
          * @param  {Attribute_Callback|Boolean|Number|String} state
          *         State to set.
          * @return {jQuery}
