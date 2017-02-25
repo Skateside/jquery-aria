@@ -1,0 +1,38 @@
+{
+  "name": "jquery-aria",
+  "version": "0.3.0a",
+  "description": "WAI-ARIA helper functions for jQuery",
+  "main": "dist/jquery.aria.js",
+  "directories": {
+    "bin": "./src",
+    "doc": "./doc",
+    "lib": "./dist"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skateside/jquery-aria.git"
+  },
+  "keywords": [
+    "jQuery",
+    "WAI-ARIA",
+    "aria",
+    "accessibility",
+    "plugin"
+  ],
+  "author": "James \"Skateside\" Long <sk85ide@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Skateside/jquery-aria/issues"
+  },
+  "homepage": "https://github.com/Skateside/jquery-aria#readme",
+  "devDependencies": {
+    "docdash": "^0.4.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-uglify": "^2.1.0",
+    "grunt-jsdoc": "^2.1.0"
+  }
+}

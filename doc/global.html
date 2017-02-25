@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Global - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Externals</h3><ul><li><a href="external-jQuery.html">jQuery</a><ul class='methods'><li data-type='method'><a href="external-jQuery.html#.normaliseAria">normaliseAria</a></li><li data-type='method'><a href="external-jQuery.html#addRole">addRole</a></li><li data-type='method'><a href="external-jQuery.html#aria">aria</a></li><li data-type='method'><a href="external-jQuery.html#ariaFocusable">ariaFocusable</a></li><li data-type='method'><a href="external-jQuery.html#ariaRef">ariaRef</a></li><li data-type='method'><a href="external-jQuery.html#ariaState">ariaState</a></li><li data-type='method'><a href="external-jQuery.html#ariaVisible">ariaVisible</a></li><li data-type='method'><a href="external-jQuery.html#identify">identify</a></li><li data-type='method'><a href="external-jQuery.html#removeAria">removeAria</a></li><li data-type='method'><a href="external-jQuery.html#removeRole">removeRole</a></li><li data-type='method'><a href="external-jQuery.html#role">role</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Global</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id="ARIA_state">ARIA_state</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line88">line 88</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    A boolean or the string "mixed" (always in lower case). This type will
+be undefined when trying to read a state that has not been set on the
+element.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+|
+
+<span class="param-type">String</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// Markup is
+// &lt;div id="one" aria-checked="true">&lt;/div>
+// &lt;div id="two" aria-checked="false">&lt;/div>
+// &lt;div id="three" aria-checked="mixed">&lt;/div>
+// &lt;div id="four">&lt;/div>
+
+$("#one").ariaState("checked");   // -> true
+$("#two").ariaState("checked");   // -> false
+$("#three").ariaState("checked"); // -> "mixed"
+$("#four").ariaState("checked");  // -> undefined</code></pre>
+
+
+
+            
+                
+
+    
+
+    <h4 class="name" id="Attribute_Callback"><span class="type-signature"></span>Attribute_Callback<span class="signature">(index, attr)</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    The <a href="external-jQuery.html#aria">jQuery#aria</a>,
+<a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> and
+<a href="external-jQuery.html#ariaState">jQuery#ariaState</a> methods all take
+functions to set their value. The functions all have the same signature,
+described here. It is important to remember that the value this function
+returns will be treated as if it had originally been passed to the
+function. See
+<a href="http://api.jquery.com/attr/#attr-attributeName-function">jQuery#attr</a>
+for more information and examples.
+</div>
+
+
+
+
+
+
+
+    <h5>This:</h5>
+    <ul><li>HTMLElement</li></ul>
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>$("#one").aria("label", function (i, attr) {
+    return "Test";
+});
+// is the same as
+$("#one").aria("label", "Test");</code></pre>
+
+        <p class="code-caption">Elements without the attribute pass undefined</p>
+    
+    <pre class="prettyprint"><code>// Markup is
+// &lt;div id="one">&lt;/div>
+
+$("#one").aria("label", function (i, attr) {
+    return Object.prototype.toString.call(attr);
+});
+
+// Now markup is
+// &lt;div id="one" aria-label="[object Undefined]">&lt;/div></code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The index of the current element from within the overall jQuery
+        collection.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>attr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Current attribute value (undefined if the element does not
+        currently have the attribute assigned).</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The value that should be passed to the function.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+            
+                
+<h4 class="name" id="jQuery_param">jQuery_param</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line108">line 108</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Any parameter that can be passed to
+<a href="http://api.jquery.com/jQuery/">jQuery's $ function</a>. Be aware that
+if the object (or Array or NodeList) contains multiple elements, only the
+first will be used when getting information.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">Element</span>
+|
+
+<span class="param-type">jQuery</span>
+|
+
+<span class="param-type">NodeList</span>
+|
+
+<span class="param-type">String</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+            
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Feb 25 2017 20:42:03 GMT+0000 (GMT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
