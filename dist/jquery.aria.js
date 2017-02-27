@@ -1,4 +1,4 @@
-/*! jquery-aria - v0.3.0a - 2017-02-27 */
+/*! jquery-aria - v0.4.0a - 2017-02-27 */
 (function ($) {
     "use strict";
 
@@ -8,33 +8,42 @@
  * attributes. Unlike other plugins that do similar things, this plugin has been
  * designed to match jQuery's style making it much easier to pick up. The plugin
  * includes:
+ * <br><br>
+ * <strong>Getting and Setting WAI-ARIA Attributes</strong>
  * <br>[jQuery#aria]{@link external:jQuery#aria} for getting and setting
  * WAI-ARIA attributes.
  * <br>[jQuery#ariaRef]{@link external:jQuery#ariaRef} for getting and setting
  * references to other elements.
  * <br>[jQuery#ariaState]{@link external:jQuery#ariaState} for getting and
  * setting states.
- * <br>[jQuery#removeAria]{@link external:jQuery#removeAria},
+ * <br><br>
+ * <strong>Removing WAI-ARIA Attributes</strong>
+ * <br>[jQuery#removeAria]{@link external:jQuery#removeAria} for removing
+ * WAI-ARIA attributes (aliased as
  * [jQuery#removeAriaRef]{@link external:jQuery#removeAriaRef} and
- * [jQuery#removeAriaState]{@link external:jQuery#removeAriaState} for removing
- * WAI-ARIA attributes.
- * <br>[jQuery#ariaVisible]{@link external:jQuery#ariaVisible} and
- * [jQuery#ariaFocusable]{@link external:jQuery#ariaFocusable} for toggling
- * common features.
- * <br>[jQuery#identify]{@link external:jQuery#identify} for generating element
- * IDs as necessary.
+ * [jQuery#removeAriaState]{@link external:jQuery#removeAriaState}).
+ * <br><br>
+ * <strong>Manipulating Landmarks</strong>
  * <br>[jQuery#role]{@link external:jQuery#role},
  * [jQuery#addRole]{@link external:jQuery#addRole} and
  * [jQuery#removeRole]{@link external:jQuery#removeRole} handling WAI-ARIA
  * landmarks.
+ * <br><br>
+ * <strong>Helper Functions for Common Functionality</strong>
+ * <br>[jQuery#identify]{@link external:jQuery#identify} for generating element
+ * IDs as necessary.
+ * <br>[jQuery#ariaVisible]{@link external:jQuery#ariaVisible} and
+ * [jQuery#ariaFocusable]{@link external:jQuery#ariaFocusable} for toggling
+ * common features.
  * <br>[jQuery.normaliseAria]{@link external:jQuery.normaliseAria} for
- * simplifying the WAI-ARIA attributes
+ * simplifying the WAI-ARIA attributes (aliased as
+ * [jQuery.normalizeAria]{@link external:jQuery.normalizeAria}).
  * <br><br>
  * The files can be downloaded on
  * [GitHub]{@link https://github.com/Skateside/jquery-aria}.
  *
  * @author James "Skateside" Long <sk85ide@hotmail.com>
- * @version 0.3.0a
+ * @version 0.4.0a
  * @license MIT
  */
 
@@ -121,13 +130,13 @@
  *
  * @global
  * @private
- * @param  {jQuery_param} reference
- *         Element to identify.
- * @return {String}
- *         ID of the element.
+ * @param   {jQuery_param} reference
+ *          Element to identify.
+ * @return  {String}
+ *          ID of the element.
  */
 var identify = function (reference) {
-    return $(reference).identify(0);
+    return $(reference).identify();
 };
 
 /**
@@ -920,40 +929,32 @@ var IDENTIFY_PREFIX = "anonymous";
 var count = 0;
 
 /**
- * Identifies all elements in the collection by getting all their IDs. If the
- * elements don't have an ID attribute, a unique one is generated. The
- * <code>jQuery</code> object is returned to allow chaining.
+ * Identifies the first element in the collection by getting its ID. If the
+ * element doesn't have an ID attribute, a unique on is generated and assigned
+ * before being returned. If the collection does not have a first element then
+ * <code>undefined</code> is returned.
  * <br><br>
  * IDs are a concatenation of "anonymous" and a hidden counter that is increased
  * each time. If the ID already exists on the page, that ID is skipped and not
  * assigned to a second element.
- * <br><br>
- * If a numeric <code>index</code> is passed, the ID of the element at that
- * index is returned as a string. If there is no element at that
- * <code>index</code>, <code>undefined</code> is returned. Any
- * <code>index</code> that is not numeric (see
- * [jQuery.isNumeric]{@link https://api.jquery.com/jQuery.isNumeric/}) is
- * ignored and treated as if no <code>index</code> were given.
  *
  * @memberof external:jQuery
  * @instance
- * @alias identify
- * @param  {Number|String} [index]
- *         Index of the matching element whose ID should be returned.
- * @return {jQuery|String|undefined}
- *         jQuery object of the identified elements or the ID of the requested
- *         element.
+ * @alias    identify
+ * @return   {String|undefined}
+ *           The ID of the first element or undefined if there is no first
+ *           element.
  *
  * @example <caption>Identifying elements</caption>
  * // Markup is
  * // <div class="one"></div>
  * // <span class="one"></span>
  *
- * $(".one").identify(); // -> jQuery(<div>, <span>)
+ * $(".one").identify(); // -> "anonymous0"
  *
  * // Now markup is:
  * // <div class="one" id="anonymous0"></div>
- * // <span class="one" id="anonymous1"></span>
+ * // <span class="one"></span>
  * // Running $(".one").identify(); again would not change the markup.
  *
  * @example <caption>Existing IDs are not duplicated</caption>
@@ -962,56 +963,34 @@ var count = 0;
  * // <div class="two"></div>
  * // <div class="two"></div>
  *
- * $(".two").identify();
+ * $(".two").each(function () {
+ *     $(this).identify();
+ * });
  *
  * // Now markup is:
  * // <div class="two" id="anonymous1"><!-- manually set --></div>
  * // <div class="two" id="anonymous0"></div>
  * // <div class="two" id="anonymous2"></div>
- *
- * @example <caption>Returning the ID</caption>
- * // Markup is:
- * // <div class="three" id="first"></div>
- * // <span class="three" id="second"></span>
- *
- * $(".three").identify(0); // -> "first"
- * $(".three").identify(1); // -> "second"
- * $(".three").identify(2); // -> undefined
- * // Numeric strings also work:
- * $(".three").identify("0"); // -> "first"
  */
 $.fn.identify = function (index) {
 
-    var identified = [];
-    var results = this.each(function (i, element) {
+    var element = this[0];
+    var id = element && element.id;
 
-        var id = element.id;
+    if (element && !id) {
 
-        if (!id) {
+        do {
 
-            do {
+            id = IDENTIFY_PREFIX + count;
+            count += 1;
 
-                id = IDENTIFY_PREFIX + count;
-                count += 1;
+        } while (document.getElementById(id));
 
-            // NOTE: document.getElementById(id) is faster, but jQuery's $
-            // function can handle things like frames which could affect the
-            // results.
-            } while ($("#" + id).length);
+        element.id = id;
 
-            element.id = id;
+    }
 
-        }
-
-        identified.push(id);
-
-        return id;
-
-    });
-
-    return $.isNumeric(index)
-        ? identified[index]
-        : results;
+    return id;
 
 };
 

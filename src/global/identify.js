@@ -5,11 +5,11 @@
  *
  * @global
  * @private
- * @param  {jQuery_param} reference
- *         Element to identify.
- * @return {String}
- *         ID of the element.
+ * @param   {jQuery_param} reference
+ *          Element to identify.
+ * @return  {String}
+ *          ID of the element.
  */
 var identify = function (reference) {
-    return $(reference).identify(0);
+    return $(reference).identify();
 };
