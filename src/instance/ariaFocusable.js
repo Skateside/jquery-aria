@@ -46,7 +46,7 @@ $.fn.ariaFocusable = function (state) {
     return access(
         this,
         "tabindex",
-        handlers.state.read(state)
+        handlers[HANDLER_STATE].read(state)
             ? 0
             : -1
     );

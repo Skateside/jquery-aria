@@ -114,12 +114,12 @@ handlers[HANDLER_STATE] = {
      */
     set: function (element, name, state, index) {
 
-        handlers.property.set(
+        handlers[HANDLER_PROPERTY].set(
             element,
             name,
             state,
             index,
-            handlers.state.read
+            handlers[HANDLER_STATE].read
         );
 
     },
@@ -149,12 +149,13 @@ handlers[HANDLER_STATE] = {
      */
     get: function (element, name) {
 
+        var handler = handlers[HANDLER_PROPERTY];
         var state;
         var value;
 
-        if (handlers.property.has(element, name)) {
+        if (handler.has(element, name)) {
 
-            value = handlers.property.get(element, name).toLowerCase();
+            value = handler.get(element, name).toLowerCase();
             state = value === VALUE_MIXED
                 ? value
                 : (REGEXP_BOOLEAN.test(value) && value === "true");
