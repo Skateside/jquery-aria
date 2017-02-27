@@ -47,7 +47,7 @@
  */
 $.fn.ariaVisible = function (state) {
 
-    var theState = handlers.state.read(state);
+    var theState = handlers[HANDLER_STATE].read(state);
 
     return theState
         ? access(this, "hidden", theState)

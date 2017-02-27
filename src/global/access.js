@@ -77,8 +77,6 @@ function access(jQelements, property, value, type) {
         property = {};
         property[tempProperty] = value;
 
-    } else if (isGet && isPropertyObject) {
-        property = Object.keys(property)[0];
     }
 
     // If we don't have or don't recognise the type, default to "property".
