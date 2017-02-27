@@ -166,7 +166,7 @@ handlers[HANDLER_PROPERTY] = {
      */
     get: function (element, name) {
 
-        return handlers.property.has(element, name)
+        return handlers[HANDLER_PROPERTY].has(element, name)
             ? element.getAttribute(normalise(name))
             : undefined;
 

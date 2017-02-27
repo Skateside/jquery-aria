@@ -1,4 +1,4 @@
-/*! jquery-aria - v0.3.0a - 2017-02-25 */
+/*! jquery-aria - v0.3.0a - 2017-02-27 */
 (function ($) {
     "use strict";
 
@@ -464,7 +464,7 @@ handlers[HANDLER_PROPERTY] = {
      */
     get: function (element, name) {
 
-        return handlers.property.has(element, name)
+        return handlers[HANDLER_PROPERTY].has(element, name)
             ? element.getAttribute(normalise(name))
             : undefined;
 
@@ -554,7 +554,7 @@ handlers[HANDLER_REFERENCE] = {
      */
     set: function (element, name, reference, index) {
 
-        handlers.property.set(
+        handlers[HANDLER_PROPERTY].set(
             element,
             name,
             reference,
@@ -596,8 +596,10 @@ handlers[HANDLER_REFERENCE] = {
      */
     get: function (element, name) {
 
-        return handlers.property.has(element, name)
-            ? $("#" + handlers.property.get(element, name))
+        var handler = handlers[HANDLER_PROPERTY];
+
+        return handler.has(element, name)
+            ? $("#" + handler.get(element, name))
             : undefined;
 
     }
@@ -720,12 +722,12 @@ handlers[HANDLER_STATE] = {
      */
     set: function (element, name, state, index) {
 
-        handlers.property.set(
+        handlers[HANDLER_PROPERTY].set(
             element,
             name,
             state,
             index,
-            handlers.state.read
+            handlers[HANDLER_STATE].read
         );
 
     },
@@ -755,12 +757,13 @@ handlers[HANDLER_STATE] = {
      */
     get: function (element, name) {
 
+        var handler = handlers[HANDLER_PROPERTY];
         var state;
         var value;
 
-        if (handlers.property.has(element, name)) {
+        if (handler.has(element, name)) {
 
-            value = handlers.property.get(element, name).toLowerCase();
+            value = handler.get(element, name).toLowerCase();
             state = value === VALUE_MIXED
                 ? value
                 : (REGEXP_BOOLEAN.test(value) && value === "true");
@@ -852,8 +855,6 @@ function access(jQelements, property, value, type) {
         property = {};
         property[tempProperty] = value;
 
-    } else if (isGet && isPropertyObject) {
-        property = Object.keys(property)[0];
     }
 
     // If we don't have or don't recognise the type, default to "property".
@@ -900,7 +901,7 @@ function access(jQelements, property, value, type) {
 function removeAttribute(name) {
 
     return this.each(function (ignore, element) {
-        handlers.property.unset(element, name);
+        handlers[HANDLER_PROPERTY].unset(element, name);
     });
 
 }
@@ -1580,7 +1581,7 @@ $.fn.removeRole = function (role) {
  */
 $.fn.ariaVisible = function (state) {
 
-    var theState = handlers.state.read(state);
+    var theState = handlers[HANDLER_STATE].read(state);
 
     return theState
         ? access(this, "hidden", theState)
@@ -1636,7 +1637,7 @@ $.fn.ariaFocusable = function (state) {
     return access(
         this,
         "tabindex",
-        handlers.state.read(state)
+        handlers[HANDLER_STATE].read(state)
             ? 0
             : -1
     );

@@ -25,7 +25,7 @@
 function removeAttribute(name) {
 
     return this.each(function (ignore, element) {
-        handlers.property.unset(element, name);
+        handlers[HANDLER_PROPERTY].unset(element, name);
     });
 
 }

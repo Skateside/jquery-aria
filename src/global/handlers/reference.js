@@ -49,7 +49,7 @@ handlers[HANDLER_REFERENCE] = {
      */
     set: function (element, name, reference, index) {
 
-        handlers.property.set(
+        handlers[HANDLER_PROPERTY].set(
             element,
             name,
             reference,
@@ -91,8 +91,10 @@ handlers[HANDLER_REFERENCE] = {
      */
     get: function (element, name) {
 
-        return handlers.property.has(element, name)
-            ? $("#" + handlers.property.get(element, name))
+        var handler = handlers[HANDLER_PROPERTY];
+
+        return handler.has(element, name)
+            ? $("#" + handler.get(element, name))
             : undefined;
 
     }
