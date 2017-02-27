@@ -37,7 +37,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/*! jquery-aria - v0.3.0a - 2017-02-25 */
+            <pre class="prettyprint source linenums"><code>/*! jquery-aria - v0.4.0a - 2017-02-27 */
 (function ($) {
     "use strict";
 
@@ -47,33 +47,42 @@
  * attributes. Unlike other plugins that do similar things, this plugin has been
  * designed to match jQuery's style making it much easier to pick up. The plugin
  * includes:
+ * &lt;br>&lt;br>
+ * &lt;strong>Getting and Setting WAI-ARIA Attributes&lt;/strong>
  * &lt;br>[jQuery#aria]{@link external:jQuery#aria} for getting and setting
  * WAI-ARIA attributes.
  * &lt;br>[jQuery#ariaRef]{@link external:jQuery#ariaRef} for getting and setting
  * references to other elements.
  * &lt;br>[jQuery#ariaState]{@link external:jQuery#ariaState} for getting and
  * setting states.
- * &lt;br>[jQuery#removeAria]{@link external:jQuery#removeAria},
+ * &lt;br>&lt;br>
+ * &lt;strong>Removing WAI-ARIA Attributes&lt;/strong>
+ * &lt;br>[jQuery#removeAria]{@link external:jQuery#removeAria} for removing
+ * WAI-ARIA attributes (aliased as
  * [jQuery#removeAriaRef]{@link external:jQuery#removeAriaRef} and
- * [jQuery#removeAriaState]{@link external:jQuery#removeAriaState} for removing
- * WAI-ARIA attributes.
- * &lt;br>[jQuery#ariaVisible]{@link external:jQuery#ariaVisible} and
- * [jQuery#ariaFocusable]{@link external:jQuery#ariaFocusable} for toggling
- * common features.
- * &lt;br>[jQuery#identify]{@link external:jQuery#identify} for generating element
- * IDs as necessary.
+ * [jQuery#removeAriaState]{@link external:jQuery#removeAriaState}).
+ * &lt;br>&lt;br>
+ * &lt;strong>Manipulating Landmarks&lt;/strong>
  * &lt;br>[jQuery#role]{@link external:jQuery#role},
  * [jQuery#addRole]{@link external:jQuery#addRole} and
  * [jQuery#removeRole]{@link external:jQuery#removeRole} handling WAI-ARIA
  * landmarks.
+ * &lt;br>&lt;br>
+ * &lt;strong>Helper Functions for Common Functionality&lt;/strong>
+ * &lt;br>[jQuery#identify]{@link external:jQuery#identify} for generating element
+ * IDs as necessary.
+ * &lt;br>[jQuery#ariaVisible]{@link external:jQuery#ariaVisible} and
+ * [jQuery#ariaFocusable]{@link external:jQuery#ariaFocusable} for toggling
+ * common features.
  * &lt;br>[jQuery.normaliseAria]{@link external:jQuery.normaliseAria} for
- * simplifying the WAI-ARIA attributes
+ * simplifying the WAI-ARIA attributes (aliased as
+ * [jQuery.normalizeAria]{@link external:jQuery.normalizeAria}).
  * &lt;br>&lt;br>
  * The files can be downloaded on
  * [GitHub]{@link https://github.com/Skateside/jquery-aria}.
  *
  * @author James "Skateside" Long &lt;sk85ide@hotmail.com>
- * @version 0.3.0a
+ * @version 0.4.0a
  * @license MIT
  */
 
@@ -160,13 +169,13 @@
  *
  * @global
  * @private
- * @param  {jQuery_param} reference
- *         Element to identify.
- * @return {String}
- *         ID of the element.
+ * @param   {jQuery_param} reference
+ *          Element to identify.
+ * @return  {String}
+ *          ID of the element.
  */
 var identify = function (reference) {
-    return $(reference).identify(0);
+    return $(reference).identify();
 };
 
 /**
@@ -503,7 +512,7 @@ handlers[HANDLER_PROPERTY] = {
      */
     get: function (element, name) {
 
-        return handlers.property.has(element, name)
+        return handlers[HANDLER_PROPERTY].has(element, name)
             ? element.getAttribute(normalise(name))
             : undefined;
 
@@ -593,7 +602,7 @@ handlers[HANDLER_REFERENCE] = {
      */
     set: function (element, name, reference, index) {
 
-        handlers.property.set(
+        handlers[HANDLER_PROPERTY].set(
             element,
             name,
             reference,
@@ -635,8 +644,10 @@ handlers[HANDLER_REFERENCE] = {
      */
     get: function (element, name) {
 
-        return handlers.property.has(element, name)
-            ? $("#" + handlers.property.get(element, name))
+        var handler = handlers[HANDLER_PROPERTY];
+
+        return handler.has(element, name)
+            ? $("#" + handler.get(element, name))
             : undefined;
 
     }
@@ -759,12 +770,12 @@ handlers[HANDLER_STATE] = {
      */
     set: function (element, name, state, index) {
 
-        handlers.property.set(
+        handlers[HANDLER_PROPERTY].set(
             element,
             name,
             state,
             index,
-            handlers.state.read
+            handlers[HANDLER_STATE].read
         );
 
     },
@@ -794,12 +805,13 @@ handlers[HANDLER_STATE] = {
      */
     get: function (element, name) {
 
+        var handler = handlers[HANDLER_PROPERTY];
         var state;
         var value;
 
-        if (handlers.property.has(element, name)) {
+        if (handler.has(element, name)) {
 
-            value = handlers.property.get(element, name).toLowerCase();
+            value = handler.get(element, name).toLowerCase();
             state = value === VALUE_MIXED
                 ? value
                 : (REGEXP_BOOLEAN.test(value) &amp;&amp; value === "true");
@@ -891,8 +903,6 @@ function access(jQelements, property, value, type) {
         property = {};
         property[tempProperty] = value;
 
-    } else if (isGet &amp;&amp; isPropertyObject) {
-        property = Object.keys(property)[0];
     }
 
     // If we don't have or don't recognise the type, default to "property".
@@ -939,7 +949,7 @@ function access(jQelements, property, value, type) {
 function removeAttribute(name) {
 
     return this.each(function (ignore, element) {
-        handlers.property.unset(element, name);
+        handlers[HANDLER_PROPERTY].unset(element, name);
     });
 
 }
@@ -958,40 +968,32 @@ var IDENTIFY_PREFIX = "anonymous";
 var count = 0;
 
 /**
- * Identifies all elements in the collection by getting all their IDs. If the
- * elements don't have an ID attribute, a unique one is generated. The
- * &lt;code>jQuery&lt;/code> object is returned to allow chaining.
+ * Identifies the first element in the collection by getting its ID. If the
+ * element doesn't have an ID attribute, a unique on is generated and assigned
+ * before being returned. If the collection does not have a first element then
+ * &lt;code>undefined&lt;/code> is returned.
  * &lt;br>&lt;br>
  * IDs are a concatenation of "anonymous" and a hidden counter that is increased
  * each time. If the ID already exists on the page, that ID is skipped and not
  * assigned to a second element.
- * &lt;br>&lt;br>
- * If a numeric &lt;code>index&lt;/code> is passed, the ID of the element at that
- * index is returned as a string. If there is no element at that
- * &lt;code>index&lt;/code>, &lt;code>undefined&lt;/code> is returned. Any
- * &lt;code>index&lt;/code> that is not numeric (see
- * [jQuery.isNumeric]{@link https://api.jquery.com/jQuery.isNumeric/}) is
- * ignored and treated as if no &lt;code>index&lt;/code> were given.
  *
  * @memberof external:jQuery
  * @instance
- * @alias identify
- * @param  {Number|String} [index]
- *         Index of the matching element whose ID should be returned.
- * @return {jQuery|String|undefined}
- *         jQuery object of the identified elements or the ID of the requested
- *         element.
+ * @alias    identify
+ * @return   {String|undefined}
+ *           The ID of the first element or undefined if there is no first
+ *           element.
  *
  * @example &lt;caption>Identifying elements&lt;/caption>
  * // Markup is
  * // &lt;div class="one">&lt;/div>
  * // &lt;span class="one">&lt;/span>
  *
- * $(".one").identify(); // -> jQuery(&lt;div>, &lt;span>)
+ * $(".one").identify(); // -> "anonymous0"
  *
  * // Now markup is:
  * // &lt;div class="one" id="anonymous0">&lt;/div>
- * // &lt;span class="one" id="anonymous1">&lt;/span>
+ * // &lt;span class="one">&lt;/span>
  * // Running $(".one").identify(); again would not change the markup.
  *
  * @example &lt;caption>Existing IDs are not duplicated&lt;/caption>
@@ -1000,56 +1002,34 @@ var count = 0;
  * // &lt;div class="two">&lt;/div>
  * // &lt;div class="two">&lt;/div>
  *
- * $(".two").identify();
+ * $(".two").each(function () {
+ *     $(this).identify();
+ * });
  *
  * // Now markup is:
  * // &lt;div class="two" id="anonymous1">&lt;!-- manually set -->&lt;/div>
  * // &lt;div class="two" id="anonymous0">&lt;/div>
  * // &lt;div class="two" id="anonymous2">&lt;/div>
- *
- * @example &lt;caption>Returning the ID&lt;/caption>
- * // Markup is:
- * // &lt;div class="three" id="first">&lt;/div>
- * // &lt;span class="three" id="second">&lt;/span>
- *
- * $(".three").identify(0); // -> "first"
- * $(".three").identify(1); // -> "second"
- * $(".three").identify(2); // -> undefined
- * // Numeric strings also work:
- * $(".three").identify("0"); // -> "first"
  */
 $.fn.identify = function (index) {
 
-    var identified = [];
-    var results = this.each(function (i, element) {
+    var element = this[0];
+    var id = element &amp;&amp; element.id;
 
-        var id = element.id;
+    if (element &amp;&amp; !id) {
 
-        if (!id) {
+        do {
 
-            do {
+            id = IDENTIFY_PREFIX + count;
+            count += 1;
 
-                id = IDENTIFY_PREFIX + count;
-                count += 1;
+        } while (document.getElementById(id));
 
-            // NOTE: document.getElementById(id) is faster, but jQuery's $
-            // function can handle things like frames which could affect the
-            // results.
-            } while ($("#" + id).length);
+        element.id = id;
 
-            element.id = id;
+    }
 
-        }
-
-        identified.push(id);
-
-        return id;
-
-    });
-
-    return $.isNumeric(index)
-        ? identified[index]
-        : results;
+    return id;
 
 };
 
@@ -1619,7 +1599,7 @@ $.fn.removeRole = function (role) {
  */
 $.fn.ariaVisible = function (state) {
 
-    var theState = handlers.state.read(state);
+    var theState = handlers[HANDLER_STATE].read(state);
 
     return theState
         ? access(this, "hidden", theState)
@@ -1675,7 +1655,7 @@ $.fn.ariaFocusable = function (state) {
     return access(
         this,
         "tabindex",
-        handlers.state.read(state)
+        handlers[HANDLER_STATE].read(state)
             ? 0
             : -1
     );
@@ -1694,7 +1674,7 @@ $.fn.ariaFocusable = function (state) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Feb 25 2017 20:42:03 GMT+0000 (GMT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Feb 27 2017 22:13:37 GMT+0000 (GMT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

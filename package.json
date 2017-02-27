@@ -1,6 +1,6 @@
 {
   "name": "jquery-aria",
-  "version": "0.3.0a",
+  "version": "0.4.0a",
   "description": "WAI-ARIA helper functions for jQuery",
   "main": "dist/jquery.aria.js",
   "directories": {
