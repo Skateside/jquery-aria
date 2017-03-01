@@ -9,7 +9,8 @@ module.exports = function (grunt) {
         concat: {
             options: {
                 banner: (
-                    "/*! <%= pkg.name %> - v<%= pkg.version %> - " +
+                    "/*! <%= pkg.name %> (<%= pkg.homepage %>) - " +
+                    "v<%= pkg.version %> - <%= pkg.license %> license - " +
                     "<%= grunt.template.today('yyyy-mm-dd') %> */\n" +
                     "(function ($) {\n" +
                     "    \"use strict\";\n\n"
@@ -17,13 +18,16 @@ module.exports = function (grunt) {
                 footer: "\n}(jQuery));",
                 process: function (src, filename) {
 
-                    return src.replace(
-                        /<%=\s*(\w+)\s*%>/g,
-                        function (ignore, key) {
-                            return typeof pkgJson[key] === "string"
-                                ? pkgJson[key]
-                                : key;
-                        }
+                    return (
+                        "// Source: " + filename + "\n" +
+                        src.replace(
+                            /<%=\s*(\w+)\s*%>/g,
+                            function (ignore, key) {
+                                return typeof pkgJson[key] === "string"
+                                    ? pkgJson[key]
+                                    : key;
+                            }
+                        )
                     );
 
                 }
@@ -87,7 +91,8 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 banner: (
-                    "/*! <%= pkg.name %> - v<%= pkg.version %> - " +
+                    "/*! <%= pkg.name %> (<%= pkg.homepage %>) - " +
+                    "v<%= pkg.version %> - <%= pkg.license %> license - " +
                     "<%= grunt.template.today('yyyy-mm-dd') %> */"
                 ),
                 sourceMap: true
