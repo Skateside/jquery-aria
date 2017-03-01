@@ -38,9 +38,8 @@
  * <strong>Helper Functions for Common Functionality</strong>
  * <br>[jQuery#identify]{@link external:jQuery#identify} for generating element
  * IDs as necessary.
- * <br>[jQuery#ariaVisible]{@link external:jQuery#ariaVisible} and
- * [jQuery#ariaFocusable]{@link external:jQuery#ariaFocusable} for toggling
- * common features.
+ * <br>[jQuery#ariaFocusable]{@link external:jQuery#ariaFocusable} for toggling
+ * focusability.
  * <br>[jQuery.normaliseAria]{@link external:jQuery.normaliseAria} for
  * simplifying the WAI-ARIA attributes (aliased as
  * [jQuery.normalizeAria]{@link external:jQuery.normalizeAria}).
