@@ -10,11 +10,11 @@
  *
  * @memberof external:jQuery
  * @instance
- * @alias ariaFocusable
- * @param  {Attribute_Callback|Boolean|Number|String} state
- *         State to set.
- * @return {jQuery}
- *         jQuery object representing the affected element(s).
+ * @alias    ariaFocusable
+ * @param    {Attribute_Callback|Boolean|Number|String} state
+ *           State to set.
+ * @return   {jQuery}
+ *           jQuery object representing the affected element(s).
  *
  * @example <caption>Setting focusability</caption>
  * // Markup is

@@ -5,13 +5,13 @@
  * is aliased as [jQuery#removeAriaRef]{@link external:jQuery#removeAriaRef} and
  * [jQuery#removeAriaState]{@link external:jQuery#removeAriaState}.
  *
- * @alias removeAria
+ * @alias    removeAria
  * @memberof external:jQuery
  * @instance
- * @param  {String} name
- *         WAI-ARIA attribute to remove.
- * @return {jQuery}
- *         jQuery attribute representing the elements modified.
+ * @param    {String} name
+ *           WAI-ARIA attribute to remove.
+ * @return   {jQuery}
+ *           jQuery attribute representing the elements modified.
  *
  * @example
  * // Markup is

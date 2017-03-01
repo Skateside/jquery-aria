@@ -1,4 +1,3 @@
-var IDENTIFY_PREFIX = "anonymous";
 var count = 0;
 
 /**
@@ -48,13 +47,16 @@ var count = 0;
 $.fn.identify = function (index) {
 
     var element = this[0];
-    var id = element && element.id;
+    var isAnElement = isElement(element);
+    var id = isAnElement
+        ? element.id
+        : undefined;
 
-    if (element && !id) {
+    if (isAnElement && !id) {
 
         do {
 
-            id = IDENTIFY_PREFIX + count;
+            id = "anonymous" + count;
             count += 1;
 
         } while (document.getElementById(id));

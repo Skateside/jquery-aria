@@ -10,16 +10,16 @@
  * for more information and examples.
  *
  * @callback Attribute_Callback
- * @this   HTMLElement
- *         The element being referenced.
- * @param  {Number} index
- *         The index of the current element from within the overall jQuery
- *         collection.
- * @param  {String|undefined} attr
- *         Current attribute value (undefined if the element does not
- *         currently have the attribute assigned).
- * @return {String}
- *         The value that should be passed to the function.
+ * @this     HTMLElement
+ *           The element being referenced.
+ * @param    {Number} index
+ *           The index of the current element from within the overall jQuery
+ *           collection.
+ * @param    {String|undefined} attr
+ *           Current attribute value (undefined if the element does not
+ *           currently have the attribute assigned).
+ * @return   {String}
+ *           The value that should be passed to the function.
  *
  * @example
  * $("#one").aria("label", function (i, attr) {
