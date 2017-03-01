@@ -19,6 +19,12 @@
  * [jQuery#removeAriaRef]{@link external:jQuery#removeAriaRef} and
  * [jQuery#removeAriaState]{@link external:jQuery#removeAriaState}).
  * <br><br>
+ * <strong>Adjusting WAI-ARIA Attribute Manipulation</strong>
+ * <br>[jQuery.ariaMap]{@link external:jQuery.ariaMap} will convert the names of
+ * WAI-ARIA attributes.
+ * <br>[jQuery.ariaHooks]{@link external:jQuery.ariaHooks} allow special
+ * functionality to be defined for specific WAI-ARIA attributes.
+ * <br><br>
  * <strong>Manipulating Landmarks</strong>
  * <br>[jQuery#role]{@link external:jQuery#role},
  * [jQuery#addRole]{@link external:jQuery#addRole} and

@@ -5,8 +5,8 @@
  * <br>{@link handlers.reference.set} sets a reference.
  * <br>{@link handlers.reference.get} gets a reference.
  *
- * @alias reference
- * @memberof handlers
+ * @alias     reference
+ * @memberof  handlers
  * @namespace
  * @private
  */
@@ -26,14 +26,14 @@ handlers[HANDLER_REFERENCE] = {
      * action is taken.
      *
      * @private
-     * @param {Element}      element
-     *        Element to modify.
-     * @param {String}       name
-     *        WAI-ARIA attribute to set.
-     * @param {jQuery_param} reference
-     *        Element to reference.
-     * @param {Number}       index
-     *        Index of <code>element</code> within the collection.
+     * @param   {Element}      element
+     *          Element to modify.
+     * @param   {String}       name
+     *          WAI-ARIA attribute to set.
+     * @param   {jQuery_param} reference
+     *          Element to reference.
+     * @param   {Number}       index
+     *          Index of <code>element</code> within the collection.
      *
      * @example
      * // Markup is:
@@ -70,13 +70,13 @@ handlers[HANDLER_REFERENCE] = {
      * <code>undefined</code> is returned.
      *
      * @private
-     * @param  {Element}          element
-     *         Element to check.
-     * @param  {String}           name
-     *         WAI-ARIA reference.
-     * @return {jQuery|undefined}
-     *         jQuery object representing the reference or undefined if the
-     *         attribute isn't set.
+     * @param   {Element}          element
+     *          Element to check.
+     * @param   {String}           name
+     *          WAI-ARIA reference.
+     * @return  {jQuery|undefined}
+     *          jQuery object representing the reference or undefined if the
+     *          attribute isn't set.
      *
      * @example
      * // Markup is:

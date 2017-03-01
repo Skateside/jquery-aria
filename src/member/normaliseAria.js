@@ -1,9 +1,15 @@
 /**
  * Alias of [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}
  *
- * @alias external:jQuery.normalizeAria
+ * @function
+ * @alias    external:jQuery.normalizeAria
  * @memberof external:jQuery
- * @type {Function}
+ * @param    {String} name
+ *           Attribute name to normalise.
+ * @return   {String}
+ *           Normalised attribute name.
+ * @property {Object.<String>} cache
+ *           The cache of requests to responses.
  */
 $.normalizeAria = normalise;
 $.normaliseAria = normalise;

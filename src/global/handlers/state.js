@@ -9,8 +9,8 @@ var VALUE_MIXED = "mixed";
  * <br>{@link handlers.state.set} sets the state.
  * <br>{@link handlers.state.get} gets the state.
  *
- * @alias state
- * @memberof handlers
+ * @alias     state
+ * @memberof  handlers
  * @namespace
  * @private
  */
@@ -22,10 +22,10 @@ handlers[HANDLER_STATE] = {
      * correctly converted, it is assumed to be <code>true</code>.
      *
      * @private
-     * @param  {?} raw
-     *         Value to read.
-     * @return {Boolean|String}
-     *         Converted value.
+     * @param   {?} raw
+     *          Value to read.
+     * @return  {Boolean|String}
+     *          Converted value.
      *
      * @example <caption>Converting values</caption>
      * handlers.state.read(true);    // -> true
@@ -89,14 +89,14 @@ handlers[HANDLER_STATE] = {
      * [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}).
      *
      * @private
-     * @param {Element} element
-     *        Element to modify.
-     * @param {String}  name
-     *        WAI-ARIA attribute to set.
-     * @param {?}       state
-     *        State to set.
-     * @param {Number}  index
-     *        Index of <code>element</code> within the collection.
+     * @param   {Element} element
+     *          Element to modify.
+     * @param   {String}  name
+     *          WAI-ARIA attribute to set.
+     * @param   {?}       state
+     *          State to set.
+     * @param   {Number}  index
+     *          Index of <code>element</code> within the collection.
      *
      * @example
      * // Markup is:
@@ -131,12 +131,12 @@ handlers[HANDLER_STATE] = {
      * <code>name</code> is still normalised (see {@link jQuery.normaliseAria}).
      *
      * @private
-     * @param  {Element}    element
-     *         Element to access.
-     * @param  {String}     name
-     *         WAI-ARIA state to read.
-     * @return {ARIA_state}
-     *         State of the WAI-ARIA property.
+     * @param   {Element}    element
+     *          Element to access.
+     * @param   {String}     name
+     *          WAI-ARIA state to read.
+     * @return  {ARIA_state}
+     *          State of the WAI-ARIA property.
      *
      * @example
      * // Markup is:

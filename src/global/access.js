@@ -21,17 +21,17 @@
  *
  * @global
  * @private
- * @param  {jQuery}            jQelements
- *         jQuery object to modify/access.
- * @param  {Object|String}     property
- *         Either WAI-ARIA names and values or the WAI-ARIA property name.
- * @param  {?}                 [value]
- *         Value to set.
- * @param  {String}            [type="property"]
- *         Optional attribute type.
- * @return {jQuery|ARIA_state}
- *         Either the jQuery object on which WAI-ARIA properties were set or the
- *         values of the WAI-ARIA properties.
+ * @param   {jQuery}            jQelements
+ *          jQuery object to modify/access.
+ * @param   {Object|String}     property
+ *          Either WAI-ARIA names and values or the WAI-ARIA property name.
+ * @param   {?}                 [value]
+ *          Value to set.
+ * @param   {String}            [type="property"]
+ *          Optional attribute type.
+ * @return  {jQuery|ARIA_state}
+ *          Either the jQuery object on which WAI-ARIA properties were set or
+ *          the values of the WAI-ARIA properties.
  *
  * @example <caption>Setting a single property</caption>
  * // Markup is

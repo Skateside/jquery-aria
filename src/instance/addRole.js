@@ -6,12 +6,12 @@
  *
  * @memberof external:jQuery
  * @instance
- * @alias addRole
- * @param  {Attribute_Callback|String} role
- *         Role(s) to add to the matching elements or function to generate the
- *         role(s) to add.
- * @return {jQuery}
- *         jQuery object representing the matching elements.
+ * @alias    addRole
+ * @param    {Attribute_Callback|String} role
+ *           Role(s) to add to the matching elements or function to generate the
+ *           role(s) to add.
+ * @return   {jQuery}
+ *           jQuery object representing the matching elements.
  *
  * @example <caption>Adding a role</caption>
  * // Markup is:

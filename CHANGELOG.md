@@ -2,6 +2,13 @@
 
 ## Alpha Version
 
+### 0.5.0a
+_2017-03-01_
+- Added `jQuery.ariaMap` and `jQuery.ariaHooks`.
+- Added caching to `jQuery.normaliseAria`.
+- Corrected documentation to include aliases in the list of functions.
+- Removed `jQuery#ariaVisible` since `jQuery.ariaHooks` will handle `aria-hidden` the same way.
+
 ### 0.4.0a
 _2017-02-27_
 - Fixed references to handler properties.
