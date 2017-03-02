@@ -59,7 +59,7 @@ var memoise = function (handler, resolver) {
 
         var args = slice.call(arguments);
         var key = typeof resolver === "function"
-            ? resolves.apply(undefined, args)
+            ? resolver.apply(undefined, args)
             : args.join(",");
         var response = handler.cache[key];
 

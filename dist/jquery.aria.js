@@ -1,4 +1,4 @@
-/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.5.0a - MIT license - 2017-03-02 */
+/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.5.1a - MIT license - 2017-03-02 */
 (function ($) {
     "use strict";
 
@@ -49,7 +49,7 @@
  * [GitHub]{@link https://github.com/Skateside/jquery-aria}.
  *
  * @author James "Skateside" Long <sk85ide@hotmail.com>
- * @version 0.5.0a
+ * @version 0.5.1a
  * @license MIT
  */
 
@@ -271,7 +271,7 @@
 // whether or not the browser supports Proxy.
 var IS_PROXY_AVAILABLE = (
     typeof window.Proxy === "function"
-    && window.Proxy.toString.indexOf("[native code]") > -1
+    && window.Proxy.toString().indexOf("[native code]") > -1
 );
 
 // Source: src/global/identify.js
@@ -426,7 +426,7 @@ var memoise = function (handler, resolver) {
 
         var args = slice.call(arguments);
         var key = typeof resolver === "function"
-            ? resolves.apply(undefined, args)
+            ? resolver.apply(undefined, args)
             : args.join(",");
         var response = handler.cache[key];
 
