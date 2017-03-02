@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.4.0a - MIT license - 2017-03-02 */
-=======
-/*! jquery-aria - v0.5.0a - 2017-03-01 */
->>>>>>> upstream/master
+/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.5.0a - MIT license - 2017-03-02 */
 (function ($) {
     "use strict";
 
@@ -127,7 +123,7 @@
  * $("#four").ariaState("checked");  // -> undefined
  */
 
-// Source: src/doc/typedef/jQuery_param.js
+// Source: src/doc/typedef/ARIA_hook.js
 /**
  * A hook for a WAI-ARIA attribute. Every property is optional so there is no
  * need to specify one to execute the default functionality.
@@ -259,6 +255,7 @@
  * };
  */
 
+// Source: src/doc/typedef/jQuery_param.js
 /**
  * Any parameter that can be passed to
  * [jQuery's $ function]{@link http://api.jquery.com/jQuery/}. Be aware that
@@ -268,9 +265,7 @@
  * @typedef {Array|Element|jQuery|NodeList|String} jQuery_param
  */
 
-<<<<<<< HEAD
-// Source: src/global/identify.js
-=======
+// Source: src/global/variables.js
 // A simple check to see if there is a global Proxy function and it's native.
 // Although this isn't fool-proof, it's a fairly reliable way of checking
 // whether or not the browser supports Proxy.
@@ -279,7 +274,7 @@ var IS_PROXY_AVAILABLE = (
     && window.Proxy.toString.indexOf("[native code]") > -1
 );
 
->>>>>>> upstream/master
+// Source: src/global/identify.js
 /**
  * Helper function for identifying the given <code>reference</code>. The ID of
  * the first match is returned - see
@@ -369,7 +364,7 @@ var isElement = function (element) {
     return element instanceof HTMLElement;
 };
 
-// Source: src/global/normalise.js
+// Source: src/global/memoise.js
 /**
  * Modifies a function so that the results are retrieved from a cache if
  * possible rather than from executing the function again. The cache is publicly
@@ -448,6 +443,7 @@ var memoise = function (handler, resolver) {
 
 };
 
+// Source: src/global/normalise.js
 /**
  * Normalises a WAI-ARIA attribute name so that it's always lower case and
  * always stars with <code>aria-</code>. If the unprefixed value appears in
@@ -1287,10 +1283,7 @@ function removeAttribute(name) {
 $.normalizeAria = normalise;
 $.normaliseAria = normalise;
 
-<<<<<<< HEAD
-// Source: src/instance/identify.js
-var IDENTIFY_PREFIX = "anonymous";
-=======
+// Source: src/member/ariaMap.js
 /**
  * A map of unprefixed WAI-ARIA attributes that should be converted before being
  * normalised (see [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}).
@@ -1332,6 +1325,7 @@ if (IS_PROXY_AVAILABLE) {
 
 }
 
+// Source: src/member/ariaHooks.js
 /**
  * A collection of hooks that change the behaviour of attributes being set,
  * retrieved, checked or removed (called [set]{@link ARIA_hook_set},
@@ -1399,7 +1393,7 @@ $.ariaHooks = {
 
 };
 
->>>>>>> upstream/master
+// Source: src/instance/identify.js
 var count = 0;
 
 /**
@@ -2003,69 +1997,8 @@ $.fn.removeRole = function (role) {
 
 };
 
-// Source: src/instance/ariaVisible.js
-/**
-<<<<<<< HEAD
- * Sets the visibility of the matching elements on a WAI-ARIA level. Strings,
- * numbers and booleans are understood as <code>state</code> - see
- * [jQuery#ariaState]{@link external:jQuery#ariaState} for full details as the
- * algorythm is the same.
- * <br><br>
- * Note that according to the WAI-ARIA specs, declaring an element to be visible
- * should be done by removing the <code>aria-hidden</code> attribute rather than
- * setting the value to <code>false</code>.
- * <br><br>
- * Be aware that this function will only modify the <code>aria-hidden</code> of
- * the matching elements. It's possible that after running this function, the
- * element cannot be seen visually or is still hidden to WAI-ARIA devices.
- *
- * @memberof external:jQuery
- * @instance
- * @alias ariaVisible
- * @param  {Attribute_Callback|Boolean|Number|String} state
- *         State to set.
- * @return {jQuery}
- *         jQuery object representing the affected element(s).
- *
- * @example <caption>Setting WAI-ARIA visibility</caption>
- * // Markup is
- * // <div id="one" aria-hidden="true"></div>
- * // <div id="two"></div>
- *
- * $("#one").ariaVisible(false); // -> jQuery(<div id="one">)
- * $("#two").ariaVisible(true);  // -> jQuery(<div id="two">)
- *
- * // Now markup is
- * // <div id="one"></div>
- * // <div id="two" aria-hidden="true"></div>
- *
- * @example <caption>Limitations of the function</caption>
- * // Markup is
- * // <div id="one" aria-hidden="true">
- * //     <div id="two" aria-hidden="true" style="display:none"></div>
- * // </div>
- *
- * $("#two").ariaVisible(true); // -> jQuery(<div id="two">)
- *
- * // Now markup is
- * // <div id="one" aria-hidden="true">
- * //     <div id="two" style="display:none"></div>
- * // </div>
- */
-$.fn.ariaVisible = function (state) {
-
-    var theState = handlers[HANDLER_STATE].read(state);
-
-    return theState
-        ? access(this, "hidden", theState)
-        : this.removeAttr("hidden");
-
-};
-
 // Source: src/instance/ariaFocusable.js
 /**
-=======
->>>>>>> upstream/master
  * Sets whether or not the matching elements are focusable. Strings, numbers and
  * booleans are understood as <code>state</code> - see
  * [jQuery#ariaState]{@link external:jQuery#ariaState} for full details as the
