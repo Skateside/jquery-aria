@@ -25,16 +25,16 @@
  *
  * @memberof external:jQuery
  * @instance
- * @alias ariaRef
- * @param  {Object|String} property
- *         Either the properties to set in key/value pairs or the name of the
- *         property to set.
- * @param  {Attribute_Callback|jQuery_param} [value]
- *         Reference to set.
- * @return {jQuery}
- *         jQuery object representing either the elements that were modified
- *         (when setting) or the referenced element(s) (when getting - may be an
- *         empty jQuery object).
+ * @alias    ariaRef
+ * @param    {Object|String} property
+ *           Either the properties to set in key/value pairs or the name of the
+ *           property to set.
+ * @param    {Attribute_Callback|jQuery_param} [value]
+ *           Reference to set.
+ * @return   {jQuery}
+ *           jQuery object representing either the elements that were modified
+ *           (when setting) or the referenced element(s) (when getting - may be
+ *           an empty jQuery object).
  *
  * @example <caption>Setting references</caption>
  * // Markup is:

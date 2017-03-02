@@ -5,10 +5,10 @@
  *
  * @global
  * @private
- * @param  {String} string
- *         String (or other variable type) to break into words.
- * @return {Array.<String>}
- *         Words from the string.
+ * @param   {String} string
+ *          String (or other variable type) to break into words.
+ * @return  {Array.<String>}
+ *          Words from the string.
  *
  * @example
  * toWords("abc def");  // -> ["abc", "def"]

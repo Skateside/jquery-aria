@@ -4,10 +4,10 @@
  *
  * @global
  * @private
- * @param  {?} string
- *         Object to interpret.
- * @return {String}
- *         Interpreted string.
+ * @param   {?} string
+ *          Object to interpret.
+ * @return  {String}
+ *          Interpreted string.
  *
  * @example
  * interpretString("1");       // -> "1"

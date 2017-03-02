@@ -5,13 +5,13 @@
  *
  * @global
  * @private
- * @type   {Function}
- * @param  {String} text
- *         String to search for.
- * @param  {Number} [offset=0]
- *         Offset from which to start.
- * @return {Boolean}
- *         True if the string starts with <code>text</code>, false otherwise.
+ * @function
+ * @param    {String} text
+ *           String to search for.
+ * @param    {Number} [offset=0]
+ *           Offset from which to start.
+ * @return   {Boolean}
+ *           True if the string starts with <code>text</code>, false otherwise.
  *
  * @example
  * startsWith.call("abcdef", "abc"); // -> true

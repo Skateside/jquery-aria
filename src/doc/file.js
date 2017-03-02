@@ -19,6 +19,12 @@
  * [jQuery#removeAriaRef]{@link external:jQuery#removeAriaRef} and
  * [jQuery#removeAriaState]{@link external:jQuery#removeAriaState}).
  * <br><br>
+ * <strong>Adjusting WAI-ARIA Attribute Manipulation</strong>
+ * <br>[jQuery.ariaMap]{@link external:jQuery.ariaMap} will convert the names of
+ * WAI-ARIA attributes.
+ * <br>[jQuery.ariaHooks]{@link external:jQuery.ariaHooks} allow special
+ * functionality to be defined for specific WAI-ARIA attributes.
+ * <br><br>
  * <strong>Manipulating Landmarks</strong>
  * <br>[jQuery#role]{@link external:jQuery#role},
  * [jQuery#addRole]{@link external:jQuery#addRole} and
@@ -28,9 +34,8 @@
  * <strong>Helper Functions for Common Functionality</strong>
  * <br>[jQuery#identify]{@link external:jQuery#identify} for generating element
  * IDs as necessary.
- * <br>[jQuery#ariaVisible]{@link external:jQuery#ariaVisible} and
- * [jQuery#ariaFocusable]{@link external:jQuery#ariaFocusable} for toggling
- * common features.
+ * <br>[jQuery#ariaFocusable]{@link external:jQuery#ariaFocusable} for toggling
+ * focusability.
  * <br>[jQuery.normaliseAria]{@link external:jQuery.normaliseAria} for
  * simplifying the WAI-ARIA attributes (aliased as
  * [jQuery.normalizeAria]{@link external:jQuery.normalizeAria}).

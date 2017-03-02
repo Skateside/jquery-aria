@@ -14,12 +14,12 @@
  *
  * @memberof external:jQuery
  * @instance
- * @alias role
- * @param  {Attribute_Callback|String} [role]
- *         Role to get or function to set the role.
- * @return {jQuery|String|undefined}
- *         Either the jQuery object representing the elements that were modified
- *         or the role value.
+ * @alias    role
+ * @param    {Attribute_Callback|String} [role]
+ *           Role to get or function to set the role.
+ * @return   {jQuery|String|undefined}
+ *           Either the jQuery object representing the elements that were
+ *           modified or the role value.
  *
  * @example
  * // Markup is:

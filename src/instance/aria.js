@@ -21,15 +21,15 @@
  *
  * @memberof external:jQuery
  * @instance
- * @alias aria
- * @param  {Object|String} property
- *         Either the properties to set in key/value pairs or the name of the
- *         property to get/set.
- * @param  {Attribute_Callback|Boolean|Number|String} [value]
- *         The value of the property to set.
- * @return {jQuery|String|undefined}
- *         Either the jQuery object (after setting) or a string or undefined
- *         (after getting)
+ * @alias    aria
+ * @param    {Object|String} property
+ *           Either the properties to set in key/value pairs or the name of the
+ *           property to get/set.
+ * @param    {Attribute_Callback|Boolean|Number|String} [value]
+ *           The value of the property to set.
+ * @return   {jQuery|String|undefined}
+ *           Either the jQuery object (after setting) or a string or undefined
+ *           (after getting)
  *
  * @example <caption>Setting WAI-ARIA attribute(s)</caption>
  * $("#element").aria("aria-label", "test");
