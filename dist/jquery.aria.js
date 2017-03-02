@@ -1,7 +1,8 @@
-/*! jquery-aria - v0.4.0a - 2017-02-27 */
+/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.4.0a - MIT license - 2017-03-02 */
 (function ($) {
     "use strict";
 
+// Source: src/doc/file.js
 /**
  * @file
  * This is a jQuery plugin that adds methods for manipulating WAI-ARIA
@@ -47,11 +48,13 @@
  * @license MIT
  */
 
+// Source: src/doc/external/jQuery.js
 /**
  * @external jQuery
  * @see [jQuery]{@link http://jquery.com}
  */
 
+// Source: src/doc/callback/Attribute_Callback.js
 /**
  * The [jQuery#aria]{@link external:jQuery#aria},
  * [jQuery#ariaRef]{@link external:jQuery#ariaRef} and
@@ -94,6 +97,7 @@
  * // <div id="one" aria-label="[object Undefined]"></div>
  */
 
+// Source: src/doc/typedef/ARIA_state.js
 /**
  * A boolean or the string "mixed" (always in lower case). This type will
  * be undefined when trying to read a state that has not been set on the
@@ -114,6 +118,7 @@
  * $("#four").ariaState("checked");  // -> undefined
  */
 
+// Source: src/doc/typedef/jQuery_param.js
 /**
  * Any parameter that can be passed to
  * [jQuery's $ function]{@link http://api.jquery.com/jQuery/}. Be aware that
@@ -123,6 +128,7 @@
  * @typedef {Array|Element|jQuery|NodeList|String} jQuery_param
  */
 
+// Source: src/global/identify.js
 /**
  * Helper function for identifying the given <code>reference</code>. The ID of
  * the first match is returned - see
@@ -139,6 +145,7 @@ var identify = function (reference) {
     return $(reference).identify();
 };
 
+// Source: src/global/identity.js
 /**
  * An identity function that simply returns whatever it is given without
  * modifying it. This can be useful for cases when a modification function is
@@ -160,6 +167,7 @@ var identity = function (x) {
     return x;
 };
 
+// Source: src/global/interpretString.js
 /**
  * Interprets the given object as a string. If the object is <code>null</code>
  * or <code>undefined</code>, an empty string is returned.
@@ -187,6 +195,7 @@ var interpretString = function (string) {
 
 };
 
+// Source: src/global/isElement.js
 /**
  * Returns <code>true</code> if the given <code>element</code> is an HTML
  * element.
@@ -209,6 +218,7 @@ var isElement = function (element) {
     return element instanceof HTMLElement;
 };
 
+// Source: src/global/normalise.js
 /**
  * Normalises a WAI-ARIA attribute name so that it's always lower case and
  * always stars with <code>aria-</code>.
@@ -242,6 +252,7 @@ var normalise = function (name) {
 
 };
 
+// Source: src/global/startsWith.js
 /**
  * A fallback for older browsers that do not understand
  * [String#startsWith]{@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith}
@@ -264,6 +275,7 @@ var startsWith = String.prototype.startsWith || function (text, offset) {
     return this.indexOf(text, offset) === 0;
 };
 
+// Source: src/global/toWords.js
 /**
  * Converts the given string into an array of the words. The <code>string</code>
  * argument is converted into a string before being split - see
@@ -284,6 +296,7 @@ var toWords = function (string) {
     return interpretString(string).split(/\s+/);
 };
 
+// Source: src/global/handlers.js
 var HANDLER_PROPERTY = "property";
 var HANDLER_REFERENCE = "reference";
 var HANDLER_STATE = "state";
@@ -305,6 +318,7 @@ var HANDLER_STATE = "state";
  */
 var handlers = {};
 
+// Source: src/global/handlers/property.js
 /**
  * Handles WAI-ARIA properties without modifying the values any more than it
  * needs to. These methods also act as the fallback for other namespaces such as
@@ -512,6 +526,7 @@ handlers[HANDLER_PROPERTY] = {
 
 };
 
+// Source: src/global/handlers/reference.js
 /**
  * Handles modifying WAI-ARIA references. Unlike {@link handlers.property}, this
  * will create references to elements and return them. The only defined methods
@@ -615,6 +630,7 @@ handlers[HANDLER_REFERENCE] = {
 
 };
 
+// Source: src/global/handlers/state.js
 var REGEXP_BOOLEAN = /^(?:true|false)$/;
 var VALUE_MIXED = "mixed";
 
@@ -785,6 +801,7 @@ handlers[HANDLER_STATE] = {
 
 };
 
+// Source: src/global/access.js
 /**
  * This function handles all the heavy lifting of getting or setting WAI-ARIA
  * attributes. It is designed to be all that's necessary for
@@ -883,6 +900,7 @@ function access(jQelements, property, value, type) {
 
 }
 
+// Source: src/global/removeAttribute.js
 /**
  * Removes the named WAI-ARIA attribute from all elements in the current
  * collection. The <code>name</code> is normalised (see
@@ -915,6 +933,7 @@ function removeAttribute(name) {
 
 }
 
+// Source: src/member/normaliseAria.js
 /**
  * Alias of [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}
  *
@@ -925,6 +944,7 @@ function removeAttribute(name) {
 $.normalizeAria = normalise;
 $.normaliseAria = normalise;
 
+// Source: src/instance/identify.js
 var IDENTIFY_PREFIX = "anonymous";
 var count = 0;
 
@@ -994,6 +1014,7 @@ $.fn.identify = function (index) {
 
 };
 
+// Source: src/instance/aria.js
 /**
  * Gets or sets WAI-ARIA properties. The properties will not be modified any
  * more than they need to be (unlike
@@ -1073,6 +1094,7 @@ $.fn.aria = function (property, value) {
 
 };
 
+// Source: src/instance/ariaRef.js
 /**
  * Gets or sets a WAI-ARIA reference. This is functionally identical to
  * [jQuery#aria]{@link external:jQuery#aria} with the main difference being that
@@ -1198,6 +1220,7 @@ $.fn.ariaRef = function (property, value) {
 
 };
 
+// Source: src/instance/ariaState.js
 /**
  * Sets or gets the WAI-ARIA state of the collection.
  * <br><br>
@@ -1293,6 +1316,7 @@ $.fn.ariaState = function (property, value) {
 
 };
 
+// Source: src/instance/removeAria.js
 $.fn.extend(/** @lends external:jQuery.prototype */{
 
     removeAria: removeAttribute,
@@ -1313,6 +1337,7 @@ $.fn.extend(/** @lends external:jQuery.prototype */{
 
 });
 
+// Source: src/instance/role.js
 /**
  * Sets the role of all elements in the collection or gets the role of the first
  * element in the collection, depending on whether or not the <code>role</code>
@@ -1369,6 +1394,7 @@ $.fn.role = function (role) {
 
 };
 
+// Source: src/instance/addRole.js
 /**
  * Adds a role to a collection of elements. The role will not be added if it's
  * empty ("" or undefined), if the function response is empty or if the element
@@ -1435,6 +1461,7 @@ $.fn.addRole = function (role) {
 
 };
 
+// Source: src/instance/removeRole.js
 /**
  * Removes roles from the collection of elements. If the method is called
  * without any arguments then the role attribute itself is removed. Be aware
@@ -1511,6 +1538,7 @@ $.fn.removeRole = function (role) {
 
 };
 
+// Source: src/instance/ariaVisible.js
 /**
  * Sets the visibility of the matching elements on a WAI-ARIA level. Strings,
  * numbers and booleans are understood as <code>state</code> - see
@@ -1568,6 +1596,7 @@ $.fn.ariaVisible = function (state) {
 
 };
 
+// Source: src/instance/ariaFocusable.js
 /**
  * Sets whether or not the matching elements are focusable. Strings, numbers and
  * booleans are understood as <code>state</code> - see
