@@ -1,19 +1,19 @@
 // https://mochajs.org/
-var assert = require("assert");
+//var chai.assert = require("chai.assert");
 
 // Normalising WAI-ARIA attributes
 describe("jQuery.normaliseAria", function () {
 
     it("should prefix a string with \"aria-\"", function () {
-        assert.equal($.normaliseAria("busy"), "aria-busy");
+        chai.assert.equal($.normaliseAria("busy"), "aria-busy");
     });
 
     it("should prefix convert the string to lower case", function () {
-        assert.equal($.normaliseAria("BUSY"), "aria-busy");
+        chai.assert.equal($.normaliseAria("BUSY"), "aria-busy");
     });
 
     it("should not prefix an already prefixed string", function () {
-        assert.equal($.normaliseAria("aria-busy"), "aria-busy");
+        chai.assert.equal($.normaliseAria("aria-busy"), "aria-busy");
     });
 
     it("should convert the argument to a string before prefixing", function () {
@@ -24,20 +24,20 @@ describe("jQuery.normaliseAria", function () {
             }
         };
 
-        assert.equal($.normaliseAria(o), "aria-abc");
+        chai.assert.equal($.normaliseAria(o), "aria-abc");
 
     });
 
     it("should map using values from $.ariaMap", function () {
-        assert.equal($.normaliseAria("labeledby"), "aria-labelledby");
-        assert.equal($.normaliseAria("LABELEDBY"), "aria-labelledby");
+        chai.assert.equal($.normaliseAria("labeledby"), "aria-labelledby");
+        chai.assert.equal($.normaliseAria("LABELEDBY"), "aria-labelledby");
     });
 
     // it("should map using values from $.ariaMap and convert to lower case", function () {
     // });
 
     it("should have the alias $.normalizeAria", function () {
-        assert.equal($.normaliseAria, $.normalizeAria);
+        chai.assert.equal($.normaliseAria, $.normalizeAria);
     });
 
 });
@@ -57,18 +57,18 @@ describe("jQuery#identify", function () {
     }
 
     it("should get the ID of the matching element", function () {
-        assert.equal($("div:first-child", makeHolder()).identify(), "one");
+        chai.assert.equal($("div:first-child", makeHolder()).identify(), "one");
     });
 
     it("should generate an ID if there is not already one", function () {
-        assert.equal($("div:last-child", makeHolder()).identify().substr(0, 9), "anonymous");
+        chai.assert.equal($("div:last-child", makeHolder()).identify().substr(0, 9), "anonymous");
     });
 
     it("should only get the ID of the first matching element", function () {
 
         var jQdiv = $("div", makeHolder());
 
-        assert.equal(jQdiv.identify(), jQdiv.eq(0).attr("id"));
+        chai.assert.equal(jQdiv.identify(), jQdiv.eq(0).attr("id"));
 
     });
 
@@ -92,7 +92,7 @@ describe("jQuery#identify", function () {
             return elem.id;
         });
 
-        assert.equal(ids.indexOf(id), -1);
+        chai.assert.equal(ids.indexOf(id), -1);
 
         elements.forEach(function (elem) {
             document.body.removeChild(elem);
@@ -110,7 +110,7 @@ describe("jQuery#role", function () {
         var jQdiv = $("<div></div>");
         jQdiv.role("presentation");
 
-        assert.equal(jQdiv[0].getAttribute("role"), "presentation");
+        chai.assert.equal(jQdiv[0].getAttribute("role"), "presentation");
 
     });
 
@@ -118,12 +118,12 @@ describe("jQuery#role", function () {
 
         var jQdiv = $("<div role=\"presentation\"></div>");
 
-        assert.equal(jQdiv.role(), "presentation");
+        chai.assert.equal(jQdiv.role(), "presentation");
 
     });
 
     it("should return a jQuery object after setting", function () {
-        assert($("<div></div>").role("presentation") instanceof $);
+        chai.assert($("<div></div>").role("presentation") instanceof $);
     });
 
 });
@@ -135,10 +135,10 @@ describe("jQuery#addrole", function () {
         var jQdiv = $("<div></div>");
 
         jQdiv.addRole("presentation");
-        assert.equal(jQdiv.role(), "presentation");
+        chai.assert.equal(jQdiv.role(), "presentation");
 
         jQdiv.addRole("alert");
-        assert.equal(jQdiv.role(), "presentation alert");
+        chai.assert.equal(jQdiv.role(), "presentation alert");
 
 
     });
@@ -148,7 +148,7 @@ describe("jQuery#addrole", function () {
         var jQdiv = $("<div role=\"presentation\"></div>");
 
         jQdiv.addRole("presentation");
-        assert.equal(jQdiv.role(), "presentation");
+        chai.assert.equal(jQdiv.role(), "presentation");
 
     });
 
@@ -157,12 +157,12 @@ describe("jQuery#addrole", function () {
         var jQdiv = $("<div></div>");
 
         jQdiv.addRole("presentation alert");
-        assert.equal(jQdiv.role(), "presentation alert");
+        chai.assert.equal(jQdiv.role(), "presentation alert");
 
     });
 
     it("should return a jQuery object", function () {
-        assert($("<div></div>").addRole("presentation") instanceof $);
+        chai.assert($("<div></div>").addRole("presentation") instanceof $);
     });
 
 });
@@ -174,10 +174,10 @@ describe("jQuery#removeRole", function () {
         var jQdiv = $("<div role=\"presentation alert\"></div>");
 
         jQdiv.removeRole("presentation");
-        assert.equal(jQdiv.role(), "alert");
+        chai.assert.equal(jQdiv.role(), "alert");
 
         jQdiv.removeRole("alert");
-        assert.equal(jQdiv.role(), "");
+        chai.assert.equal(jQdiv.role(), "");
 
 
     });
@@ -187,7 +187,7 @@ describe("jQuery#removeRole", function () {
         var jQdiv = $("<div role=\"presentation\"></div>");
 
         jQdiv.removeRole("alert");
-        assert.equal(jQdiv.role(), "presentation");
+        chai.assert.equal(jQdiv.role(), "presentation");
 
     });
 
@@ -196,12 +196,12 @@ describe("jQuery#removeRole", function () {
         var jQdiv = $("<div role=\"presentation alert banner\"></div>");
 
         jQdiv.removeRole("presentation alert");
-        assert.equal(jQdiv.role(), "banner");
+        chai.assert.equal(jQdiv.role(), "banner");
 
     });
 
     it("should return a jQuery object", function () {
-        assert($("<div></div>").removeRole("presentation") instanceof $);
+        chai.assert($("<div></div>").removeRole("presentation") instanceof $);
     });
 
 });

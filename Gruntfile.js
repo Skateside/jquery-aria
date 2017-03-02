@@ -88,6 +88,16 @@ module.exports = function (grunt) {
             }
         },
 
+        // https://gist.github.com/maicki/7781943
+        mocha: {
+            all: {
+                src: ["test/testrunner.html"]
+            },
+            options: {
+                run: true
+            }
+        },
+
         uglify: {
             options: {
                 banner: (
@@ -109,8 +119,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-concat");
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks("grunt-jsdoc");
-
+    grunt.loadNpmTasks('grunt-mocha');
 
     grunt.registerTask("default", ["concat", "uglify", "jsdoc"]);
+    grunt.registerTask("test", ["mocha"]);
 
 };
