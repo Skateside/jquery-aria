@@ -3,5 +3,5 @@
 // whether or not the browser supports Proxy.
 var IS_PROXY_AVAILABLE = (
     typeof window.Proxy === "function"
-    && window.Proxy.toString.indexOf("[native code]") > -1
+    && window.Proxy.toString().indexOf("[native code]") > -1
 );

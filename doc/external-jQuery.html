@@ -56,7 +56,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line55">line 55</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line57">line 57</a>
     </li></ul></dd>
     
 
@@ -133,7 +133,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1349">line 1349</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1375">line 1375</a>
     </li></ul></dd>
     
 
@@ -173,27 +173,7 @@
 
 
 <div class="description">
-    A collection of hooks that change the behaviour of attributes being set,
-retrieved, checked or removed (called <a href="global.html#ARIA_hook_set">set</a>,
-<a href="global.html#ARIA_hook_get">get</a>, <a href="global.html#ARIA_hook_has">has</a>,
-<a href="global.html#ARIA_hook_unset">unset</a> - see <a href="global.html#ARIA_hook">ARIA_hook</a> for full details). The
-name of the hook is always the un-prefixed WAI-ARIA attribute in lower case
-after any mapping has occurred (see
-<a href="external-jQuery.html#.ariaMap">jQuery.ariaMap</a>). If you are ever in doubt,
-the easiest way to know the key is to slice the normalised value:
-<code>$.normaliseAria(__WAI-ARIA_ATTRIBUTE__).slice(5)</code> (see
-<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a> for more
-information).
-<br><br>
-<a href="external-jQuery.html#aria">jQuery#aria</a>,
-<a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a>,
-<a href="external-jQuery.html#ariaState">jQuery#ariaState</a>,
-<a href="external-jQuery.html#removeAria">jQuery#removeAria</a>,
-<a href="external-jQuery.html#removeAriaRef">jQuery#removeAriaRef</a> and
-<a href="external-jQuery.html#removeAriaState">jQuery#removeAriaState</a> all run
-through these hooks (if they exist) and these hooks replace the functionality
-of manipulating or checking the attributes after any conversion process has
-occurred within the method itself.
+    A collection of hooks that change the behaviour of attributes being set,retrieved, checked or removed (called <a href="global.html#ARIA_hook_set">set</a>,<a href="global.html#ARIA_hook_get">get</a>, <a href="global.html#ARIA_hook_has">has</a>,<a href="global.html#ARIA_hook_unset">unset</a> - see <a href="global.html#ARIA_hook">ARIA_hook</a> for full details). Thename of the hook is always the un-prefixed WAI-ARIA attribute in lower caseafter any mapping has occurred (see<a href="external-jQuery.html#.ariaMap">jQuery.ariaMap</a>). If you are ever in doubt,the easiest way to know the key is to slice the normalised value:<code>$.normaliseAria(__WAI-ARIA_ATTRIBUTE__).slice(5)</code> (see<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a> for moreinformation).<br><br><a href="external-jQuery.html#aria">jQuery#aria</a>,<a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a>,<a href="external-jQuery.html#ariaState">jQuery#ariaState</a>,<a href="external-jQuery.html#removeAria">jQuery#removeAria</a>,<a href="external-jQuery.html#removeAriaRef">jQuery#removeAriaRef</a> and<a href="external-jQuery.html#removeAriaState">jQuery#removeAriaState</a> all runthrough these hooks (if they exist) and these hooks replace the functionalityof manipulating or checking the attributes after any conversion process hasoccurred within the method itself.
 </div>
 
 
@@ -214,23 +194,7 @@ occurred within the method itself.
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>// aria-level should be an integer greater than or equal to 1 so the getter
-// should return an integer.
-$.ariaHooks.level = {
-    set: function (element, value) {
-        var intVal = Math.max(1, Math.floor(value));
-        if (!isNaN(intVal)) {
-            element.setAttribute("aria-level", intVal)
-        }
-    },
-    get: function (element) {
-        var value = element.getAttribute("aria-level");
-        var intVal = (Math.max(1, Math.floor(value));
-        return (value === null || isNaN(intVal))
-            ? undefined
-            : intVal;
-    }
-};</code></pre>
+    <pre class="prettyprint"><code>// aria-level should be an integer greater than or equal to 1 so the getter// should return an integer.$.ariaHooks.level = {    set: function (element, value) {        var intVal = Math.max(1, Math.floor(value));        if (!isNaN(intVal)) {            element.setAttribute("aria-level", intVal)        }    },    get: function (element) {        var value = element.getAttribute("aria-level");        var intVal = (Math.max(1, Math.floor(value));        return (value === null || isNaN(intVal))            ? undefined            : intVal;    }};</code></pre>
 
 
 
@@ -247,7 +211,7 @@ $.ariaHooks.level = {
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1275">line 1275</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1300">line 1300</a>
     </li></ul></dd>
     
 
@@ -287,8 +251,7 @@ $.ariaHooks.level = {
 
 
 <div class="description">
-    A map of unprefixed WAI-ARIA attributes that should be converted before being
-normalised (see <a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a>).
+    A map of unprefixed WAI-ARIA attributes that should be converted before beingnormalised (see <a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a>).
 </div>
 
 
@@ -311,9 +274,7 @@ normalised (see <a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAr
     
         <p class="code-caption">Correcting a common typo</p>
     
-    <pre class="prettyprint"><code>$.ariaMap.budy = "busy";
-$.normaliseAria("budy");      // -> "aria-busy"
-$.normaliseAria("aria-budy"); // -> "aria-busy"</code></pre>
+    <pre class="prettyprint"><code>$.ariaMap.budy = "busy";$.normaliseAria("budy");      // -> "aria-busy"$.normaliseAria("aria-budy"); // -> "aria-busy"</code></pre>
 
 
 
@@ -340,7 +301,7 @@ $.normaliseAria("aria-budy"); // -> "aria-busy"</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line485">line 485</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line498">line 498</a>
     </li></ul></dd>
     
 
@@ -432,19 +393,7 @@ $.normaliseAria("aria-budy"); // -> "aria-busy"</code></pre>
 
 
 <div class="description">
-    Normalises a WAI-ARIA attribute name so that it's always lower case and
-always stars with <code>aria-</code>. If the unprefixed value appears in
-<a href="external-jQuery.html#.ariaMap">jQuery.ariaMap</a> then the mapped version is
-used before being prefixed.
-<br><br>
-The results of this function are cached to help reduce processing. This is
-exposed as <code>jQuery.normaliseAria.cache</code> if needed but there is no
-need to clear the cache after modifying
-<a href="external-jQuery.html#.ariaMap">jQuery.ariaMap</a> - changes are automatically
-considered in the caching process.
-<br><br>
-This function is aliased as
-<a href="external-jQuery.html#.normalizeAria">jQuery.normalizeAria</a>.
+    Normalises a WAI-ARIA attribute name so that it's always lower case andalways stars with <code>aria-</code>. If the unprefixed value appears in<a href="external-jQuery.html#.ariaMap">jQuery.ariaMap</a> then the mapped version isused before being prefixed.<br><br>The results of this function are cached to help reduce processing. This isexposed as <code>jQuery.normaliseAria.cache</code> if needed but there is noneed to clear the cache after modifying<a href="external-jQuery.html#.ariaMap">jQuery.ariaMap</a> - changes are automaticallyconsidered in the caching process.<br><br>This function is aliased as<a href="external-jQuery.html#.normalizeAria">jQuery.normalizeAria</a>.
 </div>
 
 
@@ -459,33 +408,19 @@ This function is aliased as
     
         <p class="code-caption">Basic example</p>
     
-    <pre class="prettyprint"><code>$.normaliseAria("label");      // -> "aria-label"
-$.normaliseAria("LABEL");      // -> "aria-label"
-$.normaliseAria("aria-label"); // -> "aria-label"
-$.normaliseAria();             // -> "aria-"</code></pre>
+    <pre class="prettyprint"><code>$.normaliseAria("label");      // -> "aria-label"$.normaliseAria("LABEL");      // -> "aria-label"$.normaliseAria("aria-label"); // -> "aria-label"$.normaliseAria();             // -> "aria-"</code></pre>
 
         <p class="code-caption">Alias</p>
     
-    <pre class="prettyprint"><code>$.normalizeAria("label");      // -> "aria-label"
-$.normalizeAria("LABEL");      // -> "aria-label"
-$.normalizeAria("aria-label"); // -> "aria-label"
-$.normalizeAria();             // -> "aria-"</code></pre>
+    <pre class="prettyprint"><code>$.normalizeAria("label");      // -> "aria-label"$.normalizeAria("LABEL");      // -> "aria-label"$.normalizeAria("aria-label"); // -> "aria-label"$.normalizeAria();             // -> "aria-"</code></pre>
 
         <p class="code-caption">Mapped attribute</p>
     
-    <pre class="prettyprint"><code>// $.ariaMap = {labeledby: "labelledby"}
-$.normaliseAria("labeledby");      // -> "aria-labelledby"
-$.normaliseAria("LABELEDBY");      // -> "aria-labelledby"
-$.normaliseAria("aria-labeledby"); // -> "aria-labelledby"</code></pre>
+    <pre class="prettyprint"><code>// $.ariaMap = {labeledby: "labelledby"}$.normaliseAria("labeledby");      // -> "aria-labelledby"$.normaliseAria("LABELEDBY");      // -> "aria-labelledby"$.normaliseAria("aria-labeledby"); // -> "aria-labelledby"</code></pre>
 
         <p class="code-caption">The cache</p>
     
-    <pre class="prettyprint"><code>$.normaliseAria("busy");    // -> "aria-busy"
-$.normaliseAria("busy");    // -> "aria-busy" (from cache)
-$.normaliseAria("checked"); // -> "aria-checked"
-$.normaliseAria("busy");    // -> "aria-busy" (from cache)
-$.normaliseAria.cache;
-// -> {"busy": "aria-busy", "checked": "aria-checked"}</code></pre>
+    <pre class="prettyprint"><code>$.normaliseAria("busy");    // -> "aria-busy"$.normaliseAria("busy");    // -> "aria-busy" (from cache)$.normaliseAria("checked"); // -> "aria-checked"$.normaliseAria("busy");    // -> "aria-busy" (from cache)$.normaliseAria.cache;// -> {"busy": "aria-busy", "checked": "aria-checked"}</code></pre>
 
 
 
@@ -592,7 +527,7 @@ $.normaliseAria.cache;
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1259">line 1259</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1283">line 1283</a>
     </li></ul></dd>
     
 
@@ -799,7 +734,7 @@ $.normaliseAria.cache;
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1861">line 1861</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1894">line 1894</a>
     </li></ul></dd>
     
 
@@ -839,10 +774,7 @@ $.normaliseAria.cache;
 
 
 <div class="description">
-    Adds a role to a collection of elements. The role will not be added if it's
-empty ("" or undefined), if the function response is empty or if the element
-already has that role. In that way it's similar to
-<a href="https://api.jquery.com/addClass/">jQuery#addClass</a>.
+    Adds a role to a collection of elements. The role will not be added if it'sempty ("" or undefined), if the function response is empty or if the elementalready has that role. In that way it's similar to<a href="https://api.jquery.com/addClass/">jQuery#addClass</a>.
 </div>
 
 
@@ -857,27 +789,11 @@ already has that role. In that way it's similar to
     
         <p class="code-caption">Adding a role</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;div class="one" role="presentation">&lt;/div>
-// &lt;div class="one">&lt;/div>
-
-$(".one").addRole("alert"); // -> jQuery(&lt;div>, &lt;div>)
-
-// Now markup is:
-// &lt;div class="one" role="presentation alert">&lt;/div>
-// &lt;div class="one" role="alert">&lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;div class="one" role="presentation">&lt;/div>// &lt;div class="one">&lt;/div>$(".one").addRole("alert"); // -> jQuery(&lt;div>, &lt;div>)// Now markup is:// &lt;div class="one" role="presentation alert">&lt;/div>// &lt;div class="one" role="alert">&lt;/div></code></pre>
 
         <p class="code-caption">Adding a role with a function</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;div class="one" role="presentation">&lt;/div>
-
-$(".one").addRole(function (index, current) {
-    return "alert combobox";
-});
-
-// Now markup is:
-// &lt;div class="one" role="presentation alert combobox">&lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;div class="one" role="presentation">&lt;/div>$(".one").addRole(function (index, current) {    return "alert combobox";});// Now markup is:// &lt;div class="one" role="presentation alert combobox">&lt;/div></code></pre>
 
 
 
@@ -926,8 +842,7 @@ $(".one").addRole(function (index, current) {
 
             
 
-            <td class="description last">Role(s) to add to the matching elements or function to generate the
-          role(s) to add.</td>
+            <td class="description last">Role(s) to add to the matching elements or function to generate the          role(s) to add.</td>
         </tr>
 
     
@@ -988,7 +903,7 @@ $(".one").addRole(function (index, current) {
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1510">line 1510</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1538">line 1538</a>
     </li></ul></dd>
     
 
@@ -1028,25 +943,7 @@ $(".one").addRole(function (index, current) {
 
 
 <div class="description">
-    Gets or sets WAI-ARIA properties. The properties will not be modified any
-more than they need to be (unlike
-<a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> or
-<a href="external-jQuery.html#ariaState">jQuery#ariaState</a> which will interpret the
-values).
-<br><br>
-To set WAI-ARIA properties, pass either a
-<code>property</code>/<code>value</code> pair of arguments or an object
-containing those pairs. When this is done, the attributes are set on all
-elements in the collection and the <code>jQuery</code> object is returned to
-allow for chaining. If <code>value</code> is a function and returns
-<code>undefined</code> (or nothing) then no action is taken for that element.
-This can be useful for selectively setting values only when certain criteria
-are met.
-<br><br>
-To get WAI-ARIA properties, only pass the <code>property</code> that you want
-to get. If there is no matching property, <code>undefined</code> is returned.
-All properties are normalised (see
-<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a>).
+    Gets or sets WAI-ARIA properties. The properties will not be modified anymore than they need to be (unlike<a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> or<a href="external-jQuery.html#ariaState">jQuery#ariaState</a> which will interpret thevalues).<br><br>To set WAI-ARIA properties, pass either a<code>property</code>/<code>value</code> pair of arguments or an objectcontaining those pairs. When this is done, the attributes are set on allelements in the collection and the <code>jQuery</code> object is returned toallow for chaining. If <code>value</code> is a function and returns<code>undefined</code> (or nothing) then no action is taken for that element.This can be useful for selectively setting values only when certain criteriaare met.<br><br>To get WAI-ARIA properties, only pass the <code>property</code> that you wantto get. If there is no matching property, <code>undefined</code> is returned.All properties are normalised (see<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a>).
 </div>
 
 
@@ -1061,42 +958,15 @@ All properties are normalised (see
     
         <p class="code-caption">Setting WAI-ARIA attribute(s)</p>
     
-    <pre class="prettyprint"><code>$("#element").aria("aria-label", "test");
-// or
-$("#element").aria("label", "test");
-// or
-$("#element").aria({
-    "aria-label": "test"
-});
-// or
-$("#element").aria({
-    label: "test"
-});
-// All of these set aria-label="test" on all matching elements and return a
-// jQuery object representing "#element"</code></pre>
+    <pre class="prettyprint"><code>$("#element").aria("aria-label", "test");// or$("#element").aria("label", "test");// or$("#element").aria({    "aria-label": "test"});// or$("#element").aria({    label: "test"});// All of these set aria-label="test" on all matching elements and return a// jQuery object representing "#element"</code></pre>
 
         <p class="code-caption">Setting WAI-ARIA attribute(s) with a function</p>
     
-    <pre class="prettyprint"><code>$("#element").aria("label", function (i, attr) {
-    return this.id + "__" + i + "__" + attr;
-});
-// or
-$("#element").aria({
-    label: function (i, attr) {
-        return this.id + "__" + i + "__" + attr;
-    }
-});
-// Both of these set aria-label="element__0__undefined" on all matching
-// elements and return a jQuery object representing "#element"</code></pre>
+    <pre class="prettyprint"><code>$("#element").aria("label", function (i, attr) {    return this.id + "__" + i + "__" + attr;});// or$("#element").aria({    label: function (i, attr) {        return this.id + "__" + i + "__" + attr;    }});// Both of these set aria-label="element__0__undefined" on all matching// elements and return a jQuery object representing "#element"</code></pre>
 
         <p class="code-caption">Getting a WAI-ARIA attribute</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;div id="element" aria-label="test">&lt;/div>
-$("#element").aria("label");   // -> "test"
-$("#element").aria("checked"); // -> undefined
-// If "#element" matches multiple elements, the attributes from the first
-// element are returned.</code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;div id="element" aria-label="test">&lt;/div>$("#element").aria("label");   // -> "test"$("#element").aria("checked"); // -> undefined// If "#element" matches multiple elements, the attributes from the first// element are returned.</code></pre>
 
 
 
@@ -1155,8 +1025,7 @@ $("#element").aria("checked"); // -> undefined
 
             
 
-            <td class="description last">Either the properties to set in key/value pairs or the name of the
-          property to get/set.</td>
+            <td class="description last">Either the properties to set in key/value pairs or the name of the          property to get/set.</td>
         </tr>
 
     
@@ -1222,8 +1091,7 @@ $("#element").aria("checked"); // -> undefined
 
         
 <div class="param-desc">
-    Either the jQuery object (after setting) or a string or undefined
-          (after getting)
+    Either the jQuery object (after setting) or a string or undefined          (after getting)
 </div>
 
 
@@ -1266,7 +1134,7 @@ $("#element").aria("checked"); // -> undefined
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line2009">line 2009</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line2044">line 2044</a>
     </li></ul></dd>
     
 
@@ -1306,14 +1174,7 @@ $("#element").aria("checked"); // -> undefined
 
 
 <div class="description">
-    Sets whether or not the matching elements are focusable. Strings, numbers and
-booleans are understood as <code>state</code> - see
-<a href="external-jQuery.html#ariaState">jQuery#ariaState</a> for full details as the
-algorythm is the same.
-<br><br>
-Be aware this this function will only modify the matching elements, it will
-not check any parents or modify any other elements that could affect the
-focusability of the element.
+    Sets whether or not the matching elements are focusable. Strings, numbers andbooleans are understood as <code>state</code> - see<a href="external-jQuery.html#ariaState">jQuery#ariaState</a> for full details as thealgorythm is the same.<br><br>Be aware this this function will only modify the matching elements, it willnot check any parents or modify any other elements that could affect thefocusability of the element.
 </div>
 
 
@@ -1328,30 +1189,11 @@ focusability of the element.
     
         <p class="code-caption">Setting focusability</p>
     
-    <pre class="prettyprint"><code>// Markup is
-// &lt;div id="one">&lt;/div>
-// &lt;div id="two">&lt;/div>
-
-$("#one").ariaFocusable(false); // -> jQuery(&lt;div id="one">)
-$("#two").ariaFocusable(true);  // -> jQuery(&lt;div id="two">)
-
-// Now markup is
-// &lt;div id="one" tabindex="0">&lt;/div>
-// &lt;div id="two" tabindex="-1">&lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is// &lt;div id="one">&lt;/div>// &lt;div id="two">&lt;/div>$("#one").ariaFocusable(false); // -> jQuery(&lt;div id="one">)$("#two").ariaFocusable(true);  // -> jQuery(&lt;div id="two">)// Now markup is// &lt;div id="one" tabindex="0">&lt;/div>// &lt;div id="two" tabindex="-1">&lt;/div></code></pre>
 
         <p class="code-caption">Limitations of the function</p>
     
-    <pre class="prettyprint"><code>// Markup is
-// &lt;div id="one" tabindex="-1">
-//     &lt;div id="two" disabled>&lt;/div>
-// &lt;/div>
-
-$("#two").ariaFocusable(true); // -> jQuery(&lt;div id="two">)
-
-// Now markup is
-// &lt;div id="one" tabindex="-1">
-//     &lt;div id="two" disabled tabindex="0">&lt;/div>
-// &lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is// &lt;div id="one" tabindex="-1">//     &lt;div id="two" disabled>&lt;/div>// &lt;/div>$("#two").ariaFocusable(true); // -> jQuery(&lt;div id="two">)// Now markup is// &lt;div id="one" tabindex="-1">//     &lt;div id="two" disabled tabindex="0">&lt;/div>// &lt;/div></code></pre>
 
 
 
@@ -1467,7 +1309,7 @@ $("#two").ariaFocusable(true); // -> jQuery(&lt;div id="two">)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1634">line 1634</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1663">line 1663</a>
     </li></ul></dd>
     
 
@@ -1507,29 +1349,7 @@ $("#two").ariaFocusable(true); // -> jQuery(&lt;div id="two">)
 
 
 <div class="description">
-    Gets or sets a WAI-ARIA reference. This is functionally identical to
-<a href="external-jQuery.html#aria">jQuery#aria</a> with the main difference being that
-an element may be passed as the <code>value</code> when setting and that a
-jQuery object is returned when getting.
-<br><br>
-Because WAI-ARIA references work with IDs, IDs are worked out using
-<a href="external-jQuery.html#identify">jQuery#identify</a>. Be aware that any string
-passed to <a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> will be treated
-like a CSS selector and looked up with the results being used to set the
-property. If you already have the ID and wish to set it without the lookup,
-use <a href="external-jQuery.html#aria">jQuery#aria</a>.
-<br><br>
-If <code>value</code> is a function then the resulting value is identified.
-This can be particularly useful for performing DOM traversal to find the
-reference (see examples below). As with
-<a href="external-jQuery.html#aria">jQuery#aria</a>, if the <code>value</code> function
-returns nothing or returns <code>undefined</code> then no action is taken.
-<br><br>
-When accessing the attribute using this function, a <code>jQuery</code>
-object representing the reference is returned. If there are multiple elements
-in the collection, only the reference for the first element is returned. To
-get the value of the attribute rather than the element, use
-<a href="external-jQuery.html#aria">jQuery#aria</a>.
+    Gets or sets a WAI-ARIA reference. This is functionally identical to<a href="external-jQuery.html#aria">jQuery#aria</a> with the main difference being thatan element may be passed as the <code>value</code> when setting and that ajQuery object is returned when getting.<br><br>Because WAI-ARIA references work with IDs, IDs are worked out using<a href="external-jQuery.html#identify">jQuery#identify</a>. Be aware that any stringpassed to <a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> will be treatedlike a CSS selector and looked up with the results being used to set theproperty. If you already have the ID and wish to set it without the lookup,use <a href="external-jQuery.html#aria">jQuery#aria</a>.<br><br>If <code>value</code> is a function then the resulting value is identified.This can be particularly useful for performing DOM traversal to find thereference (see examples below). As with<a href="external-jQuery.html#aria">jQuery#aria</a>, if the <code>value</code> functionreturns nothing or returns <code>undefined</code> then no action is taken.<br><br>When accessing the attribute using this function, a <code>jQuery</code>object representing the reference is returned. If there are multiple elementsin the collection, only the reference for the first element is returned. Toget the value of the attribute rather than the element, use<a href="external-jQuery.html#aria">jQuery#aria</a>.
 </div>
 
 
@@ -1544,83 +1364,19 @@ get the value of the attribute rather than the element, use
     
         <p class="code-caption">Setting references</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;h1>Heading&lt;/h1>
-// &lt;div class="one">
-//     Lorem ipsum dolor sit amet ...
-// &lt;/div>
-
-$(".one").ariaRef("labelledby", $("h1"));
-// or
-$(".one").ariaRef("labelledby", "h1");
-// or
-$(".one").ariaRef("labelledby", $("h1")[0]);
-// or
-$(".one").ariaRef({
-    labelledby: $("h1") // or "h1" or $("h1")[0]
-});
-// Each of these return a jQuery object representing ".one"
-
-// Now markup is:
-// &lt;h1 id="anonymous0">Heading&lt;/h1>
-// &lt;div class="one" aria-labelledby="anonymous0">
-//     Lorem ipsum dolor sit amet ...
-// &lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;h1>Heading&lt;/h1>// &lt;div class="one">//     Lorem ipsum dolor sit amet ...// &lt;/div>$(".one").ariaRef("labelledby", $("h1"));// or$(".one").ariaRef("labelledby", "h1");// or$(".one").ariaRef("labelledby", $("h1")[0]);// or$(".one").ariaRef({    labelledby: $("h1") // or "h1" or $("h1")[0]});// Each of these return a jQuery object representing ".one"// Now markup is:// &lt;h1 id="anonymous0">Heading&lt;/h1>// &lt;div class="one" aria-labelledby="anonymous0">//     Lorem ipsum dolor sit amet ...// &lt;/div></code></pre>
 
         <p class="code-caption">Setting references with a function</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;div class="js-collapse">
-//     &lt;div class="js-collapse-content">
-//         Lorem ipsum dolor sit amet ...
-//     &lt;/div>
-//     &lt;button class="js-collapse-toggle">
-//         Toggle
-//     &lt;/button>
-// &lt;/div>
-
-$(".js-collapse-toggle").ariaRef("controls", function (i, attr) {
-
-    return $(this)
-        .closest(".js-collapse")
-        .find(".js-collapse-content");
-
-});
-
-// Now markup is:
-// &lt;div class="js-collapse">
-//     &lt;div class="js-collapse-content" id="anonymous0">
-//         Lorem ipsum dolor sit amet ...
-//     &lt;/div>
-//     &lt;button class="js-collapse-toggle" aria-controls="anonymous0">
-//         Toggle
-//     &lt;/button>
-// &lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;div class="js-collapse">//     &lt;div class="js-collapse-content">//         Lorem ipsum dolor sit amet ...//     &lt;/div>//     &lt;button class="js-collapse-toggle">//         Toggle//     &lt;/button>// &lt;/div>$(".js-collapse-toggle").ariaRef("controls", function (i, attr) {    return $(this)        .closest(".js-collapse")        .find(".js-collapse-content");});// Now markup is:// &lt;div class="js-collapse">//     &lt;div class="js-collapse-content" id="anonymous0">//         Lorem ipsum dolor sit amet ...//     &lt;/div>//     &lt;button class="js-collapse-toggle" aria-controls="anonymous0">//         Toggle//     &lt;/button>// &lt;/div></code></pre>
 
         <p class="code-caption">Getting a reference</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;h1 id="anonymous0">Heading&lt;/h1>
-// &lt;div class="one" aria-labelledby="anonymous0">
-//     Lorem ipsum dolor sit amet ...
-// &lt;/div>
-
-$(".one").ariaRef("labelledby"); // -> $(&lt;h1>)
-$(".one").ariaRef("controls");   // -> $()</code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;h1 id="anonymous0">Heading&lt;/h1>// &lt;div class="one" aria-labelledby="anonymous0">//     Lorem ipsum dolor sit amet ...// &lt;/div>$(".one").ariaRef("labelledby"); // -> $(&lt;h1>)$(".one").ariaRef("controls");   // -> $()</code></pre>
 
         <p class="code-caption">Value is treated like a CSS selector</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;button id="button">&lt;/button>
-// &lt;div id="section">&lt;/div>
-// &lt;section>&lt;/section>
-
-$("#button").ariaRef("controls", "section");
-
-// Now markup is:
-// &lt;button id="button" aria-controls="anonymous0">&lt;/button>
-// &lt;div id="section">&lt;/div>
-// &lt;section id="anonymous0">&lt;/section></code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;button id="button">&lt;/button>// &lt;div id="section">&lt;/div>// &lt;section>&lt;/section>$("#button").ariaRef("controls", "section");// Now markup is:// &lt;button id="button" aria-controls="anonymous0">&lt;/button>// &lt;div id="section">&lt;/div>// &lt;section id="anonymous0">&lt;/section></code></pre>
 
 
 
@@ -1679,8 +1435,7 @@ $("#button").ariaRef("controls", "section");
 
             
 
-            <td class="description last">Either the properties to set in key/value pairs or the name of the
-          property to set.</td>
+            <td class="description last">Either the properties to set in key/value pairs or the name of the          property to set.</td>
         </tr>
 
     
@@ -1740,9 +1495,7 @@ $("#button").ariaRef("controls", "section");
 
         
 <div class="param-desc">
-    jQuery object representing either the elements that were modified
-          (when setting) or the referenced element(s) (when getting - may be
-          an empty jQuery object).
+    jQuery object representing either the elements that were modified          (when setting) or the referenced element(s) (when getting - may be          an empty jQuery object).
 </div>
 
 
@@ -1779,7 +1532,7 @@ $("#button").ariaRef("controls", "section");
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1729">line 1729</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1759">line 1759</a>
     </li></ul></dd>
     
 
@@ -1819,20 +1572,7 @@ $("#button").ariaRef("controls", "section");
 
 
 <div class="description">
-    Sets or gets the WAI-ARIA state of the collection.
-<br><br>
-When setting the state, false, "false" (any case), 0 and "0" will be
-considered false. All other values will be considered true except for "mixed"
-(any case) which will set the state to "mixed". The differs from
-<a href="external-jQuery.html#aria">jQuery#aria</a> which will simply set the
-attribute(s) without converting the value.
-<br><br>
-After setting the state(s), a jQuery object representing the affected
-elements is returned. The state for the first matching element is returned
-when getting.
-<br><br>
-All attributes are normalised - see
-<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a> for full details.
+    Sets or gets the WAI-ARIA state of the collection.<br><br>When setting the state, false, "false" (any case), 0 and "0" will beconsidered false. All other values will be considered true except for "mixed"(any case) which will set the state to "mixed". The differs from<a href="external-jQuery.html#aria">jQuery#aria</a> which will simply set theattribute(s) without converting the value.<br><br>After setting the state(s), a jQuery object representing the affectedelements is returned. The state for the first matching element is returnedwhen getting.<br><br>All attributes are normalised - see<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a> for full details.
 </div>
 
 
@@ -1847,62 +1587,15 @@ All attributes are normalised - see
     
         <p class="code-caption">Getting state</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;div id="one" aria-busy="true" aria-checked="mixed">&lt;/div>
-
-$("#one").ariaState("busy");    // -> true
-$("#one").ariaState("checked"); // -> "mixed"
-$("#one").ariaState("hidden");  // -> undefined</code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;div id="one" aria-busy="true" aria-checked="mixed">&lt;/div>$("#one").ariaState("busy");    // -> true$("#one").ariaState("checked"); // -> "mixed"$("#one").ariaState("hidden");  // -> undefined</code></pre>
 
         <p class="code-caption">Setting state</p>
     
-    <pre class="prettyprint"><code>// Each of these will set the state to false:
-$("#one").ariaState("busy", "false");
-$("#one").ariaState("busy", "FALSE");
-$("#one").ariaState("busy", false);
-$("#one").ariaState("busy", 0);
-$("#one").ariaState("busy", "0");
-
-// Each of these will set the state to "mixed":
-$("#one").ariaState("checked", "mixed");
-$("#one").ariaState("checked", "MIXED");
-
-// Each of these will set the state to true
-$("#one").ariaState("busy", "true");
-$("#one").ariaState("busy", "TRUE");
-$("#one").ariaState("busy", true);
-$("#one").ariaState("busy", 1);
-$("#one").ariaState("busy", "1");
-// WARNING: these also set the state to true
-$("#one").ariaState("busy", {});
-$("#one").ariaState("busy", null);
-$("#one").ariaState("busy", "nothing");
-$("#one").ariaState("busy", "");
-$("#one").ariaState("busy", -1);
-
-// Each example returns a jQuery object representing "#one" and an object
-// can be passed as parameters as well:
-$("#one").ariaState({
-    busy: true
-});</code></pre>
+    <pre class="prettyprint"><code>// Each of these will set the state to false:$("#one").ariaState("busy", "false");$("#one").ariaState("busy", "FALSE");$("#one").ariaState("busy", false);$("#one").ariaState("busy", 0);$("#one").ariaState("busy", "0");// Each of these will set the state to "mixed":$("#one").ariaState("checked", "mixed");$("#one").ariaState("checked", "MIXED");// Each of these will set the state to true$("#one").ariaState("busy", "true");$("#one").ariaState("busy", "TRUE");$("#one").ariaState("busy", true);$("#one").ariaState("busy", 1);$("#one").ariaState("busy", "1");// WARNING: these also set the state to true$("#one").ariaState("busy", {});$("#one").ariaState("busy", null);$("#one").ariaState("busy", "nothing");$("#one").ariaState("busy", "");$("#one").ariaState("busy", -1);// Each example returns a jQuery object representing "#one" and an object// can be passed as parameters as well:$("#one").ariaState({    busy: true});</code></pre>
 
         <p class="code-caption">Setting state with a function</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;div class="checkbox">&lt;/div>
-// &lt;input type="checkbox" checked>
-
-$(".checkbox").ariaState("checked", function (i, attr) {
-
-    return $(this)
-        .next("input[type=\"checkbox\"]")
-        .prop("checked");
-
-});
-
-// Now markup is:
-// &lt;div class="checkbox" aria-checked="true">&lt;/div>
-// &lt;input type="checkbox" checked></code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;div class="checkbox">&lt;/div>// &lt;input type="checkbox" checked>$(".checkbox").ariaState("checked", function (i, attr) {    return $(this)        .next("input[type=\"checkbox\"]")        .prop("checked");});// Now markup is:// &lt;div class="checkbox" aria-checked="true">&lt;/div>// &lt;input type="checkbox" checked></code></pre>
 
 
 
@@ -1961,8 +1654,7 @@ $(".checkbox").ariaState("checked", function (i, attr) {
 
             
 
-            <td class="description last">Either a key/value combination properties to set or the name of the
-          WAI-ARIA state to set.</td>
+            <td class="description last">Either a key/value combination properties to set or the name of the          WAI-ARIA state to set.</td>
         </tr>
 
     
@@ -2028,8 +1720,7 @@ $(".checkbox").ariaState("checked", function (i, attr) {
 
         
 <div class="param-desc">
-    Either the jQuery object representing the modified elements
-          (setting) or the state of the first matching element.
+    Either the jQuery object representing the modified elements          (setting) or the state of the first matching element.
 </div>
 
 
@@ -2069,7 +1760,7 @@ $(".checkbox").ariaState("checked", function (i, attr) {
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1416">line 1416</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1443">line 1443</a>
     </li></ul></dd>
     
 
@@ -2109,14 +1800,7 @@ $(".checkbox").ariaState("checked", function (i, attr) {
 
 
 <div class="description">
-    Identifies the first element in the collection by getting its ID. If the
-element doesn't have an ID attribute, a unique on is generated and assigned
-before being returned. If the collection does not have a first element then
-<code>undefined</code> is returned.
-<br><br>
-IDs are a concatenation of "anonymous" and a hidden counter that is increased
-each time. If the ID already exists on the page, that ID is skipped and not
-assigned to a second element.
+    Identifies the first element in the collection by getting its ID. If theelement doesn't have an ID attribute, a unique on is generated and assignedbefore being returned. If the collection does not have a first element then<code>undefined</code> is returned.<br><br>IDs are a concatenation of "anonymous" and a hidden counter that is increasedeach time. If the ID already exists on the page, that ID is skipped and notassigned to a second element.
 </div>
 
 
@@ -2131,32 +1815,11 @@ assigned to a second element.
     
         <p class="code-caption">Identifying elements</p>
     
-    <pre class="prettyprint"><code>// Markup is
-// &lt;div class="one">&lt;/div>
-// &lt;span class="one">&lt;/span>
-
-$(".one").identify(); // -> "anonymous0"
-
-// Now markup is:
-// &lt;div class="one" id="anonymous0">&lt;/div>
-// &lt;span class="one">&lt;/span>
-// Running $(".one").identify(); again would not change the markup.</code></pre>
+    <pre class="prettyprint"><code>// Markup is// &lt;div class="one">&lt;/div>// &lt;span class="one">&lt;/span>$(".one").identify(); // -> "anonymous0"// Now markup is:// &lt;div class="one" id="anonymous0">&lt;/div>// &lt;span class="one">&lt;/span>// Running $(".one").identify(); again would not change the markup.</code></pre>
 
         <p class="code-caption">Existing IDs are not duplicated</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;div class="two" id="anonymous1">&lt;!-- manually set -->&lt;/div>
-// &lt;div class="two">&lt;/div>
-// &lt;div class="two">&lt;/div>
-
-$(".two").each(function () {
-    $(this).identify();
-});
-
-// Now markup is:
-// &lt;div class="two" id="anonymous1">&lt;!-- manually set -->&lt;/div>
-// &lt;div class="two" id="anonymous0">&lt;/div>
-// &lt;div class="two" id="anonymous2">&lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;div class="two" id="anonymous1">&lt;!-- manually set -->&lt;/div>// &lt;div class="two">&lt;/div>// &lt;div class="two">&lt;/div>$(".two").each(function () {    $(this).identify();});// Now markup is:// &lt;div class="two" id="anonymous1">&lt;!-- manually set -->&lt;/div>// &lt;div class="two" id="anonymous0">&lt;/div>// &lt;div class="two" id="anonymous2">&lt;/div></code></pre>
 
 
 
@@ -2177,8 +1840,7 @@ $(".two").each(function () {
 
         
 <div class="param-desc">
-    The ID of the first element or undefined if there is no first
-          element.
+    The ID of the first element or undefined if there is no first          element.
 </div>
 
 
@@ -2218,7 +1880,7 @@ $(".two").each(function () {
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1238">line 1238</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1261">line 1261</a>
     </li></ul></dd>
     
 
@@ -2258,11 +1920,7 @@ $(".two").each(function () {
 
 
 <div class="description">
-    Removes the named WAI-ARIA attribute from all elements in the current
-collection. The <code>name</code> is normalised (see
-<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a>). This function
-is aliased as <a href="external-jQuery.html#removeAriaRef">jQuery#removeAriaRef</a> and
-<a href="external-jQuery.html#removeAriaState">jQuery#removeAriaState</a>.
+    Removes the named WAI-ARIA attribute from all elements in the currentcollection. The <code>name</code> is normalised (see<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a>). This functionis aliased as <a href="external-jQuery.html#removeAriaRef">jQuery#removeAriaRef</a> and<a href="external-jQuery.html#removeAriaState">jQuery#removeAriaState</a>.
 </div>
 
 
@@ -2275,13 +1933,7 @@ is aliased as <a href="external-jQuery.html#removeAriaRef">jQuery#removeAriaRef<
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>// Markup is
-// &lt;div id="one" aria-busy="true">&lt;/div>
-
-$("#one").removeAria("busy"); // -> jQuery(&lt;div id="one">)
-
-// Now markup is:
-// &lt;div id="one">&lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is// &lt;div id="one" aria-busy="true">&lt;/div>$("#one").removeAria("busy"); // -> jQuery(&lt;div id="one">)// Now markup is:// &lt;div id="one">&lt;/div></code></pre>
 
 
 
@@ -2388,7 +2040,7 @@ $("#one").removeAria("busy"); // -> jQuery(&lt;div id="one">)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1753">line 1753</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1784">line 1784</a>
     </li></ul></dd>
     
 
@@ -2543,7 +2195,7 @@ $("#one").removeAria("busy"); // -> jQuery(&lt;div id="one">)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1764">line 1764</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1795">line 1795</a>
     </li></ul></dd>
     
 
@@ -2698,7 +2350,7 @@ $("#one").removeAria("busy"); // -> jQuery(&lt;div id="one">)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1943">line 1943</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1977">line 1977</a>
     </li></ul></dd>
     
 
@@ -2738,10 +2390,7 @@ $("#one").removeAria("busy"); // -> jQuery(&lt;div id="one">)
 
 
 <div class="description">
-    Removes roles from the collection of elements. If the method is called
-without any arguments then the role attribute itself is removed. Be aware
-that this is not the same as passing a function which returns undefined -
-such an action will have no effect.
+    Removes roles from the collection of elements. If the method is calledwithout any arguments then the role attribute itself is removed. Be awarethat this is not the same as passing a function which returns undefined -such an action will have no effect.
 </div>
 
 
@@ -2756,45 +2405,15 @@ such an action will have no effect.
     
         <p class="code-caption">Removing a role</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;div class="one" role="presentation alert">&lt;/div>
-// &lt;div class="one" role="alert">&lt;/div>
-
-$(".one").removeRole("alert"); // -> jQuery(&lt;div>, &lt;div>)
-
-// Now markup is:
-// &lt;div class="one" role="presentation">&lt;/div>
-// &lt;div class="one" role="">&lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;div class="one" role="presentation alert">&lt;/div>// &lt;div class="one" role="alert">&lt;/div>$(".one").removeRole("alert"); // -> jQuery(&lt;div>, &lt;div>)// Now markup is:// &lt;div class="one" role="presentation">&lt;/div>// &lt;div class="one" role="">&lt;/div></code></pre>
 
         <p class="code-caption">Completely removing a role</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;div class="one" role="presentation alert">&lt;/div>
-// &lt;div class="one" role="alert">&lt;/div>
-
-$(".one").removeRole(); // -> jQuery(&lt;div>, &lt;div>)
-
-// Now markup is:
-// &lt;div class="one">&lt;/div>
-// &lt;div class="one">&lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;div class="one" role="presentation alert">&lt;/div>// &lt;div class="one" role="alert">&lt;/div>$(".one").removeRole(); // -> jQuery(&lt;div>, &lt;div>)// Now markup is:// &lt;div class="one">&lt;/div>// &lt;div class="one">&lt;/div></code></pre>
 
         <p class="code-caption">Removing a role with a function</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;div class="one" role="presentation alert combobox">&lt;/div>
-
-$(".one").removeRole(function (index, current) {
-    return current
-        .split(/\s+/)
-        .filter(function (role) {
-            return role.indexOf("a") > -1;
-        })
-        .join(" ");
-    // "presentation alert"
-});
-
-// Now markup is:
-// &lt;div class="one" role="combobox">&lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;div class="one" role="presentation alert combobox">&lt;/div>$(".one").removeRole(function (index, current) {    return current        .split(/\s+/)        .filter(function (role) {            return role.indexOf("a") > -1;        })        .join(" ");    // "presentation alert"});// Now markup is:// &lt;div class="one" role="combobox">&lt;/div></code></pre>
 
 
 
@@ -2916,7 +2535,7 @@ $(".one").removeRole(function (index, current) {
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1816">line 1816</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1848">line 1848</a>
     </li></ul></dd>
     
 
@@ -2956,18 +2575,7 @@ $(".one").removeRole(function (index, current) {
 
 
 <div class="description">
-    Sets the role of all elements in the collection or gets the role of the first
-element in the collection, depending on whether or not the <code>role</code>
-argument is provided. As <a href="external-jQuery.html#role">jQuery#role</a> is just a
-wrapper for <a href="http://api.jquery.com/attr/">jQuery#attr</a>, the
-<code>role</code> parameter can actually be any value type that the official
-documentation mentions.
-<br><br>
-According to the WAI-ARIA specs, an element can have mutliple roles as a
-space-separated list. This method will only set the role attribute to the
-given string when setting. If you want to modify the roles, use
-<a href="external-jQuery.html#addRole">jQuery#addRole</a> and
-<a href="external-jQuery.html#removeRole">jQuery#removeRole</a>.
+    Sets the role of all elements in the collection or gets the role of the firstelement in the collection, depending on whether or not the <code>role</code>argument is provided. As <a href="external-jQuery.html#role">jQuery#role</a> is just awrapper for <a href="http://api.jquery.com/attr/">jQuery#attr</a>, the<code>role</code> parameter can actually be any value type that the officialdocumentation mentions.<br><br>According to the WAI-ARIA specs, an element can have mutliple roles as aspace-separated list. This method will only set the role attribute to thegiven string when setting. If you want to modify the roles, use<a href="external-jQuery.html#addRole">jQuery#addRole</a> and<a href="external-jQuery.html#removeRole">jQuery#removeRole</a>.
 </div>
 
 
@@ -2980,30 +2588,11 @@ given string when setting. If you want to modify the roles, use
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;div id="one">&lt;/div>
-// &lt;div id="two">&lt;/div>
-
-$("#one").role("presentation"); // -> jQuery(&lt;div id="one">)
-
-// Now markup is:
-// &lt;div id="one" role="presentation">&lt;/div>
-// &lt;div id="two">&lt;/div>
-
-$("#one").role(); // -> "presentation"
-$("#two").role(); // -> undefined</code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;div id="one">&lt;/div>// &lt;div id="two">&lt;/div>$("#one").role("presentation"); // -> jQuery(&lt;div id="one">)// Now markup is:// &lt;div id="one" role="presentation">&lt;/div>// &lt;div id="two">&lt;/div>$("#one").role(); // -> "presentation"$("#two").role(); // -> undefined</code></pre>
 
         <p class="code-caption">Setting a role with a function</p>
     
-    <pre class="prettyprint"><code>// Markup is:
-// &lt;div id="one" role="button">&lt;/div>
-
-$("#one").role(function (index, current) {
-    return current + " tooltip";
-});
-
-// Now markup is:
-// &lt;div id="one" role="button tooltip">&lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is:// &lt;div id="one" role="button">&lt;/div>$("#one").role(function (index, current) {    return current + " tooltip";});// Now markup is:// &lt;div id="one" role="button tooltip">&lt;/div></code></pre>
 
 
 
@@ -3088,8 +2677,7 @@ $("#one").role(function (index, current) {
 
         
 <div class="param-desc">
-    Either the jQuery object representing the elements that were
-          modified or the role value.
+    Either the jQuery object representing the elements that were          modified or the role value.
 </div>
 
 
@@ -3133,7 +2721,7 @@ $("#one").role(function (index, current) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 01 2017 00:24:02 GMT+0000 (GMT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Mar 02 2017 10:13:22 GMT+0000 (GMT Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

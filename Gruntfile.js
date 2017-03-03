@@ -9,7 +9,8 @@ module.exports = function (grunt) {
         concat: {
             options: {
                 banner: (
-                    "/*! <%= pkg.name %> - v<%= pkg.version %> - " +
+                    "/*! <%= pkg.name %> (<%= pkg.homepage %>) - " +
+                    "v<%= pkg.version %> - <%= pkg.license %> license - " +
                     "<%= grunt.template.today('yyyy-mm-dd') %> */\n" +
                     "(function ($) {\n" +
                     "    \"use strict\";\n\n"
@@ -17,13 +18,16 @@ module.exports = function (grunt) {
                 footer: "\n}(jQuery));",
                 process: function (src, filename) {
 
-                    return src.replace(
-                        /<%=\s*(\w+)\s*%>/g,
-                        function (ignore, key) {
-                            return typeof pkgJson[key] === "string"
-                                ? pkgJson[key]
-                                : key;
-                        }
+                    return (
+                        "// Source: " + filename + "\n" +
+                        src.replace(
+                            /<%=\s*(\w+)\s*%>/g,
+                            function (ignore, key) {
+                                return typeof pkgJson[key] === "string"
+                                    ? pkgJson[key]
+                                    : key;
+                            }
+                        )
                     );
 
                 }
@@ -88,10 +92,21 @@ module.exports = function (grunt) {
             }
         },
 
+        // https://gist.github.com/maicki/7781943
+        mocha: {
+            all: {
+                src: ["test/testrunner.html"]
+            },
+            options: {
+                run: true
+            }
+        },
+
         uglify: {
             options: {
                 banner: (
-                    "/*! <%= pkg.name %> - v<%= pkg.version %> - " +
+                    "/*! <%= pkg.name %> (<%= pkg.homepage %>) - " +
+                    "v<%= pkg.version %> - <%= pkg.license %> license - " +
                     "<%= grunt.template.today('yyyy-mm-dd') %> */"
                 ),
                 sourceMap: true
@@ -101,6 +116,13 @@ module.exports = function (grunt) {
                     "dist/jquery.aria.min.js": ["dist/jquery.aria.js"]
                 }
             }
+        },
+
+        watch: {
+            dist: {
+                files: ["Gruntfile.js", "src/**/*.js"],
+                tasks: ["concat", "uglify"]
+            }
         }
 
     });
@@ -108,8 +130,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-concat");
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks("grunt-jsdoc");
+    grunt.loadNpmTasks('grunt-mocha');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
-
-    grunt.registerTask("default", ["concat", "uglify", "jsdoc"]);
+    //grunt.registerTask("default", ["concat", "uglify", "jsdoc"]);
+    grunt.registerTask("default", ["watch"]);
+    grunt.registerTask("compile", ["concat", "uglify"]);
+    grunt.registerTask("doc", ["jsdoc"]);
+    grunt.registerTask("test", ["mocha"]);
 
 };

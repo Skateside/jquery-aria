@@ -52,26 +52,27 @@ var memoise = function (handler, resolver) {
 
     var hasOwn = Object.prototype.hasOwnProperty;
     var slice = Array.prototype.slice;
-
-    handler.cache = {};
-
-    return function () {
+    var memoised = function () {
 
         var args = slice.call(arguments);
         var key = typeof resolver === "function"
-            ? resolves.apply(undefined, args)
+            ? resolver.apply(undefined, args)
             : args.join(",");
-        var response = handler.cache[key];
+        var response = memoised.cache[key];
 
-        if (!hasOwn.call(handler.cache, key)) {
+        if (!hasOwn.call(memoised.cache, key)) {
 
             response = handler.apply(this, args);
-            handler.cache[key] = response;
+            memoised.cache[key] = response;
 
         }
 
         return response;
 
-    };
+    }
+
+    memoised.cache = {};
+
+    return memoised;
 
 };

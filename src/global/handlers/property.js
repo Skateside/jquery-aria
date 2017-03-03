@@ -176,7 +176,7 @@ handlers[HANDLER_PROPERTY] = {
         var hook = $.ariaHooks[prop.stem];
 
         return isElement(element)
-            ? hook.has
+            ? (hook && hook.has)
                 ? hook.has(element)
                 : element.hasAttribute(prop.full)
             : false;
@@ -215,7 +215,7 @@ handlers[HANDLER_PROPERTY] = {
         var hook = $.ariaHooks[prop.stem];
 
         return handler.has(element, name)
-            ? hook.get
+            ? (hook && hook.get)
                 ? hook.get(element)
                 : element.getAttribute(prop.full)
             : undefined;
@@ -253,7 +253,7 @@ handlers[HANDLER_PROPERTY] = {
 
         if (isElement(element)) {
 
-            if (hook.unset) {
+            if (hook && hook.unset) {
                 hook.unset(element);
             } else {
                 element.removeAttribute(prop.full);
