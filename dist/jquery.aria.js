@@ -1419,7 +1419,7 @@ if (IS_PROXY_AVAILABLE) {
  * setting the one being passed to the aria method; for example: do not create a
  * set for "attribute1" that sets "attribute2" instead - unless you add the same
  * conversion to <code>has</code>, <code>get</code> will not be triggered.
- * Instead, use [jQuery.ariaFix{@link external:jQuery.ariaFix} to convert the
+ * Instead, use [jQuery.ariaFix]{@link external:jQuery.ariaFix} to convert the
  * attribute name.
  * <br><br>
  * [jQuery#aria]{@link external:jQuery#aria},
