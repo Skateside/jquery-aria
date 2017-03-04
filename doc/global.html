@@ -320,7 +320,15 @@
 
 
 <div class="description">
-    A hook for a WAI-ARIA attribute. Every property is optional so there is noneed to specify one to execute the default functionality.
+    A hook for a WAI-ARIA attribute. Every property is optional so there is no
+need to specify one to execute the default functionality.
+<br><br>
+Be aware that these hooks only affect the aria methods;
+<a href="http://api.jquery.com/attr/">jQuery#attr</a> and
+<a href="http://api.jquery.com/prop/">jQuery#prop</a> will not be affected by any
+changes here. There are similar <code>jQuery.attrHooks</code> and
+<code>jQuery.propHooks</code> (for set and get) that work in the same way if
+you need to completely control attribute/property setting.
 </div>
 
 
@@ -345,7 +353,7 @@
 
     
 
-    <h4 class="name" id="ARIA_hook_get"><span class="type-signature"></span>ARIA_hook_get<span class="signature">(element)</span><span class="type-signature"> &rarr; {?}</span></h4>
+    <h4 class="name" id="ARIA_hook_get"><span class="type-signature"></span>ARIA_hook_get<span class="signature">(element, attribute)</span><span class="type-signature"> &rarr; {Boolean|Number|String}</span></h4>
 
     
 
@@ -357,7 +365,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line173">line 173</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line211">line 211</a>
     </li></ul></dd>
     
 
@@ -397,7 +405,14 @@
 
 
 <div class="description">
-    Handles the getting of a WAI-ARIA attribute. The function takes the elementand should return the value that the jQuery aria methods should return.<br><br>When getting an attribute, feel free to use<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a> and<a href="http://api.jquery.com/attr/">jQuery#attr</a> but do not use<a href="external-jQuery.html#aria">jQuery#aria</a>,<a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> or<a href="external-jQuery.html#ariaState">jQuery#ariaState</a> as this can create aninfinite loop.
+    Handles the getting of a WAI-ARIA attribute. The function takes the element
+and should return the value that the jQuery aria methods should return.
+<br><br>
+When getting an attribute, please do not use
+<a href="external-jQuery.html#aria">jQuery#aria</a>,
+<a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> or
+<a href="external-jQuery.html#ariaState">jQuery#ariaState</a> as this can create an
+infinite loop.
 </div>
 
 
@@ -412,7 +427,23 @@
     
         <p class="code-caption">Getting a fictitious "volume" attribute</p>
     
-    <pre class="prettyprint"><code>$.ariaHooks.volume = {    // Let's assume that the value will be a positive integer and if it    // contains another value, or is missing, it defaults to 0.    get: function (element) {        var value = element.getAttribute("aria-volume");        return (value === null || isNaN(value) || value &lt; 0)            ? 0            : Math.floor(value);    }};</code></pre>
+    <pre class="prettyprint"><code>$.ariaHooks.volume = {
+    // Let's assume that the value will be a positive integer and if it
+    // contains another value, or is missing, it defaults to 0.
+    get: function (element, attribute) {
+        var value = element.getAttribute(attribute);
+        return (value === null || isNaN(value) || value &lt; 0)
+            ? 0
+            : Math.floor(value);
+    }
+};
+
+// Markup is:
+// &lt;div id="one" aria-volume="5">&lt;/div>
+// &lt;div id="two" aria-volume="loud">&lt;/div>
+
+$("#one").aria("volume"); // -> 5
+$("#two").aria("volume"); // -> 0</code></pre>
 
 
 
@@ -462,6 +493,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>attribute</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Full attribute name, lower case and including "aria-" prefix.</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -493,7 +547,13 @@
     </dt>
     <dd>
         
-<span class="param-type">?</span>
+<span class="param-type">Boolean</span>
+|
+
+<span class="param-type">Number</span>
+|
+
+<span class="param-type">String</span>
 
 
     </dd>
@@ -507,7 +567,7 @@
 
     
 
-    <h4 class="name" id="ARIA_hook_has"><span class="type-signature"></span>ARIA_hook_has<span class="signature">(element)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    <h4 class="name" id="ARIA_hook_has"><span class="type-signature"></span>ARIA_hook_has<span class="signature">(element, attribute)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
 
     
 
@@ -519,7 +579,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line204">line 204</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line249">line 249</a>
     </li></ul></dd>
     
 
@@ -559,7 +619,10 @@
 
 
 <div class="description">
-    Handles checking whether or not the WAI-ARIA attribute exists on the elementand it should return a boolean.<br><br>When checking for an attribute, feel free to use<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a>.
+    Handles checking whether or not the WAI-ARIA attribute exists on the element
+and it should return a boolean. Currently this functionality is not exposed
+in an aria method, but the existence of a WAI-ARIA attribute will be checked
+before getting occurs (and the <a href="global.html#ARIA_hook_get">ARIA_hook_get</a> function executes).
 </div>
 
 
@@ -574,7 +637,28 @@
     
         <p class="code-caption">Checking for a fictitious "volume" attribute</p>
     
-    <pre class="prettyprint"><code>$.ariaHooks.volume = {    // Let's assume that the attribute has to contain a positive integer and    // will be considered non-existent if it contains anything else.    has: function (element) {        var value = element.getAttribute("aria-volume");        var intVal = parseInt(value, 10);        return value !== null &amp;&amp; intVal === +value &amp;&amp; intVal &lt;= 0;    }};</code></pre>
+    <pre class="prettyprint"><code>$.ariaHooks.volume = {
+    get: function (element, attribute) {
+        console.log("hi");
+        return element.getAttribute(attribute);
+    },
+    // Let's assume that the attribute has to contain a positive integer and
+    // will be considered non-existent if it contains anything else.
+    has: function (element, attribute) {
+        var value = element.getAttribute(attribute);
+        var intVal = parseInt(value, 10);
+        return value !== null &amp;&amp; intVal === +value &amp;&amp; intVal &lt;= 0;
+    }
+};
+
+// Markup is:
+// &lt;div id="one" aria-volume="5">&lt;/div>
+// &lt;div id="two" aria-volume="loud">&lt;/div>
+
+$("#one").aria("volume");
+// Logs: "hi"
+// -> "5"
+$("#two").aria("volume"); // -> undefined</code></pre>
 
 
 
@@ -624,6 +708,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>attribute</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Full attribute name, lower case and including "aria-" prefix.</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -644,7 +751,8 @@
 
         
 <div class="param-desc">
-    Whether or not the attribute exists on the element (true if it         does, false otherwise).
+    Whether or not the attribute exists on the element (true if it
+         does, false otherwise).
 </div>
 
 
@@ -669,7 +777,7 @@
 
     
 
-    <h4 class="name" id="ARIA_hook_set"><span class="type-signature"></span>ARIA_hook_set<span class="signature">(element, value)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ARIA_hook_set"><span class="type-signature"></span>ARIA_hook_set<span class="signature">(element, value, attribute)</span><span class="type-signature"> &rarr; {?}</span></h4>
 
     
 
@@ -681,7 +789,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line142">line 142</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line149">line 149</a>
     </li></ul></dd>
     
 
@@ -721,7 +829,16 @@
 
 
 <div class="description">
-    Handles the setting of a WAI-ARIA attribute. The function doesn't need toreturn anything as it will completely handle the setting of the attribute.<br><br>When setting an attribute, feel free to use<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a> and<a href="http://api.jquery.com/attr/">jQuery#attr</a> but do not use<a href="external-jQuery.html#aria">jQuery#aria</a>,<a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> or<a href="external-jQuery.html#ariaState">jQuery#ariaState</a> as this can create aninfinite loop.
+    Handles the setting of a WAI-ARIA attribute. If the function returns a value,
+that value is used to set the attribute; returning null, undefined, or not
+returning anything will prevent the normal attribute setting process from
+completing.
+<br><br>
+When setting an attribute, please do not use
+<a href="external-jQuery.html#aria">jQuery#aria</a>,
+<a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> or
+<a href="external-jQuery.html#ariaState">jQuery#ariaState</a> as this can create an
+infinite loop.
 </div>
 
 
@@ -734,9 +851,45 @@
 
     <h5>Example</h5>
     
-        <p class="code-caption">Setting a fictitious "volume" attribute</p>
+        <p class="code-caption">Setting fictitious "volume" or "soundsetup" attributes</p>
     
-    <pre class="prettyprint"><code>$.ariaHooks.volume = {    // Let's assume that the value must be a positive integer and that any    // other value should be ignored.    set: function (element, value) {        var posInt = Math.floor(Math.abs(value));        if (!isNaN(posInt)) {            element.setAttribute("aria-volume", posInt);        }    }};</code></pre>
+    <pre class="prettyprint"><code>$.ariaHooks.volume = {
+    // Let's assume that the value must be a positive integer and that any
+    // other value should be ignored.
+    set: function (element, value, attribute) {
+        var posInt = Math.floor(Math.abs(value));
+        return isNaN(posInt)
+            ? undefined
+            : posInt;
+    }
+};
+$.ariaHooks.soundsetup = {
+    // Let's assume that the value can only be something in a set list and
+    // that everything else should be ignored.
+    set: function (element, value, attribute) {
+        var values = ["mono", "stereo", "5.1"];
+        return values.indexOf(value) > -1
+            ? value
+            : undefined;
+    }
+};
+
+// Markup is:
+// &lt;div id="one">&lt;/div>
+// &lt;div id="two">&lt;/div>
+
+$("#one").aria({
+    volume: 5,
+    soundsetup: "mono"
+});
+$("#two").aria({
+    volume: "loud",
+    soundsetup: "legendary"
+});
+
+// Now markup is:
+// &lt;div id="one" aria-volume="5" aria-soundsetup="mono">&lt;/div>
+// &lt;div id="two">&lt;/div></code></pre>
 
 
 
@@ -795,6 +948,12 @@
             <td class="type">
             
                 
+<span class="param-type">Boolean</span>
+|
+
+<span class="param-type">Number</span>
+|
+
 <span class="param-type">String</span>
 
 
@@ -805,7 +964,30 @@
 
             
 
-            <td class="description last">Value of the attribute.</td>
+            <td class="description last">Value of the attribute in the form given to the aria function.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>attribute</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Full attribute name, lower case and including "aria-" prefix.</td>
         </tr>
 
     
@@ -825,6 +1007,28 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Possible conversion of the value.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">?</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
             
@@ -832,7 +1036,7 @@
 
     
 
-    <h4 class="name" id="ARIA_hook_unset"><span class="type-signature"></span>ARIA_hook_unset<span class="signature">(element)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ARIA_hook_unset"><span class="type-signature"></span>ARIA_hook_unset<span class="signature">(element, attribute)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
 
     
 
@@ -844,7 +1048,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line230">line 230</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line289">line 289</a>
     </li></ul></dd>
     
 
@@ -884,7 +1088,17 @@
 
 
 <div class="description">
-    Handles unsetting a WAI-ARIA attribute from an element. This function doesnot need to return anything.<br><br>When removing an attribute, feel free to use<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a> and<a href="http://api.jquery.com/removeAttr/">jQuery#removeAttr</a> but do not use<a href="external-jQuery.html#removeAria">jQuery#removeAria</a>,<a href="external-jQuery.html#removeAriaRef">jQuery#removeAriaRef</a> or<a href="external-jQuery.html#removeAriaState">jQuery#removeAriaState</a> as this cancreate an infinite loop.
+    Checks to see if the WAI-ARIA attribute should be removed. If the function
+returns <code>true</code> (or a truthy value) then the attribute will be
+removed, a falsy value will prevent the attribute being removed through the
+aria methods (although there is nothing stopping it being removed in another
+way or even through the function itself).
+<br><br>
+When removing an attribute, please do not use
+<a href="external-jQuery.html#removeAria">jQuery#removeAria</a>,
+<a href="external-jQuery.html#removeAriaRef">jQuery#removeAriaRef</a> or
+<a href="external-jQuery.html#removeAriaState">jQuery#removeAriaState</a> as this can
+create an infinite loop.
 </div>
 
 
@@ -899,7 +1113,23 @@
     
         <p class="code-caption">Removing a fictitious "volume" attribute</p>
     
-    <pre class="prettyprint"><code>$.ariaHooks.volume = {    // Let's assume that there is also a "soundsetup" attribute and that it    // requires the "volume" attribute to exist, thus if "volume" is removed,    // "soundsetup" should be removed as well.    unset: function (element) {        element.removeAttribute("aria-volume");        element.removeAttribute("aria-soundsetup");    }};</code></pre>
+    <pre class="prettyprint"><code>$.ariaHooks.volume = {
+    // Let's assume that there is also a "soundsetup" attribute and that it
+    // requires the "volume" attribute to exist, thus if "volume" is removed,
+    // "soundsetup" should be removed as well.
+    unset: function (element, attribute) {
+        element.removeAttribute("aria-soundsetup");
+        return true;
+    }
+};
+
+// Markup is:
+// &lt;div id="one" aria-volume="5" aria-soundsetup="mono">&lt;/div>
+
+$("#one").removeAria("volume");
+
+// Now markup is
+// &lt;div id="one">&lt;/div></code></pre>
 
 
 
@@ -949,6 +1179,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>attribute</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Full attribute name, lower case and including "aria-" prefix.</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -965,6 +1218,28 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Whether or not the attribute should be removed.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
             
@@ -1020,7 +1295,9 @@
 
 
 <div class="description">
-    A boolean or the string "mixed" (always in lower case). This type willbe undefined when trying to read a state that has not been set on theelement.
+    A boolean or the string "mixed" (always in lower case). This type will
+be undefined when trying to read a state that has not been set on the
+element.
 </div>
 
 
@@ -1047,7 +1324,16 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>// Markup is// &lt;div id="one" aria-checked="true">&lt;/div>// &lt;div id="two" aria-checked="false">&lt;/div>// &lt;div id="three" aria-checked="mixed">&lt;/div>// &lt;div id="four">&lt;/div>$("#one").ariaState("checked");   // -> true$("#two").ariaState("checked");   // -> false$("#three").ariaState("checked"); // -> "mixed"$("#four").ariaState("checked");  // -> undefined</code></pre>
+    <pre class="prettyprint"><code>// Markup is
+// &lt;div id="one" aria-checked="true">&lt;/div>
+// &lt;div id="two" aria-checked="false">&lt;/div>
+// &lt;div id="three" aria-checked="mixed">&lt;/div>
+// &lt;div id="four">&lt;/div>
+
+$("#one").ariaState("checked");   // -> true
+$("#two").ariaState("checked");   // -> false
+$("#three").ariaState("checked"); // -> "mixed"
+$("#four").ariaState("checked");  // -> undefined</code></pre>
 
 
 
@@ -1108,7 +1394,15 @@
 
 
 <div class="description">
-    The <a href="external-jQuery.html#aria">jQuery#aria</a>,<a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> and<a href="external-jQuery.html#ariaState">jQuery#ariaState</a> methods all takefunctions to set their value. The functions all have the same signature,described here. It is important to remember that the value this functionreturns will be treated as if it had originally been passed to thefunction. See<a href="http://api.jquery.com/attr/#attr-attributeName-function">jQuery#attr</a>for more information and examples.
+    The <a href="external-jQuery.html#aria">jQuery#aria</a>,
+<a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> and
+<a href="external-jQuery.html#ariaState">jQuery#ariaState</a> methods all take
+functions to set their value. The functions all have the same signature,
+described here. It is important to remember that the value this function
+returns will be treated as if it had originally been passed to the
+function. See
+<a href="http://api.jquery.com/attr/#attr-attributeName-function">jQuery#attr</a>
+for more information and examples.
 </div>
 
 
@@ -1124,11 +1418,23 @@
 
     <h5>Examples</h5>
     
-    <pre class="prettyprint"><code>$("#one").aria("label", function (i, attr) {    return "Test";});// is the same as$("#one").aria("label", "Test");</code></pre>
+    <pre class="prettyprint"><code>$("#one").aria("label", function (i, attr) {
+    return "Test";
+});
+// is the same as
+$("#one").aria("label", "Test");</code></pre>
 
         <p class="code-caption">Elements without the attribute pass undefined</p>
     
-    <pre class="prettyprint"><code>// Markup is// &lt;div id="one">&lt;/div>$("#one").aria("label", function (i, attr) {    return Object.prototype.toString.call(attr);});// Now markup is// &lt;div id="one" aria-label="[object Undefined]">&lt;/div></code></pre>
+    <pre class="prettyprint"><code>// Markup is
+// &lt;div id="one">&lt;/div>
+
+$("#one").aria("label", function (i, attr) {
+    return Object.prototype.toString.call(attr);
+});
+
+// Now markup is
+// &lt;div id="one" aria-label="[object Undefined]">&lt;/div></code></pre>
 
 
 
@@ -1174,7 +1480,8 @@
 
             
 
-            <td class="description last">The index of the current element from within the overall jQuery          collection.</td>
+            <td class="description last">The index of the current element from within the overall jQuery
+          collection.</td>
         </tr>
 
     
@@ -1200,7 +1507,8 @@
 
             
 
-            <td class="description last">Current attribute value (undefined if the element does not          currently have the attribute assigned).</td>
+            <td class="description last">Current attribute value (undefined if the element does not
+          currently have the attribute assigned).</td>
         </tr>
 
     
@@ -1257,7 +1565,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line259">line 259</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line331">line 331</a>
     </li></ul></dd>
     
 
@@ -1297,7 +1605,10 @@
 
 
 <div class="description">
-    Any parameter that can be passed to<a href="http://api.jquery.com/jQuery/">jQuery's $ function</a>. Be aware thatif the object (or Array or NodeList) contains multiple elements, only thefirst will be used when getting information.
+    Any parameter that can be passed to
+<a href="http://api.jquery.com/jQuery/">jQuery's $ function</a>. Be aware that
+if the object (or Array or NodeList) contains multiple elements, only the
+first will be used when getting information.
 </div>
 
 
@@ -1345,7 +1656,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Mar 02 2017 10:13:22 GMT+0000 (GMT Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Mar 04 2017 11:53:29 GMT+0000 (GMT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

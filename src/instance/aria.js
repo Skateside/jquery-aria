@@ -66,6 +66,44 @@
  * $("#element").aria("checked"); // -> undefined
  * // If "#element" matches multiple elements, the attributes from the first
  * // element are returned.
+ *
+ * @example <caption>Setting with aria methods</caption>
+ * // Markup is:
+ * // <div class="one"></div>
+ * // <div class="two"></div>
+ * // <div class="three"</div>
+ *
+ * var settings = {
+ *     busy: 0,
+ *     controls: ".one",
+ *     label: "lorem ipsum"
+ * };
+ *
+ * $(".one").aria(settings);
+ * $(".two").ariaRef(settings);
+ * $(".three").ariaState(settings);
+ *
+ * // Now markup is:
+ * // <div class="one"
+ * //     aria-busy="0"
+ * //     aria-controls=".one"
+ * //     aria-label="lorem ipsum"
+ * //     id="anonymous0"></div>
+ * // <div class="two"
+ * //     aria-controls="anonymous0"></div>
+ * // <div class="three"
+ * //     aria-busy="false"
+ * //     aria-controls="true"
+ * //     aria-label="true"></div>
+ *
+ * @example <caption>Getting with aria methods</caption>
+ * // Markup is:
+ * // <div id="test" aria-flowto="false"></div>
+ * // <div id="false"></div>
+ *
+ * $("#test").aria("flowto");      // -> "false"
+ * $("#test").ariaRef("flowto");   // -> jQuery(<div id="false">)
+ * $("#test").ariaState("flowto"); // -> false
  */
 $.fn.aria = function (property, value) {
 

@@ -2,16 +2,16 @@
  * A map of unprefixed WAI-ARIA attributes that should be converted before being
  * normalised (see [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}).
  *
- * @alias    external:jQuery.ariaMap
+ * @alias    external:jQuery.ariaFix
  * @memberof external:jQuery
  * @type     {Object.<String>}
  *
  * @example <caption>Correcting a common typo</caption>
- * $.ariaMap.budy = "busy";
+ * $.ariaFix.budy = "busy";
  * $.normaliseAria("budy");      // -> "aria-busy"
  * $.normaliseAria("aria-budy"); // -> "aria-busy"
  */
-$.ariaMap = {
+$.ariaFix = {
 
     // This is the US English spelling but the ccessibility API defined the
     // attribute with the double L.
@@ -20,13 +20,13 @@ $.ariaMap = {
 
 };
 
-// If Proxy is available, we can use it to check whenever $.ariaMap is modified
+// If Proxy is available, we can use it to check whenever $.ariaFix is modified
 // and invalidate the cache of normalise() when it is. This is a lot more
-// efficient than always converting $.ariaMap to a JSON string to ensure the
+// efficient than always converting $.ariaFix to a JSON string to ensure the
 // cache is accurate.
 if (IS_PROXY_AVAILABLE) {
 
-    $.ariaMap = new Proxy($.ariaMap, {
+    $.ariaFix = new Proxy($.ariaFix, {
 
         set: function (target, name, value) {
 

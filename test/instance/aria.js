@@ -73,6 +73,25 @@ describe("jQuery#aria", function () {
 
     });
 
+    it("should allow the process to be changed using $.ariaHooks", function () {
+
+        $.ariaHooks.setter = {
+            set: function (element, value) {
+                element.setAttribute("aria-setter", value + "_" + value);
+            },
+            get: function (element) {
+                return element.getAttribute("aria-setter").split("_")[0];
+            }
+        };
+
+        var jQdiv = $("<div></div>").aria("setter", "one");
+        chai.assert.equal(jQdiv.attr("aria-setter"), "one_one");
+        chai.assert.equal(jQdiv.aria("setter"), "one");
+
+        delete $.ariaHooks.setter;
+
+    });
+
     it("should return a jQuery object after setting", function () {
 
         var jQdiv = $("<div></div>");

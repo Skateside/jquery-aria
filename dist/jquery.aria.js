@@ -1,4 +1,4 @@
-/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.5.1a - MIT license - 2017-03-03 */
+/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.6.0a - MIT license - 2017-03-04 */
 (function ($) {
     "use strict";
 
@@ -25,7 +25,7 @@
  * [jQuery#removeAriaState]{@link external:jQuery#removeAriaState}).
  * <br><br>
  * <strong>Adjusting WAI-ARIA Attribute Manipulation</strong>
- * <br>[jQuery.ariaMap]{@link external:jQuery.ariaMap} will convert the names of
+ * <br>[jQuery.ariaFix]{@link external:jQuery.ariaFix} will convert the names of
  * WAI-ARIA attributes.
  * <br>[jQuery.ariaHooks]{@link external:jQuery.ariaHooks} allow special
  * functionality to be defined for specific WAI-ARIA attributes.
@@ -49,7 +49,7 @@
  * [GitHub]{@link https://github.com/Skateside/jquery-aria}.
  *
  * @author James "Skateside" Long <sk85ide@hotmail.com>
- * @version 0.5.1a
+ * @version 0.6.0a
  * @license MIT
  */
 
@@ -127,6 +127,13 @@
 /**
  * A hook for a WAI-ARIA attribute. Every property is optional so there is no
  * need to specify one to execute the default functionality.
+ * <br><br>
+ * Be aware that these hooks only affect the aria methods;
+ * [jQuery#attr]{@link http://api.jquery.com/attr/} and
+ * [jQuery#prop]{@link http://api.jquery.com/prop/} will not be affected by any
+ * changes here. There are similar <code>jQuery.attrHooks</code> and
+ * <code>jQuery.propHooks</code> (for set and get) that work in the same way if
+ * you need to completely control attribute/property setting.
  *
  * @typedef  {Object}          ARIA_hook
  * @property {ARIA_hook_set}   [set]
@@ -140,43 +147,72 @@
  */
 
 /**
- * Handles the setting of a WAI-ARIA attribute. The function doesn't need to
- * return anything as it will completely handle the setting of the attribute.
+ * Handles the setting of a WAI-ARIA attribute. If the function returns a value,
+ * that value is used to set the attribute; returning null, undefined, or not
+ * returning anything will prevent the normal attribute setting process from
+ * completing.
  * <br><br>
- * When setting an attribute, feel free to use
- * [jQuery.normaliseAria]{@link external:jQuery.normaliseAria} and
- * [jQuery#attr]{@link http://api.jquery.com/attr/} but do not use
+ * When setting an attribute, please do not use
  * [jQuery#aria]{@link external:jQuery#aria},
  * [jQuery#ariaRef]{@link external:jQuery#ariaRef} or
  * [jQuery#ariaState]{@link external:jQuery#ariaState} as this can create an
  * infinite loop.
  *
  * @typedef {Function}    ARIA_hook_set
- * @param   {HTMLElement} element
+ * @param   {HTMLElement}           element
  *          Element whose attribute should be modified.
- * @param   {String}      value
- *          Value of the attribute.
+ * @param   {Boolean|Number|String} value
+ *          Value of the attribute in the form given to the aria function.
+ * @param   {String}                attribute
+ *          Full attribute name, lower case and including "aria-" prefix.
+ * @return  {?}
+ *          Possible conversion of the value.
  *
- * @example <caption>Setting a fictitious "volume" attribute</caption>
+ * @example <caption>Setting fictitious "volume" or "soundsetup" attributes</caption>
  * $.ariaHooks.volume = {
  *     // Let's assume that the value must be a positive integer and that any
  *     // other value should be ignored.
- *     set: function (element, value) {
+ *     set: function (element, value, attribute) {
  *         var posInt = Math.floor(Math.abs(value));
- *         if (!isNaN(posInt)) {
- *             element.setAttribute("aria-volume", posInt);
- *         }
+ *         return isNaN(posInt)
+ *             ? undefined
+ *             : posInt;
  *     }
  * };
+ * $.ariaHooks.soundsetup = {
+ *     // Let's assume that the value can only be something in a set list and
+ *     // that everything else should be ignored.
+ *     set: function (element, value, attribute) {
+ *         var values = ["mono", "stereo", "5.1"];
+ *         return values.indexOf(value) > -1
+ *             ? value
+ *             : undefined;
+ *     }
+ * };
+ *
+ * // Markup is:
+ * // <div id="one"></div>
+ * // <div id="two"></div>
+ *
+ * $("#one").aria({
+ *     volume: 5,
+ *     soundsetup: "mono"
+ * });
+ * $("#two").aria({
+ *     volume: "loud",
+ *     soundsetup: "legendary"
+ * });
+ *
+ * // Now markup is:
+ * // <div id="one" aria-volume="5" aria-soundsetup="mono"></div>
+ * // <div id="two"></div>
  */
 
 /**
  * Handles the getting of a WAI-ARIA attribute. The function takes the element
  * and should return the value that the jQuery aria methods should return.
  * <br><br>
- * When getting an attribute, feel free to use
- * [jQuery.normaliseAria]{@link external:jQuery.normaliseAria} and
- * [jQuery#attr]{@link http://api.jquery.com/attr/} but do not use
+ * When getting an attribute, please do not use
  * [jQuery#aria]{@link external:jQuery#aria},
  * [jQuery#ariaRef]{@link external:jQuery#ariaRef} or
  * [jQuery#ariaState]{@link external:jQuery#ariaState} as this can create an
@@ -185,55 +221,79 @@
  * @typedef {Function}    ARIA_hook_get
  * @param   {HTMLElement} element
  *          Element whose attribute value should be returned.
- * @return  {?}
+ * @param   {String}      attribute
+ *          Full attribute name, lower case and including "aria-" prefix.
+ * @return  {?Boolean|Number|String}
  *          Value of the attribute.
  *
  * @example <caption>Getting a fictitious "volume" attribute</caption>
  * $.ariaHooks.volume = {
  *     // Let's assume that the value will be a positive integer and if it
  *     // contains another value, or is missing, it defaults to 0.
- *     get: function (element) {
- *         var value = element.getAttribute("aria-volume");
+ *     get: function (element, attribute) {
+ *         var value = element.getAttribute(attribute);
  *         return (value === null || isNaN(value) || value < 0)
  *             ? 0
  *             : Math.floor(value);
  *     }
  * };
+ *
+ * // Markup is:
+ * // <div id="one" aria-volume="5"></div>
+ * // <div id="two" aria-volume="loud"></div>
+ *
+ * $("#one").aria("volume"); // -> 5
+ * $("#two").aria("volume"); // -> 0
  */
 
 /**
  * Handles checking whether or not the WAI-ARIA attribute exists on the element
- * and it should return a boolean.
- * <br><br>
- * When checking for an attribute, feel free to use
- * [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}.
+ * and it should return a boolean. Currently this functionality is not exposed
+ * in an aria method, but the existence of a WAI-ARIA attribute will be checked
+ * before getting occurs (and the {@link ARIA_hook_get} function executes).
  *
  * @typedef {Function}    ARIA_hook_has
  * @param   {HTMLElement} element
  *          Element whose attribute should be checked.
+ * @param   {String}      attribute
+ *          Full attribute name, lower case and including "aria-" prefix.
  * @return  {Boolean}
  *          Whether or not the attribute exists on the element (true if it
  *          does, false otherwise).
  *
  * @example <caption>Checking for a fictitious "volume" attribute</caption>
  * $.ariaHooks.volume = {
+ *     get: function (element, attribute) {
+ *         console.log("hi");
+ *         return element.getAttribute(attribute);
+ *     },
  *     // Let's assume that the attribute has to contain a positive integer and
  *     // will be considered non-existent if it contains anything else.
- *     has: function (element) {
- *         var value = element.getAttribute("aria-volume");
+ *     has: function (element, attribute) {
+ *         var value = element.getAttribute(attribute);
  *         var intVal = parseInt(value, 10);
  *         return value !== null && intVal === +value && intVal <= 0;
  *     }
  * };
+ *
+ * // Markup is:
+ * // <div id="one" aria-volume="5"></div>
+ * // <div id="two" aria-volume="loud"></div>
+ *
+ * $("#one").aria("volume");
+ * // Logs: "hi"
+ * // -> "5"
+ * $("#two").aria("volume"); // -> undefined
  */
 
 /**
- * Handles unsetting a WAI-ARIA attribute from an element. This function does
- * not need to return anything.
+ * Checks to see if the WAI-ARIA attribute should be removed. If the function
+ * returns <code>true</code> (or a truthy value) then the attribute will be
+ * removed, a falsy value will prevent the attribute being removed through the
+ * aria methods (although there is nothing stopping it being removed in another
+ * way or even through the function itself).
  * <br><br>
- * When removing an attribute, feel free to use
- * [jQuery.normaliseAria]{@link external:jQuery.normaliseAria} and
- * [jQuery#removeAttr]{@link http://api.jquery.com/removeAttr/} but do not use
+ * When removing an attribute, please do not use
  * [jQuery#removeAria]{@link external:jQuery#removeAria},
  * [jQuery#removeAriaRef]{@link external:jQuery#removeAriaRef} or
  * [jQuery#removeAriaState]{@link external:jQuery#removeAriaState} as this can
@@ -242,17 +302,29 @@
  * @typedef {Function}    ARIA_hook_unset
  * @param   {HTMLElement} element
  *          Element whose attribute should be removed.
+ * @param   {String}      attribute
+ *          Full attribute name, lower case and including "aria-" prefix.
+ * @return  {Boolean}
+ *          Whether or not the attribute should be removed.
  *
  * @example <caption>Removing a fictitious "volume" attribute</caption>
  * $.ariaHooks.volume = {
  *     // Let's assume that there is also a "soundsetup" attribute and that it
  *     // requires the "volume" attribute to exist, thus if "volume" is removed,
  *     // "soundsetup" should be removed as well.
- *     unset: function (element) {
- *         element.removeAttribute("aria-volume");
+ *     unset: function (element, attribute) {
  *         element.removeAttribute("aria-soundsetup");
+ *         return true;
  *     }
  * };
+ *
+ * // Markup is:
+ * // <div id="one" aria-volume="5" aria-soundsetup="mono"></div>
+ *
+ * $("#one").removeAria("volume");
+ *
+ * // Now markup is
+ * // <div id="one"></div>
  */
 
 // Source: src/doc/typedef/jQuery_param.js
@@ -448,13 +520,13 @@ var memoise = function (handler, resolver) {
 /**
  * Normalises a WAI-ARIA attribute name so that it's always lower case and
  * always stars with <code>aria-</code>. If the unprefixed value appears in
- * [jQuery.ariaMap]{@link external:jQuery.ariaMap} then the mapped version is
+ * [jQuery.ariaFix]{@link external:jQuery.ariaFix} then the mapped version is
  * used before being prefixed.
  * <br><br>
  * The results of this function are cached to help reduce processing. This is
  * exposed as <code>jQuery.normaliseAria.cache</code> if needed but there is no
  * need to clear the cache after modifying
- * [jQuery.ariaMap]{@link external:jQuery.ariaMap} - changes are automatically
+ * [jQuery.ariaFix]{@link external:jQuery.ariaFix} - changes are automatically
  * considered in the caching process.
  * <br><br>
  * This function is aliased as
@@ -483,7 +555,7 @@ var memoise = function (handler, resolver) {
  * $.normalizeAria();             // -> "aria-"
  *
  * @example <caption>Mapped attribute</caption>
- * // $.ariaMap = {labeledby: "labelledby"}
+ * // $.ariaFix = {labeledby: "labelledby"}
  * $.normaliseAria("labeledby");      // -> "aria-labelledby"
  * $.normaliseAria("LABELEDBY");      // -> "aria-labelledby"
  * $.normaliseAria("aria-labeledby"); // -> "aria-labelledby"
@@ -505,7 +577,7 @@ var normalise = memoise(
             ? lower
             : prefix + lower;
         var stem = full.slice(prefix.length);
-        var map = $.ariaMap[stem];
+        var map = $.ariaFix[stem];
 
         if (map) {
 
@@ -520,7 +592,7 @@ var normalise = memoise(
     IS_PROXY_AVAILABLE
         ? identity
         : function (name) {
-            return name + "|" + JSON.stringify($.ariaMap);
+            return name + "|" + JSON.stringify($.ariaFix);
         }
 );
 
@@ -726,14 +798,16 @@ handlers[HANDLER_PROPERTY] = {
                 convert = identity;
             }
 
-            if (value !== undefined) {
-
-                value = interpretString(convert(value));
+            if (value !== undefined && value !== null) {
 
                 if (hook && hook.set) {
-                    hook.set(element, value);
-                } else {
-                    element.setAttribute(prop.full, value);
+                    value = hook.set(element, value, prop.full);
+                }
+
+                value = convert(value);
+
+                if (value !== undefined && value !== null) {
+                    element.setAttribute(prop.full, interpretString(value));
                 }
 
             }
@@ -772,7 +846,7 @@ handlers[HANDLER_PROPERTY] = {
 
         return isElement(element)
             ? (hook && hook.has)
-                ? hook.has(element)
+                ? hook.has(element, prop.full)
                 : element.hasAttribute(prop.full)
             : false;
 
@@ -808,12 +882,16 @@ handlers[HANDLER_PROPERTY] = {
         var handler = handlers[HANDLER_PROPERTY];
         var prop = handler.parse(name);
         var hook = $.ariaHooks[prop.stem];
-
-        return handler.has(element, name)
+        var response = handler.has(element, name)
             ? (hook && hook.get)
-                ? hook.get(element)
+                ? hook.get(element, prop.full)
                 : element.getAttribute(prop.full)
             : undefined;
+
+        // getAttribute can return null, normalise to undefined.
+        return response === null
+            ? undefined
+            : response;
 
     },
 
@@ -845,12 +923,9 @@ handlers[HANDLER_PROPERTY] = {
         var prop = handlers[HANDLER_PROPERTY].parse(name);
         var hook = $.ariaHooks[prop.stem];
 
-
         if (isElement(element)) {
 
-            if (hook && hook.unset) {
-                hook.unset(element);
-            } else {
+            if (!hook || !hook.unset || hook.unset(element, prop.full)) {
                 element.removeAttribute(prop.full);
             }
 
@@ -1284,21 +1359,21 @@ function removeAttribute(name) {
 $.normalizeAria = normalise;
 $.normaliseAria = normalise;
 
-// Source: src/member/ariaMap.js
+// Source: src/member/ariaFix.js
 /**
  * A map of unprefixed WAI-ARIA attributes that should be converted before being
  * normalised (see [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}).
  *
- * @alias    external:jQuery.ariaMap
+ * @alias    external:jQuery.ariaFix
  * @memberof external:jQuery
  * @type     {Object.<String>}
  *
  * @example <caption>Correcting a common typo</caption>
- * $.ariaMap.budy = "busy";
+ * $.ariaFix.budy = "busy";
  * $.normaliseAria("budy");      // -> "aria-busy"
  * $.normaliseAria("aria-budy"); // -> "aria-busy"
  */
-$.ariaMap = {
+$.ariaFix = {
 
     // This is the US English spelling but the ccessibility API defined the
     // attribute with the double L.
@@ -1307,13 +1382,13 @@ $.ariaMap = {
 
 };
 
-// If Proxy is available, we can use it to check whenever $.ariaMap is modified
+// If Proxy is available, we can use it to check whenever $.ariaFix is modified
 // and invalidate the cache of normalise() when it is. This is a lot more
-// efficient than always converting $.ariaMap to a JSON string to ensure the
+// efficient than always converting $.ariaFix to a JSON string to ensure the
 // cache is accurate.
 if (IS_PROXY_AVAILABLE) {
 
-    $.ariaMap = new Proxy($.ariaMap, {
+    $.ariaFix = new Proxy($.ariaFix, {
 
         set: function (target, name, value) {
 
@@ -1334,11 +1409,18 @@ if (IS_PROXY_AVAILABLE) {
  * [unset]{@link ARIA_hook_unset} - see {@link ARIA_hook} for full details). The
  * name of the hook is always the un-prefixed WAI-ARIA attribute in lower case
  * after any mapping has occurred (see
- * [jQuery.ariaMap]{@link external:jQuery.ariaMap}). If you are ever in doubt,
+ * [jQuery.ariaFix]{@link external:jQuery.ariaFix}). If you are ever in doubt,
  * the easiest way to know the key is to slice the normalised value:
  * <code>$.normaliseAria(__WAI-ARIA_ATTRIBUTE__).slice(5)</code> (see
  * [jQuery.normaliseAria]{@link external:jQuery.normaliseAria} for more
  * information).
+ * <br><br>
+ * Do not use these functions to set different WAI-ARIA attributes without
+ * setting the one being passed to the aria method; for example: do not create a
+ * set for "attribute1" that sets "attribute2" instead - unless you add the same
+ * conversion to <code>has</code>, <code>get</code> will not be triggered.
+ * Instead, use [jQuery.ariaFix{@link external:jQuery.ariaFix} to convert the
+ * attribute name.
  * <br><br>
  * [jQuery#aria]{@link external:jQuery#aria},
  * [jQuery#ariaRef]{@link external:jQuery#ariaRef},
@@ -1380,13 +1462,17 @@ $.ariaHooks = {
         // Setting aria-hidden="false" is considered valid, but removing the
         // aria-hidden attribute has the same effect and I think it's tidier.
         // https://www.w3.org/TR/wai-aria/states_and_properties#aria-hidden
-        set: function (element, value) {
+        set: function (element, value, name) {
 
-            if ((/^false$/i).test(value)) {
-                element.removeAttribute("aria-hidden");
+            var response;
+
+            if (value === false || +value === 0 || (/^false$/i).test(value)) {
+                element.removeAttribute(name);
             } else {
-                element.setAttribute("aria-hidden", value);
+                response = value;
             }
+
+            return response;
 
         }
 
@@ -1535,6 +1621,44 @@ $.fn.identify = function (index) {
  * $("#element").aria("checked"); // -> undefined
  * // If "#element" matches multiple elements, the attributes from the first
  * // element are returned.
+ *
+ * @example <caption>Setting with aria methods</caption>
+ * // Markup is:
+ * // <div class="one"></div>
+ * // <div class="two"></div>
+ * // <div class="three"</div>
+ *
+ * var settings = {
+ *     busy: 0,
+ *     controls: ".one",
+ *     label: "lorem ipsum"
+ * };
+ *
+ * $(".one").aria(settings);
+ * $(".two").ariaRef(settings);
+ * $(".three").ariaState(settings);
+ *
+ * // Now markup is:
+ * // <div class="one"
+ * //     aria-busy="0"
+ * //     aria-controls=".one"
+ * //     aria-label="lorem ipsum"
+ * //     id="anonymous0"></div>
+ * // <div class="two"
+ * //     aria-controls="anonymous0"></div>
+ * // <div class="three"
+ * //     aria-busy="false"
+ * //     aria-controls="true"
+ * //     aria-label="true"></div>
+ *
+ * @example <caption>Getting with aria methods</caption>
+ * // Markup is:
+ * // <div id="test" aria-flowto="false"></div>
+ * // <div id="false"></div>
+ *
+ * $("#test").aria("flowto");      // -> "false"
+ * $("#test").ariaRef("flowto");   // -> jQuery(<div id="false">)
+ * $("#test").ariaState("flowto"); // -> false
  */
 $.fn.aria = function (property, value) {
 
@@ -2044,8 +2168,7 @@ $.fn.removeRole = function (role) {
  */
 $.fn.ariaFocusable = function (state) {
 
-    return access(
-        this,
+    return this.attr(
         "tabindex",
         handlers[HANDLER_STATE].read(state)
             ? 0

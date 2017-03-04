@@ -1,4 +1,4 @@
-describe("jQuery#addrole", function () {
+describe("jQuery#addRole", function () {
 
     it("should add a role", function () {
 

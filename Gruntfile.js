@@ -62,7 +62,7 @@ module.exports = function (grunt) {
 
                     // Members
                     "src/member/normaliseAria.js",
-                    "src/member/ariaMap.js",
+                    "src/member/ariaFix.js",
                     "src/member/ariaHooks.js",
 
                     // Instances
