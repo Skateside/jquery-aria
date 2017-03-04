@@ -1,13 +1,13 @@
 /**
  * Normalises a WAI-ARIA attribute name so that it's always lower case and
  * always stars with <code>aria-</code>. If the unprefixed value appears in
- * [jQuery.ariaMap]{@link external:jQuery.ariaMap} then the mapped version is
+ * [jQuery.ariaFix]{@link external:jQuery.ariaFix} then the mapped version is
  * used before being prefixed.
  * <br><br>
  * The results of this function are cached to help reduce processing. This is
  * exposed as <code>jQuery.normaliseAria.cache</code> if needed but there is no
  * need to clear the cache after modifying
- * [jQuery.ariaMap]{@link external:jQuery.ariaMap} - changes are automatically
+ * [jQuery.ariaFix]{@link external:jQuery.ariaFix} - changes are automatically
  * considered in the caching process.
  * <br><br>
  * This function is aliased as
@@ -36,7 +36,7 @@
  * $.normalizeAria();             // -> "aria-"
  *
  * @example <caption>Mapped attribute</caption>
- * // $.ariaMap = {labeledby: "labelledby"}
+ * // $.ariaFix = {labeledby: "labelledby"}
  * $.normaliseAria("labeledby");      // -> "aria-labelledby"
  * $.normaliseAria("LABELEDBY");      // -> "aria-labelledby"
  * $.normaliseAria("aria-labeledby"); // -> "aria-labelledby"
@@ -58,7 +58,7 @@ var normalise = memoise(
             ? lower
             : prefix + lower;
         var stem = full.slice(prefix.length);
-        var map = $.ariaMap[stem];
+        var map = $.ariaFix[stem];
 
         if (map) {
 
@@ -73,6 +73,6 @@ var normalise = memoise(
     IS_PROXY_AVAILABLE
         ? identity
         : function (name) {
-            return name + "|" + JSON.stringify($.ariaMap);
+            return name + "|" + JSON.stringify($.ariaFix);
         }
 );

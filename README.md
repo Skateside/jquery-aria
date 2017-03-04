@@ -15,3 +15,12 @@ This code has an MIT license. See the LICENSE file for full details.
 ## Change Log
 
 You can see the change log in the root folder.
+
+## Grunt tasks
+
+There are a few grunt tasks to help with development:
+
+- `grunt compile` will compile the JavaScript files based on the source.
+- `grunt test` will run the unit tests.
+- `grunt doc` will generate the documentation.
+- `grunt` will start watching for changes to the source files, running `grunt compile` when a change occurs.

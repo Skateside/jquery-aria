@@ -131,14 +131,16 @@ handlers[HANDLER_PROPERTY] = {
                 convert = identity;
             }
 
-            if (value !== undefined) {
-
-                value = interpretString(convert(value));
+            if (value !== undefined && value !== null) {
 
                 if (hook && hook.set) {
-                    hook.set(element, value);
-                } else {
-                    element.setAttribute(prop.full, value);
+                    value = hook.set(element, value, prop.full);
+                }
+
+                value = convert(value);
+
+                if (value !== undefined && value !== null) {
+                    element.setAttribute(prop.full, interpretString(value));
                 }
 
             }
@@ -176,8 +178,8 @@ handlers[HANDLER_PROPERTY] = {
         var hook = $.ariaHooks[prop.stem];
 
         return isElement(element)
-            ? hook.has
-                ? hook.has(element)
+            ? (hook && hook.has)
+                ? hook.has(element, prop.full)
                 : element.hasAttribute(prop.full)
             : false;
 
@@ -213,12 +215,16 @@ handlers[HANDLER_PROPERTY] = {
         var handler = handlers[HANDLER_PROPERTY];
         var prop = handler.parse(name);
         var hook = $.ariaHooks[prop.stem];
-
-        return handler.has(element, name)
-            ? hook.get
-                ? hook.get(element)
+        var response = handler.has(element, name)
+            ? (hook && hook.get)
+                ? hook.get(element, prop.full)
                 : element.getAttribute(prop.full)
             : undefined;
+
+        // getAttribute can return null, normalise to undefined.
+        return response === null
+            ? undefined
+            : response;
 
     },
 
@@ -250,12 +256,9 @@ handlers[HANDLER_PROPERTY] = {
         var prop = handlers[HANDLER_PROPERTY].parse(name);
         var hook = $.ariaHooks[prop.stem];
 
-
         if (isElement(element)) {
 
-            if (hook.unset) {
-                hook.unset(element);
-            } else {
+            if (!hook || !hook.unset || hook.unset(element, prop.full)) {
                 element.removeAttribute(prop.full);
             }
 

@@ -20,7 +20,7 @@
  * [jQuery#removeAriaState]{@link external:jQuery#removeAriaState}).
  * <br><br>
  * <strong>Adjusting WAI-ARIA Attribute Manipulation</strong>
- * <br>[jQuery.ariaMap]{@link external:jQuery.ariaMap} will convert the names of
+ * <br>[jQuery.ariaFix]{@link external:jQuery.ariaFix} will convert the names of
  * WAI-ARIA attributes.
  * <br>[jQuery.ariaHooks]{@link external:jQuery.ariaHooks} allow special
  * functionality to be defined for specific WAI-ARIA attributes.
