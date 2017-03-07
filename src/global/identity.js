@@ -5,10 +5,10 @@
  *
  * @global
  * @private
- * @param  {?} x
- *         Object to return.
- * @return {?}
- *         Original object.
+ * @param   {?} x
+ *          Object to return.
+ * @return  {?}
+ *          Original object.
  *
  * @example
  * identity("a");           // -> "a"

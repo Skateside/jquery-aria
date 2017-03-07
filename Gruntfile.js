@@ -9,7 +9,8 @@ module.exports = function (grunt) {
         concat: {
             options: {
                 banner: (
-                    "/*! <%= pkg.name %> - v<%= pkg.version %> - " +
+                    "/*! <%= pkg.name %> (<%= pkg.homepage %>) - " +
+                    "v<%= pkg.version %> - <%= pkg.license %> license - " +
                     "<%= grunt.template.today('yyyy-mm-dd') %> */\n" +
                     "(function ($) {\n" +
                     "    \"use strict\";\n\n"
@@ -43,13 +44,16 @@ module.exports = function (grunt) {
                     "src/doc/external/jQuery.js",
                     "src/doc/callback/Attribute_Callback.js",
                     "src/doc/typedef/ARIA_state.js",
+                    "src/doc/typedef/ARIA_hook.js",
                     "src/doc/typedef/jQuery_param.js",
 
                     // Globals
+                    "src/global/variables.js",
                     "src/global/identify.js",
                     "src/global/identity.js",
                     "src/global/interpretString.js",
                     "src/global/isElement.js",
+                    "src/global/memoise.js",
                     "src/global/normalise.js",
                     "src/global/startsWith.js",
                     "src/global/toWords.js",
@@ -62,6 +66,8 @@ module.exports = function (grunt) {
 
                     // Members
                     "src/member/normaliseAria.js",
+                    "src/member/ariaFix.js",
+                    "src/member/ariaHooks.js",
 
                     // Instances
                     "src/instance/identify.js",
@@ -72,7 +78,6 @@ module.exports = function (grunt) {
                     "src/instance/role.js",
                     "src/instance/addRole.js",
                     "src/instance/removeRole.js",
-                    "src/instance/ariaVisible.js",
                     "src/instance/ariaFocusable.js"
 
                 ],
@@ -91,10 +96,21 @@ module.exports = function (grunt) {
             }
         },
 
+        // https://gist.github.com/maicki/7781943
+        mocha: {
+            all: {
+                src: ["test/testrunner.html"]
+            },
+            options: {
+                run: true
+            }
+        },
+
         uglify: {
             options: {
                 banner: (
-                    "/*! <%= pkg.name %> - v<%= pkg.version %> - " +
+                    "/*! <%= pkg.name %> (<%= pkg.homepage %>) - " +
+                    "v<%= pkg.version %> - <%= pkg.license %> license - " +
                     "<%= grunt.template.today('yyyy-mm-dd') %> */"
                 ),
                 sourceMap: true
@@ -104,6 +120,13 @@ module.exports = function (grunt) {
                     "dist/jquery.aria.min.js": ["dist/jquery.aria.js"]
                 }
             }
+        },
+
+        watch: {
+            dist: {
+                files: ["Gruntfile.js", "src/**/*.js"],
+                tasks: ["concat", "uglify"]
+            }
         }
 
     });
@@ -111,8 +134,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-concat");
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks("grunt-jsdoc");
+    grunt.loadNpmTasks('grunt-mocha');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
-
-    grunt.registerTask("default", ["concat", "uglify", "jsdoc"]);
+    //grunt.registerTask("default", ["concat", "uglify", "jsdoc"]);
+    grunt.registerTask("default", ["watch"]);
+    grunt.registerTask("compile", ["concat", "uglify"]);
+    grunt.registerTask("doc", ["jsdoc"]);
+    grunt.registerTask("test", ["mocha"]);
 
 };

@@ -16,15 +16,15 @@
  *
  * @memberof external:jQuery
  * @instance
- * @alias ariaState
- * @param  {Object|String} property
- *         Either a key/value combination properties to set or the name of the
- *         WAI-ARIA state to set.
- * @param  {Attribute_Callback|Boolean|Number|String} [value]
- *         Value of the attribute.
- * @return {ARIA_state|jQuery}
- *         Either the jQuery object representing the modified elements (setting)
- *         or the state of the first matching element.
+ * @alias    ariaState
+ * @param    {Object|String} property
+ *           Either a key/value combination properties to set or the name of the
+ *           WAI-ARIA state to set.
+ * @param    {Attribute_Callback|Boolean|Number|String} [value]
+ *           Value of the attribute.
+ * @return   {ARIA_state|jQuery}
+ *           Either the jQuery object representing the modified elements
+ *           (setting) or the state of the first matching element.
  *
  * @example <caption>Getting state</caption>
  * // Markup is:

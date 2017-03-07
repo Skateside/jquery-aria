@@ -21,15 +21,15 @@
  *
  * @memberof external:jQuery
  * @instance
- * @alias aria
- * @param  {Object|String} property
- *         Either the properties to set in key/value pairs or the name of the
- *         property to get/set.
- * @param  {Attribute_Callback|Boolean|Number|String} [value]
- *         The value of the property to set.
- * @return {jQuery|String|undefined}
- *         Either the jQuery object (after setting) or a string or undefined
- *         (after getting)
+ * @alias    aria
+ * @param    {Object|String} property
+ *           Either the properties to set in key/value pairs or the name of the
+ *           property to get/set.
+ * @param    {Attribute_Callback|Boolean|Number|String} [value]
+ *           The value of the property to set.
+ * @return   {jQuery|String|undefined}
+ *           Either the jQuery object (after setting) or a string or undefined
+ *           (after getting)
  *
  * @example <caption>Setting WAI-ARIA attribute(s)</caption>
  * $("#element").aria("aria-label", "test");
@@ -66,6 +66,44 @@
  * $("#element").aria("checked"); // -> undefined
  * // If "#element" matches multiple elements, the attributes from the first
  * // element are returned.
+ *
+ * @example <caption>Setting with aria methods</caption>
+ * // Markup is:
+ * // <div class="one"></div>
+ * // <div class="two"></div>
+ * // <div class="three"</div>
+ *
+ * var settings = {
+ *     busy: 0,
+ *     controls: ".one",
+ *     label: "lorem ipsum"
+ * };
+ *
+ * $(".one").aria(settings);
+ * $(".two").ariaRef(settings);
+ * $(".three").ariaState(settings);
+ *
+ * // Now markup is:
+ * // <div class="one"
+ * //     aria-busy="0"
+ * //     aria-controls=".one"
+ * //     aria-label="lorem ipsum"
+ * //     id="anonymous0"></div>
+ * // <div class="two"
+ * //     aria-controls="anonymous0"></div>
+ * // <div class="three"
+ * //     aria-busy="false"
+ * //     aria-controls="true"
+ * //     aria-label="true"></div>
+ *
+ * @example <caption>Getting with aria methods</caption>
+ * // Markup is:
+ * // <div id="test" aria-flowto="false"></div>
+ * // <div id="false"></div>
+ *
+ * $("#test").aria("flowto");      // -> "false"
+ * $("#test").ariaRef("flowto");   // -> jQuery(<div id="false">)
+ * $("#test").ariaState("flowto"); // -> false
  */
 $.fn.aria = function (property, value) {
 

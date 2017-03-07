@@ -4,10 +4,10 @@
  *
  * @global
  * @private
- * @param  {?} element
- *         Object to test.
- * @return {Boolean}
- *         true if <code>element</code> is an HTMLElement.
+ * @param   {?} element
+ *          Object to test.
+ * @return  {Boolean}
+ *          true if <code>element</code> is an HTMLElement.
  *
  * @example
  * isElement(document.createElement("div")); // -> true

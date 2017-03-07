@@ -6,11 +6,11 @@
  *
  * @memberof external:jQuery
  * @instance
- * @alias removeRole
- * @param  {Attribute_Callback|String} [role]
- *         Role(s) to remove or a function to generate the role(s) to remove.
- * @return {jQuery}
- *         jQuery object representing the matched elements.
+ * @alias    removeRole
+ * @param    {Attribute_Callback|String} [role]
+ *           Role(s) to remove or a function to generate the role(s) to remove.
+ * @return   {jQuery}
+ *           jQuery object representing the matched elements.
  *
  * @example <caption>Removing a role</caption>
  * // Markup is:

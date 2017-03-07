@@ -2,17 +2,43 @@
  * Handles WAI-ARIA properties without modifying the values any more than it
  * needs to. These methods also act as the fallback for other namespaces such as
  * {@link handlers.reference} and {@link handlers.state}.
+ * <br>{@link handlers.property.parse} parses the attribute name.
  * <br>{@link handlers.property.get} gets the value of the property.
  * <br>{@link handlers.property.set} sets a property.
  * <br>{@link handlers.property.has} checks to see if the property exists.
  * <br>{@link handlers.property.unset} removes the property.
  *
- * @alias property
- * @memberof handlers
+ * @alias     property
+ * @memberof  handlers
  * @namespace
  * @private
  */
 handlers[HANDLER_PROPERTY] = {
+
+    /**
+     * Parses the name and returns an object with the normalised name (see
+     * [jQuery.normaliseAria]{@link external:jQuery.normaliseAria} and the
+     * un-prefixed attribute name.
+     *
+     * @param  {String} name
+     *         Attribute name to parse.
+     * @return {Object.<String>}
+     *         An object with "full" and "stem" properties.
+     *
+     * @example
+     * handlers.property.parse("busy");
+     * // -> {full: "aria-busy", stem: "busy"}
+     */
+    parse: function (name) {
+
+        var normal = normalise(name);
+
+        return {
+            full: normal,
+            stem: normal.slice(5)
+        };
+
+    },
 
     /**
      * Sets the property of an element. The <code>value</code> is unchanged
@@ -34,19 +60,19 @@ handlers[HANDLER_PROPERTY] = {
      * is used so <code>value</code> will not be changed.
      *
      * @private
-     * @param {Element}  element
-     *        Element to have a property set.
-     * @param {String}   name
-     *        WAI-ARIA property to set.
-     * @param {?}        value
-     *        Value of the property.
-     * @param {Number}   [index]
-     *        Optional index of <code>element</code> within the jQuery object.
-     *        This is needed to keep consistency with the
-     *        [jQuery#attr]{@link http://api.jquery.com/attr/} function and
-     *        should be derived rather than manually passed.
-     * @param {Function} [convert=identity]
-     *        Optional conversion process. If ommitted, no conversion occurs.
+     * @param   {Element}  element
+     *          Element to have a property set.
+     * @param   {String}   name
+     *          WAI-ARIA property to set.
+     * @param   {?}        value
+     *          Value of the property.
+     * @param   {Number}   [index]
+     *          Optional index of <code>element</code> within the jQuery object.
+     *          This is needed to keep consistency with the
+     *          [jQuery#attr]{@link http://api.jquery.com/attr/} function and
+     *          should be derived rather than manually passed.
+     * @param   {Function} [convert=identity]
+     *          Optional conversion process. If ommitted, no conversion occurs.
      *
      * @example <caption>Setting a property</caption>
      * // Markup is:
@@ -86,24 +112,39 @@ handlers[HANDLER_PROPERTY] = {
      */
     set: function (element, name, value, index, convert) {
 
-        var normalised = normalise(name);
+        var prop = handlers[HANDLER_PROPERTY].parse(name);
+        var hook = $.ariaHooks[prop.stem];
 
-        if ($.isFunction(value)) {
+        if (isElement(element)) {
 
-            value = value.call(
-                element,
-                index,
-                element.getAttribute(normalised)
-            );
+            if ($.isFunction(value)) {
 
-        }
+                value = value.call(
+                    element,
+                    index,
+                    element.getAttribute(prop.full)
+                );
 
-        if (!$.isFunction(convert)) {
-            convert = identity;
-        }
+            }
 
-        if (isElement(element) || value === undefined) {
-            element.setAttribute(normalised, convert(value));
+            if (!$.isFunction(convert)) {
+                convert = identity;
+            }
+
+            if (value !== undefined && value !== null) {
+
+                if (hook && hook.set) {
+                    value = hook.set(element, value, prop.full);
+                }
+
+                value = convert(value);
+
+                if (value !== undefined && value !== null) {
+                    element.setAttribute(prop.full, interpretString(value));
+                }
+
+            }
+
         }
 
     },
@@ -116,12 +157,12 @@ handlers[HANDLER_PROPERTY] = {
      * <code>false</code> will always be returned.
      *
      * @private
-     * @param  {Element} element
-     *         Element to test.
-     * @param  {String}  name
-     *         WAI-ARIA property to check.
-     * @return {Boolean}
-     *         Whether or not the element has the given property.
+     * @param   {Element} element
+     *          Element to test.
+     * @param   {String}  name
+     *          WAI-ARIA property to check.
+     * @return  {Boolean}
+     *          Whether or not the element has the given property.
      *
      * @example
      * // Markup is:
@@ -133,8 +174,13 @@ handlers[HANDLER_PROPERTY] = {
      */
     has: function (element, name) {
 
+        var prop = handlers[HANDLER_PROPERTY].parse(name);
+        var hook = $.ariaHooks[prop.stem];
+
         return isElement(element)
-            ? element.hasAttribute(normalise(name))
+            ? (hook && hook.has)
+                ? hook.has(element, prop.full)
+                : element.hasAttribute(prop.full)
             : false;
 
     },
@@ -149,12 +195,12 @@ handlers[HANDLER_PROPERTY] = {
      * {@link handlers.property.has}) then <code>undefined</code> is returned.
      *
      * @private
-     * @param  {Element}          element
-     *         Element to access.
-     * @param  {String}           name
-     *         WAI-ARIA property to access.
-     * @return {String|undefined}
-     *         WAI-ARIA attribute or undefined if the attribute isn't set.
+     * @param   {Element}          element
+     *          Element to access.
+     * @param   {String}           name
+     *          WAI-ARIA property to access.
+     * @return  {String|undefined}
+     *          WAI-ARIA attribute or undefined if the attribute isn't set.
      *
      * @example
      * // Markup is:
@@ -166,9 +212,19 @@ handlers[HANDLER_PROPERTY] = {
      */
     get: function (element, name) {
 
-        return handlers[HANDLER_PROPERTY].has(element, name)
-            ? element.getAttribute(normalise(name))
+        var handler = handlers[HANDLER_PROPERTY];
+        var prop = handler.parse(name);
+        var hook = $.ariaHooks[prop.stem];
+        var response = handler.has(element, name)
+            ? (hook && hook.get)
+                ? hook.get(element, prop.full)
+                : element.getAttribute(prop.full)
             : undefined;
+
+        // getAttribute can return null, normalise to undefined.
+        return response === null
+            ? undefined
+            : response;
 
     },
 
@@ -180,10 +236,10 @@ handlers[HANDLER_PROPERTY] = {
      * action is taken.
      *
      * @private
-     * @param {Element} element
-     *        Element to modify.
-     * @param {String}  name
-     *        WAI-ARIA attribute to remove.
+     * @param   {Element} element
+     *          Element to modify.
+     * @param   {String}  name
+     *          WAI-ARIA attribute to remove.
      *
      * @example
      * // Markup is:
@@ -197,8 +253,15 @@ handlers[HANDLER_PROPERTY] = {
      */
     unset: function (element, name) {
 
+        var prop = handlers[HANDLER_PROPERTY].parse(name);
+        var hook = $.ariaHooks[prop.stem];
+
         if (isElement(element)) {
-            element.removeAttribute(normalise(name));
+
+            if (!hook || !hook.unset || hook.unset(element, prop.full)) {
+                element.removeAttribute(prop.full);
+            }
+
         }
 
     }

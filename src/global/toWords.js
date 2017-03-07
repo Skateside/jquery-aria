@@ -5,15 +5,17 @@
  *
  * @global
  * @private
- * @param  {String} string
- *         String (or other variable type) to break into words.
- * @return {Array.<String>}
- *         Words from the string.
+ * @param   {String} string
+ *          String (or other variable type) to break into words.
+ * @return  {Array.<String>}
+ *          Words from the string.
  *
  * @example
  * toWords("abc def");  // -> ["abc", "def"]
  * toWords("abc  def"); // -> ["abc", "def"]
+ * toWords("")          // -> []
+ * toWords("   ");      // -> []
  */
 var toWords = function (string) {
-    return interpretString(string).split(/\s+/);
+    return interpretString(string).split(/\s+/).filter(identity);
 };
