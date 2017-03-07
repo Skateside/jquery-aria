@@ -17,13 +17,20 @@ module.exports = function (grunt) {
                 footer: "\n}(jQuery));",
                 process: function (src, filename) {
 
-                    return src.replace(
-                        /<%=\s*(\w+)\s*%>/g,
-                        function (ignore, key) {
-                            return typeof pkgJson[key] === "string"
-                                ? pkgJson[key]
-                                : key;
-                        }
+                    return (
+                        "// Source: " + filename + "\n" +
+                        src
+                            .replace(/(["'])use strict\1;?/g, "")
+                            .replace(/\/\*jslint\s[\w\s,]+\s\*\//, "")
+                            .replace(/\/\*global\s[\$\w\s,]+\s\*\//, "")
+                            .replace(/<%=\s*(\w+)\s*%>/g, function (ignore, k) {
+
+                                return typeof pkgJson[k] === "string"
+                                    ? pkgJson[k]
+                                    : k;
+
+                            })
+
                     );
 
                 }
