@@ -1,4 +1,4 @@
-/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.6.0a - MIT license - 2017-03-04 */
+/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.6.0a - MIT license - 2017-03-07 */
 (function ($) {
     "use strict";
 
