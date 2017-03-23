@@ -1,3 +1,9 @@
+/*global
+    handlers,
+    HANDLER_PROPERTY,
+    HANDLER_STATE
+*/
+
 var REGEXP_BOOLEAN = /^(?:true|false)$/;
 var VALUE_MIXED = "mixed";
 
@@ -41,6 +47,8 @@ handlers[HANDLER_STATE] = {
      * handlers.state.read("mixed."); // -> true
      */
     read: function readState(raw) {
+
+        "use strict";
 
         var state = true;
 
@@ -114,6 +122,8 @@ handlers[HANDLER_STATE] = {
      */
     set: function (element, name, state, index) {
 
+        "use strict";
+
         handlers[HANDLER_PROPERTY].set(
             element,
             name,
@@ -148,6 +158,8 @@ handlers[HANDLER_STATE] = {
      * handlers.state.get(element, "disabled"); // -> undefined
      */
     get: function (element, name) {
+
+        "use strict";
 
         var handler = handlers[HANDLER_PROPERTY];
         var state;

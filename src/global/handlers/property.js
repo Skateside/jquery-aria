@@ -1,3 +1,13 @@
+/*global
+    $,
+    handlers,
+    HANDLER_PROPERTY,
+    normalise,
+    interpretString,
+    isElement,
+    identity
+*/
+
 /**
  * Handles WAI-ARIA properties without modifying the values any more than it
  * needs to. These methods also act as the fallback for other namespaces such as
@@ -30,6 +40,8 @@ handlers[HANDLER_PROPERTY] = {
      * // -> {full: "aria-busy", stem: "busy"}
      */
     parse: function (name) {
+
+        "use strict";
 
         var normal = normalise(name);
 
@@ -112,6 +124,8 @@ handlers[HANDLER_PROPERTY] = {
      */
     set: function (element, name, value, index, convert) {
 
+        "use strict";
+
         var prop = handlers[HANDLER_PROPERTY].parse(name);
         var hook = $.ariaHooks[prop.stem];
 
@@ -174,6 +188,8 @@ handlers[HANDLER_PROPERTY] = {
      */
     has: function (element, name) {
 
+        "use strict";
+
         var prop = handlers[HANDLER_PROPERTY].parse(name);
         var hook = $.ariaHooks[prop.stem];
 
@@ -211,6 +227,8 @@ handlers[HANDLER_PROPERTY] = {
      * handlers.property.get(element, "busy"); // -> undefined
      */
     get: function (element, name) {
+
+        "use strict";
 
         var handler = handlers[HANDLER_PROPERTY];
         var prop = handler.parse(name);
@@ -252,6 +270,8 @@ handlers[HANDLER_PROPERTY] = {
      * // <div id="one"></div>
      */
     unset: function (element, name) {
+
+        "use strict";
 
         var prop = handlers[HANDLER_PROPERTY].parse(name);
         var hook = $.ariaHooks[prop.stem];

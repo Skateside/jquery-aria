@@ -1,3 +1,11 @@
+/*jslint
+    this
+*/
+/*global
+    $,
+    access
+*/
+
 /**
  * Gets or sets WAI-ARIA properties. The properties will not be modified any
  * more than they need to be (unlike
@@ -106,6 +114,8 @@
  * $("#test").ariaState("flowto"); // -> false
  */
 $.fn.aria = function (property, value) {
+
+    "use strict";
 
     return access(
         this,

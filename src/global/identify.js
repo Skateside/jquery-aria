@@ -1,3 +1,7 @@
+/*global
+    $
+*/
+
 /**
  * Helper function for identifying the given <code>reference</code>. The ID of
  * the first match is returned - see
@@ -11,5 +15,9 @@
  *          ID of the element.
  */
 var identify = function (reference) {
+
+    "use strict";
+
     return $(reference).identify();
+
 };

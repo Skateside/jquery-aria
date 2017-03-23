@@ -1,3 +1,7 @@
+/*jslint
+    this
+*/
+
 /**
  * A fallback for older browsers that do not understand
  * [String#startsWith]{@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith}
@@ -17,5 +21,9 @@
  * startsWith.call("abcdef", "abc"); // -> true
  */
 var startsWith = String.prototype.startsWith || function (text, offset) {
+
+    "use strict";
+
     return this.indexOf(text, offset) === 0;
+
 };

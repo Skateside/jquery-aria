@@ -1,3 +1,12 @@
+/*jslint
+    this
+*/
+/*global
+    $,
+    access,
+    HANDLER_STATE
+*/
+
 /**
  * Sets or gets the WAI-ARIA state of the collection.
  * <br><br>
@@ -83,6 +92,8 @@
  * // <input type="checkbox" checked>
  */
 $.fn.ariaState = function (property, value) {
+
+    "use strict";
 
     return access(
         this,

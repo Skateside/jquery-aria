@@ -1,3 +1,10 @@
+/*jslint
+    this
+*/
+/*global
+    $
+*/
+
 /**
  * Sets the role of all elements in the collection or gets the role of the first
  * element in the collection, depending on whether or not the <code>role</code>
@@ -47,6 +54,8 @@
  * // <div id="one" role="button tooltip"></div>
  */
 $.fn.role = function (role) {
+
+    "use strict";
 
     return role === undefined
         ? this.attr("role")

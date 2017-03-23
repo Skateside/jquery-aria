@@ -1,3 +1,8 @@
+/*global
+    $,
+    toWords
+*/
+
 /**
  * Adds a role to a collection of elements. The role will not be added if it's
  * empty ("" or undefined), if the function response is empty or if the element
@@ -36,6 +41,8 @@
  * // <div class="one" role="presentation alert combobox"></div>
  */
 $.fn.addRole = function (role) {
+
+    "use strict";
 
     var isFunction = $.isFunction(role);
 

@@ -1,3 +1,8 @@
+/*global
+    $,
+    normalise
+*/
+
 /**
  * Alias of [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}
  *

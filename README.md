@@ -23,4 +23,10 @@ There are a few grunt tasks to help with development:
 - `grunt compile` will compile the JavaScript files based on the source.
 - `grunt test` will run the unit tests.
 - `grunt doc` will generate the documentation.
+- `grunt lint` will pass the files through JSLint.
 - `grunt` will start watching for changes to the source files, running `grunt compile` when a change occurs.
+
+## Known issues
+
+- Does not pass JSLint because `grunt-lint` needs updating ([pull request](https://github.com/stephenmathieson/grunt-jslint/pull/59)) and `node-jslint` is not up-to-date ([issue](https://github.com/reid/node-jslint/issues/161)).
+- `grunt test` fails, probably due to a bug in PhantomJS. More testing is needed to identify the issue, but if the tests are run in a browser then they all pass.

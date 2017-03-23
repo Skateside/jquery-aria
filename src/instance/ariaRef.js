@@ -1,3 +1,12 @@
+/*jslint
+    this
+*/
+/*global
+    $,
+    access,
+    HANDLER_REFERENCE
+*/
+
 /**
  * Gets or sets a WAI-ARIA reference. This is functionally identical to
  * [jQuery#aria]{@link external:jQuery#aria} with the main difference being that
@@ -113,6 +122,8 @@
  * // <section id="anonymous0"></section>
  */
 $.fn.ariaRef = function (property, value) {
+
+    "use strict";
 
     return access(
         this,

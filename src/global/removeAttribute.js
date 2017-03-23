@@ -1,3 +1,11 @@
+/*jslint
+    this
+*/
+/*global
+    handlers,
+    HANDLER_PROPERTY
+*/
+
 /**
  * Removes the named WAI-ARIA attribute from all elements in the current
  * collection. The <code>name</code> is normalised (see
@@ -23,6 +31,8 @@
  * // <div id="one"></div>
  */
 function removeAttribute(name) {
+
+    "use strict";
 
     return this.each(function (ignore, element) {
         handlers[HANDLER_PROPERTY].unset(element, name);

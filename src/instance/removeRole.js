@@ -1,3 +1,11 @@
+/*jslint
+    this
+*/
+/*global
+    $,
+    toWords
+*/
+
 /**
  * Removes roles from the collection of elements. If the method is called
  * without any arguments then the role attribute itself is removed. Be aware
@@ -52,6 +60,8 @@
  * // <div class="one" role="combobox"></div>
  */
 $.fn.removeRole = function (role) {
+
+    "use strict";
 
     var isFunction = $.isFunction(role);
 

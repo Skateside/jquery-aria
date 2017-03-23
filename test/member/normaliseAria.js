@@ -35,8 +35,9 @@ describe("jQuery.normaliseAria", function () {
 
     it("should have a cache object that contains the history of conversions", function () {
 
-        $.normaliseAria("flowto");
+        var flowto = $.normaliseAria("flowto");
 
+        chai.assert.equal(flowto, "aria-flowto");
         chai.assert.isDefined($.normaliseAria.cache);
         chai.assert.equal($.normaliseAria.cache.flowto, "aria-flowto");
 
