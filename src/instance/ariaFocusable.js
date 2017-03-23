@@ -1,3 +1,12 @@
+/*jslint
+    this
+*/
+/*global
+    $,
+    handlers,
+    HANDLER_STATE
+*/
+
 /**
  * Sets whether or not the matching elements are focusable. Strings, numbers and
  * booleans are understood as <code>state</code> - see
@@ -42,6 +51,8 @@
  * // </div>
  */
 $.fn.ariaFocusable = function (state) {
+
+    "use strict";
 
     return this.attr(
         "tabindex",

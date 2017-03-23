@@ -1,3 +1,11 @@
+/*global
+    $,
+    handlers,
+    HANDLER_PROPERTY,
+    HANDLER_REFERENCE,
+    identify
+*/
+
 /**
  * Handles modifying WAI-ARIA references. Unlike {@link handlers.property}, this
  * will create references to elements and return them. The only defined methods
@@ -49,6 +57,8 @@ handlers[HANDLER_REFERENCE] = {
      */
     set: function (element, name, reference, index) {
 
+        "use strict";
+
         handlers[HANDLER_PROPERTY].set(
             element,
             name,
@@ -90,6 +100,8 @@ handlers[HANDLER_REFERENCE] = {
      * // -> undefined
      */
     get: function (element, name) {
+
+        "use strict";
 
         var handler = handlers[HANDLER_PROPERTY];
 

@@ -2,6 +2,10 @@
 
 ## Alpha Version
 
+### 0.6.1a
+_2017-03-23_ ?
+- Adding JSLint validation and updated all source files to validate.
+
 ### 0.6.0a
 _2017-03-04_
 - Modified `jQuery.ariaHooks` to work more like `jQuery.attrHooks`.

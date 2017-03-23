@@ -16,18 +16,21 @@ module.exports = function (grunt) {
                     "    \"use strict\";\n\n"
                 ),
                 footer: "\n}(jQuery));",
-                process: function (src, filename) {
+                process: function (source, filename) {
 
                     return (
                         "// Source: " + filename + "\n" +
-                        src.replace(
-                            /<%=\s*(\w+)\s*%>/g,
-                            function (ignore, key) {
-                                return typeof pkgJson[key] === "string"
-                                    ? pkgJson[key]
-                                    : key;
-                            }
-                        )
+                        source
+                            .replace(/(["'])use strict\1;?\s*/g, "")
+                            .replace(/\/\*jslint\s[\w\s,]+\s\*\//, "")
+                            .replace(/\/\*global\s[\$\w\s,]+\s\*\//, "")
+                            .replace(/<%=\s*(\w+)\s*%>/g, function (ignore, k) {
+
+                                return typeof pkgJson[k] === "string"
+                                    ? pkgJson[k]
+                                    : k;
+
+                            })
                     );
 
                 }
@@ -92,6 +95,15 @@ module.exports = function (grunt) {
             }
         },
 
+        jslint: {
+            dist: {
+                src: ["src/**/*.js"],
+                directives: {
+                    browser: true
+                }
+            }
+        },
+
         // https://gist.github.com/maicki/7781943
         mocha: {
             all: {
@@ -132,11 +144,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-jsdoc");
     grunt.loadNpmTasks('grunt-mocha');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-jslint');
 
     //grunt.registerTask("default", ["concat", "uglify", "jsdoc"]);
     grunt.registerTask("default", ["watch"]);
     grunt.registerTask("compile", ["concat", "uglify"]);
     grunt.registerTask("doc", ["jsdoc"]);
-    grunt.registerTask("test", ["mocha"]);
+    grunt.registerTask("test", [/*"jslint", */"mocha"]);
+    grunt.registerTask("lint", ["jslint"]);
 
 };

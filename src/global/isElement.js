@@ -17,5 +17,9 @@
  * isElement($("body")[0]); // -> true
  */
 var isElement = function (element) {
-    return element instanceof HTMLElement;
+
+    "use strict";
+
+    return (/^\[object\sHTML[A-Za-z]+Element\]$/).test(element);
+
 };

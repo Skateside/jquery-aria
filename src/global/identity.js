@@ -16,5 +16,9 @@
  * identity.call("b", "a"); // -> "a", context has no effect.
  */
 var identity = function (x) {
+
+    "use strict";
+
     return x;
+
 };

@@ -19,6 +19,8 @@
  */
 var interpretString = function (string) {
 
+    "use strict";
+
     return (string === null || string === undefined)
         ? ""
         : String(string);

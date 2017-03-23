@@ -1,3 +1,11 @@
+/*jslint
+    this
+*/
+/*global
+    $,
+    isElement
+*/
+
 var count = 0;
 
 /**
@@ -44,7 +52,9 @@ var count = 0;
  * // <div class="two" id="anonymous0"></div>
  * // <div class="two" id="anonymous2"></div>
  */
-$.fn.identify = function (index) {
+$.fn.identify = function () {
+
+    "use strict";
 
     var element = this[0];
     var isAnElement = isElement(element);

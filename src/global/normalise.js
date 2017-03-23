@@ -1,3 +1,12 @@
+/*global
+    $,
+    interpretString,
+    startsWith,
+    IS_PROXY_AVAILABLE,
+    identity,
+    memoise
+*/
+
 /**
  * Normalises a WAI-ARIA attribute name so that it's always lower case and
  * always stars with <code>aria-</code>. If the unprefixed value appears in
@@ -52,6 +61,8 @@
 var normalise = memoise(
     function (name) {
 
+        "use strict";
+
         var prefix = "aria-";
         var lower = interpretString(name).toLowerCase();
         var full = startsWith.call(lower, prefix)
@@ -73,6 +84,10 @@ var normalise = memoise(
     IS_PROXY_AVAILABLE
         ? identity
         : function (name) {
+
+            "use strict";
+
             return name + "|" + JSON.stringify($.ariaFix);
+
         }
 );

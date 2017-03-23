@@ -1,3 +1,7 @@
+/*global
+    $
+*/
+
 /**
  * A collection of hooks that change the behaviour of attributes being set,
  * retrieved, checked or removed (called [set]{@link ARIA_hook_set},
@@ -59,6 +63,8 @@ $.ariaHooks = {
         // aria-hidden attribute has the same effect and I think it's tidier.
         // https://www.w3.org/TR/wai-aria/states_and_properties#aria-hidden
         set: function (element, value, name) {
+
+            "use strict";
 
             var response;
 
