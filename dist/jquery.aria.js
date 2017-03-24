@@ -510,7 +510,7 @@ var memoise = function (handler, resolver) {
             ? resolver.apply(undefined, args)
             : args.join(",");
         var response = mem.cache[key];
-console.log("memoise() key = " + key + " and response = " + (response === undefined ? "(undefined)" : response));
+
         if (!hasOwn.call(mem.cache, key)) {
 
             response = handler.apply(this, args);
