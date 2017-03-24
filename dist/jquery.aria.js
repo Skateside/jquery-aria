@@ -1,8 +1,4 @@
-<<<<<<< 150d57dc4127131ddfa2c619543b69a0acb197da
-/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.6.0a - MIT license - 2017-03-07 */
-=======
-/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.6.0a - MIT license - 2017-03-21 */
->>>>>>> Adding JSLint validation to files
+/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.6.0a - MIT license - 2017-03-24 */
 (function ($) {
     "use strict";
 
