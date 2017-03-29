@@ -19,8 +19,17 @@
 <script src="../node_modules/chai/chai.js"></script>
 
 <script>
-mocha.setup('bdd')
-mocha.reporter('html');
+// mocha.setup('bdd')
+// mocha.reporter('html');
+
+if (window.initMochaPhantomJS) {
+    window.initMochaPhantomJS();
+}
+
+window._TEST_MODE = true;
+mocha.setup({
+    ui: "bdd"
+});
 </script>
 
 <!-- Tests -->
@@ -38,7 +47,13 @@ mocha.reporter('html');
 
 <script>
 // Only tests run in real browser, injected script run if options.run == true
-if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+// if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+//     mocha.run();
+// }
+
+if (window.mochaPhantomJS) {
+    mochaPhantomJS.run();
+} else {
     mocha.run();
 }
 </script>

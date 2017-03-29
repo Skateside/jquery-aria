@@ -1,34 +1,27 @@
-// - concatenate JavaScript files
-//     - supplant strings
-//     - modify source (remove "use strict")
-//     - add banner ( (function () { ... )
-// - minify JavaScript files
-//     - sourcefiles
-
-// - compile JSDoc
-//     - set template?
-// - unit tests (mocha/chai)
-// - watch for file changes
-// - JSLint validation
-
 // run-sequence to create tasks of tasks
+// gulp.task("group", ["one", "two", "three:sub"]);
 
 var gulp = require("gulp");
 var concat = require("gulp-concat-util");
 var minify = require("gulp-minify");
 var sourcemaps = require("gulp-sourcemaps");
 var jsdoc =  require("gulp-jsdoc3");
+var mochaPhantomJS = require("gulp-mocha-phantomjs");
+var jslint = require("gulp-jslint");
 
 var fs = require("fs");
 var pkgJson = JSON.parse(fs.readFileSync("./package.json"))
 
-function getToday() {
+var getToday = function () {
 
     var date = new Date();
 
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
-}
+};
+
+//var jsFiles = 
+
 
 gulp.task("concat", function () {
 
@@ -135,5 +128,34 @@ gulp.task("doc", function (cb) {
 
     gulp.src("./dist/jquery.aria.js")
         .pipe(jsdoc(config, cb));
+
+});
+
+gulp.task("test", function () {
+
+    gulp.src("./test/testrunner.html")
+        .pipe(mochaPhantomJS({
+            reporter: "spec",
+            phantomjs: {
+                useColors: true
+            }
+        }));
+
+});
+
+gulp.task("watch", function () {
+
+    gulp.watch(["./src/**/*.js"], ["concat"]);
+
+});
+
+gulp.task("lint", function () {
+
+    gulp.src("./src/**/*.js")
+        .pipe(jslint({
+            edition: "2016-07-13",
+            browser: true
+        }))
+        .pipe(jslint.reporter("default"));
 
 });
