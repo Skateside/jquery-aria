@@ -20,55 +20,55 @@ var getToday = function () {
 
 };
 
-//var jsFiles = 
+var jsFiles = gulp.src([
+
+    // Documentation
+    "src/doc/file.js",
+    "src/doc/external/jQuery.js",
+    "src/doc/callback/Attribute_Callback.js",
+    "src/doc/typedef/ARIA_state.js",
+    "src/doc/typedef/ARIA_hook.js",
+    "src/doc/typedef/jQuery_param.js",
+
+    // Globals
+    "src/global/variables.js",
+    "src/global/identify.js",
+    "src/global/identity.js",
+    "src/global/interpretString.js",
+    "src/global/isElement.js",
+    "src/global/memoise.js",
+    "src/global/normalise.js",
+    "src/global/startsWith.js",
+    "src/global/toWords.js",
+    "src/global/handlers.js",
+    "src/global/handlers/property.js",
+    "src/global/handlers/reference.js",
+    "src/global/handlers/state.js",
+    "src/global/access.js",
+    "src/global/removeAttribute.js",
+
+    // Members
+    "src/member/normaliseAria.js",
+    "src/member/ariaFix.js",
+    "src/member/ariaHooks.js",
+
+    // Instances
+    "src/instance/identify.js",
+    "src/instance/aria.js",
+    "src/instance/ariaRef.js",
+    "src/instance/ariaState.js",
+    "src/instance/removeAria.js",
+    "src/instance/role.js",
+    "src/instance/addRole.js",
+    "src/instance/removeRole.js",
+    "src/instance/ariaFocusable.js"
+
+]);
 
 
-gulp.task("concat", function () {
+gulp.task("concat:prod", function () {
 
-    return gulp.src([
-
-            // Documentation
-            "src/doc/file.js",
-            "src/doc/external/jQuery.js",
-            "src/doc/callback/Attribute_Callback.js",
-            "src/doc/typedef/ARIA_state.js",
-            "src/doc/typedef/ARIA_hook.js",
-            "src/doc/typedef/jQuery_param.js",
-
-            // Globals
-            "src/global/variables.js",
-            "src/global/identify.js",
-            "src/global/identity.js",
-            "src/global/interpretString.js",
-            "src/global/isElement.js",
-            "src/global/memoise.js",
-            "src/global/normalise.js",
-            "src/global/startsWith.js",
-            "src/global/toWords.js",
-            "src/global/handlers.js",
-            "src/global/handlers/property.js",
-            "src/global/handlers/reference.js",
-            "src/global/handlers/state.js",
-            "src/global/access.js",
-            "src/global/removeAttribute.js",
-
-            // Members
-            "src/member/normaliseAria.js",
-            "src/member/ariaFix.js",
-            "src/member/ariaHooks.js",
-
-            // Instances
-            "src/instance/identify.js",
-            "src/instance/aria.js",
-            "src/instance/ariaRef.js",
-            "src/instance/ariaState.js",
-            "src/instance/removeAria.js",
-            "src/instance/role.js",
-            "src/instance/addRole.js",
-            "src/instance/removeRole.js",
-            "src/instance/ariaFocusable.js"
-
-        ])
+    jsFiles
         .pipe(concat("jquery.aria.js", {
             process: function (source, filename) {
 
@@ -98,6 +98,14 @@ gulp.task("concat", function () {
         ))
         .pipe(concat.footer("\n}(jQuery));"))
         .pipe(gulp.dest("./dist/"));
+
+});
+
+gulp.task("concat:dev", function () {
+
+    jsFiles
+        .pipe(concat("private.js"))
+        .pipe(gulp.dest("./test/"));
 
 });
 
@@ -131,9 +139,21 @@ gulp.task("doc", function (cb) {
 
 });
 
-gulp.task("test", function () {
+gulp.task("test:prod", function () {
 
-    gulp.src("./test/testrunner.html")
+    gulp.src("./test/prod.html")
+        .pipe(mochaPhantomJS({
+            reporter: "spec",
+            phantomjs: {
+                useColors: true
+            }
+        }));
+
+});
+
+gulp.task("test:dev", function () {
+
+    gulp.src("./test/dev.html")
         .pipe(mochaPhantomJS({
             reporter: "spec",
             phantomjs: {

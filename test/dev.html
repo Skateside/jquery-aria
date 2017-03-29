@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<title>Mocha Tests</title>
+<link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script-->
+<script src="./private.js"></script>
+
+</head>
+<body>
+
+<div id="mocha"></div>
+<script src="../node_modules/mocha/mocha.js"></script>
+<script src="../node_modules/chai/chai.js"></script>
+
+<script>
+// mocha.setup('bdd')
+// mocha.reporter('html');
+
+if (window.initMochaPhantomJS) {
+    window.initMochaPhantomJS();
+}
+
+window._TEST_MODE = true;
+mocha.setup({
+    ui: "bdd"
+});
+</script>
+
+<!-- Tests:dev -->
+<script src="global/access.js"></script>
+<!-- Tests:prod -->
+<script src="member/normaliseAria.js"></script>
+<script src="instance/aria.js"></script>
+<script src="instance/ariaRef.js"></script>
+<script src="instance/ariaState.js"></script>
+<script src="instance/removeAria.js"></script>
+<script src="member/ariaHooks.js"></script>
+<script src="instance/identify.js"></script>
+<script src="instance/role.js"></script>
+<script src="instance/addRole.js"></script>
+<script src="instance/removeRole.js"></script>
+<script src="instance/ariaFocusable.js"></script>
+
+<script>
+// Only tests run in real browser, injected script run if options.run == true
+// if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+//     mocha.run();
+// }
+
+if (window.mochaPhantomJS) {
+    mochaPhantomJS.run();
+} else {
+    mocha.run();
+}
+</script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
     },
     "opts": {
         "template": "node_modules/docdash",
-        "destination": "./doc2"
+        "destination": "./doc"
     },
     "plugins": [
         "plugins/markdown"

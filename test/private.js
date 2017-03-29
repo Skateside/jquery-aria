@@ -1,8 +1,3 @@
-/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.6.1a - MIT license - 2017-3-29 */
-(function ($) {
-    "use strict";
-
-// Source: /src/doc/file.js
 /**
  * @file
  * This is a jQuery plugin that adds methods for manipulating WAI-ARIA
@@ -48,18 +43,16 @@
  * The files can be downloaded on
  * [GitHub]{@link https://github.com/Skateside/jquery-aria}.
  *
- * @author James "Skateside" Long <sk85ide@hotmail.com>
- * @version 0.6.1a
- * @license MIT
+ * @author <%= author %>
+ * @version <%= version %>
+ * @license <%= license %>
  */
 
-// Source: /src/doc/external/jQuery.js
 /**
  * @external jQuery
  * @see [jQuery]{@link http://jquery.com}
  */
 
-// Source: /src/doc/callback/Attribute_Callback.js
 /**
  * The [jQuery#aria]{@link external:jQuery#aria},
  * [jQuery#ariaRef]{@link external:jQuery#ariaRef} and
@@ -102,7 +95,6 @@
  * // <div id="one" aria-label="[object Undefined]"></div>
  */
 
-// Source: /src/doc/typedef/ARIA_state.js
 /**
  * A boolean or the string "mixed" (always in lower case). This type will
  * be undefined when trying to read a state that has not been set on the
@@ -123,7 +115,6 @@
  * $("#four").ariaState("checked");  // -> undefined
  */
 
-// Source: /src/doc/typedef/ARIA_hook.js
 /**
  * A hook for a WAI-ARIA attribute. Every property is optional so there is no
  * need to specify one to execute the default functionality.
@@ -327,7 +318,6 @@
  * // <div id="one"></div>
  */
 
-// Source: /src/doc/typedef/jQuery_param.js
 /**
  * Any parameter that can be passed to
  * [jQuery's $ function]{@link http://api.jquery.com/jQuery/}. Be aware that
@@ -337,8 +327,9 @@
  * @typedef {Array|Element|jQuery|NodeList|String} jQuery_param
  */
 
-// Source: /src/global/variables.js
-
+/*global
+    window
+*/
 
 // A simple check to see if there is a global Proxy function and it's native.
 // Although this isn't fool-proof, it's a fairly reliable way of checking
@@ -348,8 +339,9 @@ var IS_PROXY_AVAILABLE = (
     && window.Proxy.toString().indexOf("[native code]") > -1
 );
 
-// Source: /src/global/identify.js
-
+/*global
+    $
+*/
 
 /**
  * Helper function for identifying the given <code>reference</code>. The ID of
@@ -365,11 +357,12 @@ var IS_PROXY_AVAILABLE = (
  */
 var identify = function (reference) {
 
+    "use strict";
+
     return $(reference).identify();
 
 };
 
-// Source: /src/global/identity.js
 /**
  * An identity function that simply returns whatever it is given without
  * modifying it. This can be useful for cases when a modification function is
@@ -389,11 +382,12 @@ var identify = function (reference) {
  */
 var identity = function (x) {
 
+    "use strict";
+
     return x;
 
 };
 
-// Source: /src/global/interpretString.js
 /**
  * Interprets the given object as a string. If the object is <code>null</code>
  * or <code>undefined</code>, an empty string is returned.
@@ -415,13 +409,14 @@ var identity = function (x) {
  */
 var interpretString = function (string) {
 
+    "use strict";
+
     return (string === null || string === undefined)
         ? ""
         : String(string);
 
 };
 
-// Source: /src/global/isElement.js
 /**
  * Returns <code>true</code> if the given <code>element</code> is an HTML
  * element.
@@ -442,12 +437,15 @@ var interpretString = function (string) {
  */
 var isElement = function (element) {
 
+    "use strict";
+
     return (/^\[object\sHTML[A-Za-z]+Element\]$/).test(element);
 
 };
 
-// Source: /src/global/memoise.js
-
+/*jslint
+    this
+*/
 
 /**
  * Modifies a function so that the results are retrieved from a cache if
@@ -501,6 +499,8 @@ var isElement = function (element) {
  */
 var memoise = function (handler, resolver) {
 
+    "use strict";
+
     var hasOwn = Object.prototype.hasOwnProperty;
     var slice = Array.prototype.slice;
     var memoised = function mem() {
@@ -528,8 +528,14 @@ var memoise = function (handler, resolver) {
 
 };
 
-// Source: /src/global/normalise.js
-
+/*global
+    $,
+    interpretString,
+    startsWith,
+    IS_PROXY_AVAILABLE,
+    identity,
+    memoise
+*/
 
 /**
  * Normalises a WAI-ARIA attribute name so that it's always lower case and
@@ -585,6 +591,8 @@ var memoise = function (handler, resolver) {
 var normalise = memoise(
     function (name) {
 
+        "use strict";
+
         var prefix = "aria-";
         var lower = interpretString(name).toLowerCase();
         var full = startsWith.call(lower, prefix)
@@ -607,13 +615,16 @@ var normalise = memoise(
         ? identity
         : function (name) {
 
+            "use strict";
+
             return name + "|" + JSON.stringify($.ariaFix);
 
         }
 );
 
-// Source: /src/global/startsWith.js
-
+/*jslint
+    this
+*/
 
 /**
  * A fallback for older browsers that do not understand
@@ -635,12 +646,16 @@ var normalise = memoise(
  */
 var startsWith = String.prototype.startsWith || function (text, offset) {
 
+    "use strict";
+
     return this.indexOf(text, offset) === 0;
 
 };
 
-// Source: /src/global/toWords.js
-
+/*global
+    interpretString,
+    identity
+*/
 
 /**
  * Converts the given string into an array of the words. The <code>string</code>
@@ -662,11 +677,12 @@ var startsWith = String.prototype.startsWith || function (text, offset) {
  */
 var toWords = function (string) {
 
+    "use strict";
+
     return interpretString(string).split(/\s+/).filter(identity);
 
 };
 
-// Source: /src/global/handlers.js
 var HANDLER_PROPERTY = "property";
 var HANDLER_REFERENCE = "reference";
 var HANDLER_STATE = "state";
@@ -688,8 +704,15 @@ var HANDLER_STATE = "state";
  */
 var handlers = {};
 
-// Source: /src/global/handlers/property.js
-
+/*global
+    $,
+    handlers,
+    HANDLER_PROPERTY,
+    normalise,
+    interpretString,
+    isElement,
+    identity
+*/
 
 /**
  * Handles WAI-ARIA properties without modifying the values any more than it
@@ -723,6 +746,8 @@ handlers[HANDLER_PROPERTY] = {
      * // -> {full: "aria-busy", stem: "busy"}
      */
     parse: function (name) {
+
+        "use strict";
 
         var normal = normalise(name);
 
@@ -805,6 +830,8 @@ handlers[HANDLER_PROPERTY] = {
      */
     set: function (element, name, value, index, convert) {
 
+        "use strict";
+
         var prop = handlers[HANDLER_PROPERTY].parse(name);
         var hook = $.ariaHooks[prop.stem];
 
@@ -867,6 +894,8 @@ handlers[HANDLER_PROPERTY] = {
      */
     has: function (element, name) {
 
+        "use strict";
+
         var prop = handlers[HANDLER_PROPERTY].parse(name);
         var hook = $.ariaHooks[prop.stem];
 
@@ -904,6 +933,8 @@ handlers[HANDLER_PROPERTY] = {
      * handlers.property.get(element, "busy"); // -> undefined
      */
     get: function (element, name) {
+
+        "use strict";
 
         var handler = handlers[HANDLER_PROPERTY];
         var prop = handler.parse(name);
@@ -946,6 +977,8 @@ handlers[HANDLER_PROPERTY] = {
      */
     unset: function (element, name) {
 
+        "use strict";
+
         var prop = handlers[HANDLER_PROPERTY].parse(name);
         var hook = $.ariaHooks[prop.stem];
 
@@ -961,8 +994,13 @@ handlers[HANDLER_PROPERTY] = {
 
 };
 
-// Source: /src/global/handlers/reference.js
-
+/*global
+    $,
+    handlers,
+    HANDLER_PROPERTY,
+    HANDLER_REFERENCE,
+    identify
+*/
 
 /**
  * Handles modifying WAI-ARIA references. Unlike {@link handlers.property}, this
@@ -1015,6 +1053,8 @@ handlers[HANDLER_REFERENCE] = {
      */
     set: function (element, name, reference, index) {
 
+        "use strict";
+
         handlers[HANDLER_PROPERTY].set(
             element,
             name,
@@ -1057,6 +1097,8 @@ handlers[HANDLER_REFERENCE] = {
      */
     get: function (element, name) {
 
+        "use strict";
+
         var handler = handlers[HANDLER_PROPERTY];
 
         return handler.has(element, name)
@@ -1067,8 +1109,11 @@ handlers[HANDLER_REFERENCE] = {
 
 };
 
-// Source: /src/global/handlers/state.js
-
+/*global
+    handlers,
+    HANDLER_PROPERTY,
+    HANDLER_STATE
+*/
 
 var REGEXP_BOOLEAN = /^(?:true|false)$/;
 var VALUE_MIXED = "mixed";
@@ -1113,6 +1158,8 @@ handlers[HANDLER_STATE] = {
      * handlers.state.read("mixed."); // -> true
      */
     read: function readState(raw) {
+
+        "use strict";
 
         var state = true;
 
@@ -1186,6 +1233,8 @@ handlers[HANDLER_STATE] = {
      */
     set: function (element, name, state, index) {
 
+        "use strict";
+
         handlers[HANDLER_PROPERTY].set(
             element,
             name,
@@ -1221,6 +1270,8 @@ handlers[HANDLER_STATE] = {
      */
     get: function (element, name) {
 
+        "use strict";
+
         var handler = handlers[HANDLER_PROPERTY];
         var state;
         var value;
@@ -1240,8 +1291,11 @@ handlers[HANDLER_STATE] = {
 
 };
 
-// Source: /src/global/access.js
-
+/*global
+    $,
+    handlers,
+    HANDLER_PROPERTY
+*/
 
 /**
  * This function handles all the heavy lifting of getting or setting WAI-ARIA
@@ -1311,6 +1365,8 @@ handlers[HANDLER_STATE] = {
  */
 function access(jQelements, property, value, type) {
 
+    "use strict";
+
     var tempProperty = property;
     var isPropertyObject = $.isPlainObject(property);
     var isGet = value === undefined && !isPropertyObject;
@@ -1341,9 +1397,13 @@ function access(jQelements, property, value, type) {
 
 }
 
-// Source: /src/global/removeAttribute.js
-
-
+/*jslint
+    this
+*/
+/*global
+    handlers,
+    HANDLER_PROPERTY
+*/
 
 /**
  * Removes the named WAI-ARIA attribute from all elements in the current
@@ -1371,14 +1431,18 @@ function access(jQelements, property, value, type) {
  */
 function removeAttribute(name) {
 
+    "use strict";
+
     return this.each(function (ignore, element) {
         handlers[HANDLER_PROPERTY].unset(element, name);
     });
 
 }
 
-// Source: /src/member/normaliseAria.js
-
+/*global
+    $,
+    normalise
+*/
 
 /**
  * Alias of [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}
@@ -1396,8 +1460,12 @@ function removeAttribute(name) {
 $.normalizeAria = normalise;
 $.normaliseAria = normalise;
 
-// Source: /src/member/ariaFix.js
-
+/*global
+    $,
+    normalise,
+    Proxy,
+    IS_PROXY_AVAILABLE
+*/
 
 /**
  * A map of unprefixed WAI-ARIA attributes that should be converted before being
@@ -1431,6 +1499,8 @@ if (IS_PROXY_AVAILABLE) {
 
         set: function (target, name, value) {
 
+            "use strict";
+
             normalise.cache = {};
             target[name] = value;
 
@@ -1440,8 +1510,9 @@ if (IS_PROXY_AVAILABLE) {
 
 }
 
-// Source: /src/member/ariaHooks.js
-
+/*global
+    $
+*/
 
 /**
  * A collection of hooks that change the behaviour of attributes being set,
@@ -1505,6 +1576,8 @@ $.ariaHooks = {
         // https://www.w3.org/TR/wai-aria/states_and_properties#aria-hidden
         set: function (element, value, name) {
 
+            "use strict";
+
             var response;
 
             if (value === false || +value === 0 || (/^false$/i).test(value)) {
@@ -1521,9 +1594,13 @@ $.ariaHooks = {
 
 };
 
-// Source: /src/instance/identify.js
-
-
+/*jslint
+    this
+*/
+/*global
+    $,
+    isElement
+*/
 
 var count = 0;
 
@@ -1573,6 +1650,8 @@ var count = 0;
  */
 $.fn.identify = function () {
 
+    "use strict";
+
     var element = this[0];
     var isAnElement = isElement(element);
     var id = isAnElement
@@ -1596,9 +1675,13 @@ $.fn.identify = function () {
 
 };
 
-// Source: /src/instance/aria.js
-
-
+/*jslint
+    this
+*/
+/*global
+    $,
+    access
+*/
 
 /**
  * Gets or sets WAI-ARIA properties. The properties will not be modified any
@@ -1709,6 +1792,8 @@ $.fn.identify = function () {
  */
 $.fn.aria = function (property, value) {
 
+    "use strict";
+
     return access(
         this,
         property,
@@ -1717,9 +1802,14 @@ $.fn.aria = function (property, value) {
 
 };
 
-// Source: /src/instance/ariaRef.js
-
-
+/*jslint
+    this
+*/
+/*global
+    $,
+    access,
+    HANDLER_REFERENCE
+*/
 
 /**
  * Gets or sets a WAI-ARIA reference. This is functionally identical to
@@ -1837,6 +1927,8 @@ $.fn.aria = function (property, value) {
  */
 $.fn.ariaRef = function (property, value) {
 
+    "use strict";
+
     return access(
         this,
         property,
@@ -1846,9 +1938,14 @@ $.fn.ariaRef = function (property, value) {
 
 };
 
-// Source: /src/instance/ariaState.js
-
-
+/*jslint
+    this
+*/
+/*global
+    $,
+    access,
+    HANDLER_STATE
+*/
 
 /**
  * Sets or gets the WAI-ARIA state of the collection.
@@ -1936,6 +2033,8 @@ $.fn.ariaRef = function (property, value) {
  */
 $.fn.ariaState = function (property, value) {
 
+    "use strict";
+
     return access(
         this,
         property,
@@ -1945,8 +2044,10 @@ $.fn.ariaState = function (property, value) {
 
 };
 
-// Source: /src/instance/removeAria.js
-
+/*global
+    $,
+    removeAttribute
+*/
 
 $.fn.extend({
 
@@ -1980,9 +2081,12 @@ $.fn.extend({
 
 });
 
-// Source: /src/instance/role.js
-
-
+/*jslint
+    this
+*/
+/*global
+    $
+*/
 
 /**
  * Sets the role of all elements in the collection or gets the role of the first
@@ -2034,15 +2138,21 @@ $.fn.extend({
  */
 $.fn.role = function (role) {
 
+    "use strict";
+
     return role === undefined
         ? this.attr("role")
         : this.attr("role", role);
 
 };
 
-// Source: /src/instance/addRole.js
-
-
+/*jslint
+    this
+*/
+/*global
+    $,
+    toWords
+*/
 
 /**
  * Adds a role to a collection of elements. The role will not be added if it's
@@ -2083,6 +2193,8 @@ $.fn.role = function (role) {
  */
 $.fn.addRole = function (role) {
 
+    "use strict";
+
     var isFunction = $.isFunction(role);
 
     return this.role(function (index, current) {
@@ -2110,9 +2222,13 @@ $.fn.addRole = function (role) {
 
 };
 
-// Source: /src/instance/removeRole.js
-
-
+/*jslint
+    this
+*/
+/*global
+    $,
+    toWords
+*/
 
 /**
  * Removes roles from the collection of elements. If the method is called
@@ -2169,6 +2285,8 @@ $.fn.addRole = function (role) {
  */
 $.fn.removeRole = function (role) {
 
+    "use strict";
+
     var isFunction = $.isFunction(role);
 
     return role === undefined
@@ -2190,9 +2308,14 @@ $.fn.removeRole = function (role) {
 
 };
 
-// Source: /src/instance/ariaFocusable.js
-
-
+/*jslint
+    this
+*/
+/*global
+    $,
+    handlers,
+    HANDLER_STATE
+*/
 
 /**
  * Sets whether or not the matching elements are focusable. Strings, numbers and
@@ -2239,6 +2362,8 @@ $.fn.removeRole = function (role) {
  */
 $.fn.ariaFocusable = function (state) {
 
+    "use strict";
+
     return this.attr(
         "tabindex",
         handlers[HANDLER_STATE].read(state)
@@ -2247,5 +2372,3 @@ $.fn.ariaFocusable = function (state) {
     );
 
 };
-
-}(jQuery));
