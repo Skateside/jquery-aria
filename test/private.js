@@ -531,7 +531,6 @@ var memoise = function (handler, resolver) {
 /*global
     $,
     interpretString,
-    startsWith,
     IS_PROXY_AVAILABLE,
     identity,
     memoise
@@ -595,7 +594,7 @@ var normalise = memoise(
 
         var prefix = "aria-";
         var lower = interpretString(name).toLowerCase();
-        var full = startsWith.call(lower, prefix)
+        var full = (/^aria\-/).test(lower)
             ? lower
             : prefix + lower;
         var stem = full.slice(prefix.length);
@@ -621,36 +620,6 @@ var normalise = memoise(
 
         }
 );
-
-/*jslint
-    this
-*/
-
-/**
- * A fallback for older browsers that do not understand
- * [String#startsWith]{@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith}
- * without modifiying <code>String.prototype</code> unnecessarily.
- *
- * @global
- * @private
- * @function
- * @param    {String} text
- *           String to search for.
- * @param    {Number} [offset=0]
- *           Offset from which to start.
- * @return   {Boolean}
- *           True if the string starts with <code>text</code>, false otherwise.
- *
- * @example
- * startsWith.call("abcdef", "abc"); // -> true
- */
-var startsWith = String.prototype.startsWith || function (text, offset) {
-
-    "use strict";
-
-    return this.indexOf(text, offset) === 0;
-
-};
 
 /*global
     interpretString,

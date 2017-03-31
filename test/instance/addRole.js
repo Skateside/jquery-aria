@@ -19,6 +19,8 @@ describe("jQuery#addRole", function () {
 
         jQdiv.addRole("presentation");
         chai.assert.equal(jQdiv.role(), "presentation");
+        jQdiv.addRole("");
+        chai.assert.equal(jQdiv.role(), "presentation");
 
     });
 

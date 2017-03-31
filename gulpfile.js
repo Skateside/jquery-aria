@@ -38,7 +38,6 @@ var jsFiles = gulp.src([
     "src/global/isElement.js",
     "src/global/memoise.js",
     "src/global/normalise.js",
-    "src/global/startsWith.js",
     "src/global/toWords.js",
     "src/global/handlers.js",
     "src/global/handlers/property.js",
