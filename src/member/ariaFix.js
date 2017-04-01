@@ -1,3 +1,10 @@
+/*global
+    $,
+    normalise,
+    Proxy,
+    IS_PROXY_AVAILABLE
+*/
+
 /**
  * A map of unprefixed WAI-ARIA attributes that should be converted before being
  * normalised (see [jQuery.normaliseAria]{@link external:jQuery.normaliseAria}).
@@ -29,6 +36,8 @@ if (IS_PROXY_AVAILABLE) {
     $.ariaFix = new Proxy($.ariaFix, {
 
         set: function (target, name, value) {
+
+            "use strict";
 
             normalise.cache = {};
             target[name] = value;

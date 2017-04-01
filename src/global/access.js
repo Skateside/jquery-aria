@@ -1,3 +1,9 @@
+/*global
+    $,
+    handlers,
+    HANDLER_PROPERTY
+*/
+
 /**
  * This function handles all the heavy lifting of getting or setting WAI-ARIA
  * attributes. It is designed to be all that's necessary for
@@ -66,6 +72,8 @@
  */
 function access(jQelements, property, value, type) {
 
+    "use strict";
+
     var tempProperty = property;
     var isPropertyObject = $.isPlainObject(property);
     var isGet = value === undefined && !isPropertyObject;
@@ -92,6 +100,6 @@ function access(jQelements, property, value, type) {
                 handlers[type].set(element, key, val, index);
             });
 
-        })
+        });
 
 }

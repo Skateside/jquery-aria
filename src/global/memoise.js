@@ -1,3 +1,7 @@
+/*jslint
+    this
+*/
+
 /**
  * Modifies a function so that the results are retrieved from a cache if
  * possible rather than from executing the function again. The cache is publicly
@@ -50,26 +54,28 @@
  */
 var memoise = function (handler, resolver) {
 
+    "use strict";
+
     var hasOwn = Object.prototype.hasOwnProperty;
     var slice = Array.prototype.slice;
-    var memoised = function () {
+    var memoised = function mem() {
 
         var args = slice.call(arguments);
         var key = typeof resolver === "function"
             ? resolver.apply(undefined, args)
             : args.join(",");
-        var response = memoised.cache[key];
+        var response = mem.cache[key];
 
-        if (!hasOwn.call(memoised.cache, key)) {
+        if (!hasOwn.call(mem.cache, key)) {
 
             response = handler.apply(this, args);
-            memoised.cache[key] = response;
+            mem.cache[key] = response;
 
         }
 
         return response;
 
-    }
+    };
 
     memoised.cache = {};
 

@@ -1,6 +1,6 @@
 {
   "name": "jquery-aria",
-  "version": "0.6.0a",
+  "version": "0.7.0a",
   "description": "WAI-ARIA helper functions for jQuery",
   "main": "dist/jquery.aria.js",
   "directories": {
@@ -31,12 +31,13 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "docdash": "^0.4.0",
-    "grunt": "^1.0.1",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-uglify": "^2.1.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-jsdoc": "^2.1.0",
-    "grunt-mocha": "^1.0.4",
+    "gulp": "^3.9.1",
+    "gulp-concat-util": "^0.5.5",
+    "gulp-jsdoc3": "^1.0.1",
+    "gulp-jslint": "^1.0.10",
+    "gulp-minify": "0.0.15",
+    "gulp-mocha-phantomjs": "^0.12.1",
+    "gulp-sourcemaps": "^2.4.1",
     "mocha": "^3.2.0"
   }
 }

@@ -1,3 +1,8 @@
+/*global
+    interpretString,
+    identity
+*/
+
 /**
  * Converts the given string into an array of the words. The <code>string</code>
  * argument is converted into a string before being split - see
@@ -17,5 +22,9 @@
  * toWords("   ");      // -> []
  */
 var toWords = function (string) {
+
+    "use strict";
+
     return interpretString(string).split(/\s+/).filter(identity);
+
 };

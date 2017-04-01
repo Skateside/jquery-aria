@@ -85,6 +85,8 @@ describe("jQuery.ariaHooks", function () {
         chai.assert.isUndefined(jQdiv.aria("hook"));
         chai.assert.isUndefined(jQdiv.attr("aria-hook"));
 
+        delete $.ariaHooks.hook;
+
     });
 
 });
