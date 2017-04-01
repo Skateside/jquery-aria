@@ -1,4 +1,4 @@
-/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.6.1a - MIT license - 2017-3-29 */
+/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.7.0a - MIT license - 2017-4-1 */
 (function ($) {
     "use strict";
 
@@ -49,7 +49,7 @@
  * [GitHub]{@link https://github.com/Skateside/jquery-aria}.
  *
  * @author James "Skateside" Long <sk85ide@hotmail.com>
- * @version 0.6.1a
+ * @version 0.7.0a
  * @license MIT
  */
 
@@ -442,7 +442,16 @@ var interpretString = function (string) {
  */
 var isElement = function (element) {
 
-    return (/^\[object\sHTML[A-Za-z]+Element\]$/).test(element);
+    // relying on polymorphism rather than instanceof is usually wise, but in
+    // this situation it'd be so much eaasier to simply type:
+    // return element instanceof HTMLElement;
+    return (
+        element !== null
+        && element !== undefined
+        && (/^\[object\sHTML(?:[A-Z][a-z]+)?Element\]$/).test(element)
+        && typeof element.nodeName === "string"
+        && typeof element.nodeType === "number"
+    );
 
 };
 
@@ -587,7 +596,7 @@ var normalise = memoise(
 
         var prefix = "aria-";
         var lower = interpretString(name).toLowerCase();
-        var full = startsWith.call(lower, prefix)
+        var full = (/^aria-/).test(lower)
             ? lower
             : prefix + lower;
         var stem = full.slice(prefix.length);
@@ -611,33 +620,6 @@ var normalise = memoise(
 
         }
 );
-
-// Source: /src/global/startsWith.js
-
-
-/**
- * A fallback for older browsers that do not understand
- * [String#startsWith]{@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith}
- * without modifiying <code>String.prototype</code> unnecessarily.
- *
- * @global
- * @private
- * @function
- * @param    {String} text
- *           String to search for.
- * @param    {Number} [offset=0]
- *           Offset from which to start.
- * @return   {Boolean}
- *           True if the string starts with <code>text</code>, false otherwise.
- *
- * @example
- * startsWith.call("abcdef", "abc"); // -> true
- */
-var startsWith = String.prototype.startsWith || function (text, offset) {
-
-    return this.indexOf(text, offset) === 0;
-
-};
 
 // Source: /src/global/toWords.js
 

@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script-->
-<script src="../dist/jquery.aria.js"></script>
+<script src="../tmp/jquery.aria-open.js"></script>
 
 </head>
 <body>
@@ -19,9 +19,6 @@
 <script src="../node_modules/chai/chai.js"></script>
 
 <script>
-// mocha.setup('bdd')
-// mocha.reporter('html');
-
 if (window.initMochaPhantomJS) {
     window.initMochaPhantomJS();
 }
@@ -32,7 +29,17 @@ mocha.setup({
 });
 </script>
 
-<!-- Tests -->
+<!-- Private -->
+<script src="global/access.js"></script>
+<script src="global/handlers.property.js"></script>
+<script src="global/handlers.reference.js"></script>
+<script src="global/handlers.state.js"></script>
+<script src="global/identity.js"></script>
+<script src="global/interpretString.js"></script>
+<script src="global/isElement.js"></script>
+<script src="global/memoise.js"></script>
+<script src="global/toWords.js"></script>
+<!-- Public -->
 <script src="member/normaliseAria.js"></script>
 <script src="instance/aria.js"></script>
 <script src="instance/ariaRef.js"></script>

@@ -3,7 +3,7 @@
 ## Alpha Version
 
 ### 0.7.0a
-_2017-03-29_
+_2017-04-01_
 - Converting Grunt to gulp.
 - Adding unit tests for private functions.
 

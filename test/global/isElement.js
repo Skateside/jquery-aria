@@ -1,7 +1,10 @@
 describe("isElement", function () {
 
     it("should detect HTML Elements", function () {
+
         chai.assert.isTrue(isElement(document.createElement("div")));
+        chai.assert.isTrue(isElement(document.createElement("article")));
+
     });
 
     it("should return false for a Node that is not an Element", function () {

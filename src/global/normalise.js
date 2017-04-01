@@ -64,7 +64,7 @@ var normalise = memoise(
 
         var prefix = "aria-";
         var lower = interpretString(name).toLowerCase();
-        var full = (/^aria\-/).test(lower)
+        var full = (/^aria-/).test(lower)
             ? lower
             : prefix + lower;
         var stem = full.slice(prefix.length);

@@ -1,6 +1,3 @@
-// run-sequence to create tasks of tasks
-// gulp.task("group", ["one", "two", "three:sub"]);
-
 var gulp = require("gulp");
 var concat = require("gulp-concat-util");
 var minify = require("gulp-minify");
@@ -64,47 +61,64 @@ var jsFiles = gulp.src([
 
 ]);
 
+var processFiles = function (source, filename) {
+
+    return (
+        "// Source: " + filename.replace(__dirname, "") + "\n" +
+        source
+            .replace(/(["'])use strict\1;?\s*/g, "")
+            .replace(/\/\*jslint\s[\w\s,]+\s\*\//, "")
+            .replace(/\/\*global\s[\$\w\s,]+\s\*\//, "")
+            .replace(/<%=\s*(\w+)\s*%>/g, function (ignore, k) {
+
+                return typeof pkgJson[k] === "string"
+                    ? pkgJson[k]
+                    : k;
+
+            })
+    );
+
+};
+
+var concatHeader = (
+    `/*! ${pkgJson.name} (${pkgJson.homepage}) - ` +
+    `v${pkgJson.version} - ${pkgJson.license} license - ` +
+    `${getToday()} */\n` +
+    `(function ($) {\n` +
+    `    "use strict";\n\n`
+);
+
+var concatFooter = "\n}(jQuery));";
 
 gulp.task("concat:prod", function () {
 
     jsFiles
         .pipe(concat("jquery.aria.js", {
-            process: function (source, filename) {
-
-                return (
-                    "// Source: " + filename.replace(__dirname, "") + "\n" +
-                    source
-                        .replace(/(["'])use strict\1;?\s*/g, "")
-                        .replace(/\/\*jslint\s[\w\s,]+\s\*\//, "")
-                        .replace(/\/\*global\s[\$\w\s,]+\s\*\//, "")
-                        .replace(/<%=\s*(\w+)\s*%>/g, function (ignore, k) {
-
-                            return typeof pkgJson[k] === "string"
-                                ? pkgJson[k]
-                                : k;
-
-                        })
-                );
-
-            }
+            process: processFiles
         }))
-        .pipe(concat.header(
-            `/*! ${pkgJson.name} (${pkgJson.homepage}) - ` +
-            `v${pkgJson.version} - ${pkgJson.license} license - ` +
-            `${getToday()} */\n` +
-            `(function ($) {\n` +
-            `    "use strict";\n\n`
-        ))
-        .pipe(concat.footer("\n}(jQuery));"))
+        .pipe(concat.header(concatHeader))
+        .pipe(concat.footer(concatFooter))
         .pipe(gulp.dest("./dist/"));
+
+});
+
+gulp.task("concat:test", function () {
+
+    jsFiles
+        .pipe(concat("jquery.aria.js", {
+            process: processFiles
+        }))
+        .pipe(concat.header(concatHeader))
+        .pipe(concat.footer(concatFooter))
+        .pipe(gulp.dest("./tmp/"));
 
 });
 
 gulp.task("concat:dev", function () {
 
     jsFiles
-        .pipe(concat("private.js"))
-        .pipe(gulp.dest("./test/"));
+        .pipe(concat("jquery.aria-open.js"))
+        .pipe(gulp.dest("./tmp/"));
 
 });
 
@@ -138,21 +152,9 @@ gulp.task("doc", function (cb) {
 
 });
 
-gulp.task("test:prod", function () {
+gulp.task("test", function () {
 
-    gulp.src("./test/prod.html")
-        .pipe(mochaPhantomJS({
-            reporter: "spec",
-            phantomjs: {
-                useColors: true
-            }
-        }));
-
-});
-
-gulp.task("test:dev", function () {
-
-    gulp.src("./test/dev.html")
+    gulp.src("./test/testrunner.html")
         .pipe(mochaPhantomJS({
             reporter: "spec",
             phantomjs: {
@@ -164,7 +166,8 @@ gulp.task("test:dev", function () {
 
 gulp.task("watch", function () {
 
-    gulp.watch(["./src/**/*.js"], ["concat"]);
+    gulp.watch(["gulpfile.js", "./src/**/*.js"], ["concat:test", "concat:dev"]);
+    gulp.watch(["./test/**/*.js"], ["concat:test", "test"]);
 
 });
 
@@ -178,3 +181,7 @@ gulp.task("lint", function () {
         .pipe(jslint.reporter("default"));
 
 });
+
+// Processes
+gulp.task("dev", ["watch"]);
+gulp.task("prod", ["lint", "concat:test", "test", "concat:prod", "minify"]);
