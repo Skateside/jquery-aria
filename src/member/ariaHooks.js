@@ -48,7 +48,7 @@
  *     },
  *     get: function (element) {
  *         var value = element.getAttribute("aria-level");
- *         var intVal = (Math.max(1, Math.floor(value));
+ *         var intVal = Math.max(1, Math.floor(value));
  *         return (value === null || isNaN(intVal))
  *             ? undefined
  *             : intVal;

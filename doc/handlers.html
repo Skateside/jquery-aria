@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>handlers - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,28 +27,10 @@
 
 <div id="main">
     
-
+    <h1 class="page-title">handlers</h1>
     
 
-
-
     
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
 
 
 
@@ -58,7 +40,7 @@
 <header>
     
         <h2>
-        jquery.aria.js
+        handlers
         </h2>
         
     
@@ -74,14 +56,11 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line6">line 6</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line671">line 671</a>
     </li></ul></dd>
     
 
     
-    <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>0.7.0a</li></ul></dd>
-    
 
     
 
@@ -98,19 +77,9 @@
     
 
     
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li><a href="mailto:sk85ide@hotmail.com">James "Skateside" Long</a></li>
-        </ul>
-    </dd>
-    
 
     
 
-    
-    <dt class="tag-license">License:</dt>
-    <dd class="tag-license"><ul class="dummy"><li>MIT</li></ul></dd>
     
 
     
@@ -126,48 +95,14 @@
 
 
         
-            <div class="description"><p>This is a jQuery plugin that adds methods for manipulating WAI-ARIA
-attributes. Unlike other plugins that do similar things, this plugin has been
-designed to match jQuery's style making it much easier to pick up. The plugin
-includes:
-<br><br>
-<strong>Getting and Setting WAI-ARIA Attributes</strong>
-<br><a href="external-jQuery.html#aria">jQuery#aria</a> for getting and setting
-WAI-ARIA attributes.
-<br><a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> for getting and setting
-references to other elements.
-<br><a href="external-jQuery.html#ariaState">jQuery#ariaState</a> for getting and
-setting states.
-<br><br>
-<strong>Removing WAI-ARIA Attributes</strong>
-<br><a href="external-jQuery.html#removeAria">jQuery#removeAria</a> for removing
-WAI-ARIA attributes (aliased as
-<a href="external-jQuery.html#removeAriaRef">jQuery#removeAriaRef</a> and
-<a href="external-jQuery.html#removeAriaState">jQuery#removeAriaState</a>).
-<br><br>
-<strong>Adjusting WAI-ARIA Attribute Manipulation</strong>
-<br><a href="external-jQuery.html#.ariaFix">jQuery.ariaFix</a> will convert the names of
-WAI-ARIA attributes.
-<br><a href="external-jQuery.html#.ariaHooks">jQuery.ariaHooks</a> allow special
-functionality to be defined for specific WAI-ARIA attributes.
-<br><br>
-<strong>Manipulating Landmarks</strong>
-<br><a href="external-jQuery.html#role">jQuery#role</a>,
-<a href="external-jQuery.html#addRole">jQuery#addRole</a> and
-<a href="external-jQuery.html#removeRole">jQuery#removeRole</a> handling WAI-ARIA
-landmarks.
-<br><br>
-<strong>Helper Functions for Common Functionality</strong>
-<br><a href="external-jQuery.html#identify">jQuery#identify</a> for generating element
-IDs as necessary.
-<br><a href="external-jQuery.html#ariaFocusable">jQuery#ariaFocusable</a> for toggling
-focusability.
-<br><a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a> for
-simplifying the WAI-ARIA attributes (aliased as
-<a href="external-jQuery.html#.normalizeAria">jQuery.normalizeAria</a>).
-<br><br>
-The files can be downloaded on
-<a href="https://github.com/Skateside/jquery-aria">GitHub</a>.</p></div>
+            <div class="description"><p>Handlers for properties, references and states. Each handler has at least a
+<code>get</code> and <code>set</code> method to write and read the values.
+<code>has</code> methods check whether the property exists,
+<code>unset</code> removes the property.</p>
+<p><a href="handlers.reference.html">handlers.reference</a> and <a href="handlers.state.html">handlers.state</a> defer to
+<a href="handlers.property.html">handlers.property</a> (they don't inherit from <a href="handlers.property.html">handlers.property</a>
+but they may do in another implementation - any functionality they don't have
+will be taken from <a href="handlers.property.html">handlers.property</a>).</p></div>
         
 
         
@@ -182,6 +117,19 @@ The files can be downloaded on
 
      
 
+    
+        <h3 class="subsection-title">Namespaces</h3>
+
+        <dl>
+            <dt><a href="handlers.property.html">property</a></dt>
+            <dd></dd>
+        
+            <dt><a href="handlers.reference.html">reference</a></dt>
+            <dd></dd>
+        
+            <dt><a href="handlers.state.html">state</a></dt>
+            <dd></dd>
+        </dl>
     
 
     

@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>property - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Externals</h3><ul><li><a href="external-jQuery.html">jQuery</a><ul class='methods'><li data-type='method'><a href="external-jQuery.html#.normaliseAria">normaliseAria</a></li><li data-type='method'><a href="external-jQuery.html#.normalizeAria">normalizeAria</a></li><li data-type='method'><a href="external-jQuery.html#addRole">addRole</a></li><li data-type='method'><a href="external-jQuery.html#aria">aria</a></li><li data-type='method'><a href="external-jQuery.html#ariaFocusable">ariaFocusable</a></li><li data-type='method'><a href="external-jQuery.html#ariaRef">ariaRef</a></li><li data-type='method'><a href="external-jQuery.html#ariaState">ariaState</a></li><li data-type='method'><a href="external-jQuery.html#identify">identify</a></li><li data-type='method'><a href="external-jQuery.html#removeAria">removeAria</a></li><li data-type='method'><a href="external-jQuery.html#removeAriaRef">removeAriaRef</a></li><li data-type='method'><a href="external-jQuery.html#removeAriaState">removeAriaState</a></li><li data-type='method'><a href="external-jQuery.html#removeRole">removeRole</a></li><li data-type='method'><a href="external-jQuery.html#role">role</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="handlers.html">handlers</a></li><li><a href="handlers.property.html">property</a><ul class='methods'><li data-type='method'><a href="handlers.property.html#.get">get</a></li><li data-type='method'><a href="handlers.property.html#.has">has</a></li><li data-type='method'><a href="handlers.property.html#.parse">parse</a></li><li data-type='method'><a href="handlers.property.html#.set">set</a></li><li data-type='method'><a href="handlers.property.html#.unset">unset</a></li></ul></li><li><a href="handlers.reference.html">reference</a><ul class='methods'><li data-type='method'><a href="handlers.reference.html#.get">get</a></li><li data-type='method'><a href="handlers.reference.html#.set">set</a></li></ul></li><li><a href="handlers.state.html">state</a><ul class='methods'><li data-type='method'><a href="handlers.state.html#.get">get</a></li><li data-type='method'><a href="handlers.state.html#.read">read</a></li><li data-type='method'><a href="handlers.state.html#.set">set</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#access">access</a></li><li><a href="global.html#identify">identify</a></li><li><a href="global.html#identity">identity</a></li><li><a href="global.html#interpretString">interpretString</a></li><li><a href="global.html#isElement">isElement</a></li><li><a href="global.html#memoise">memoise</a></li><li><a href="global.html#toWords">toWords</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">property</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="handlers.html">handlers</a>.</span>
+        
+        property
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line691">line 691</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+        
+            <div class="description"><p>Handles WAI-ARIA properties without modifying the values any more than it
+needs to. These methods also act as the fallback for other namespaces such as
+<a href="handlers.reference.html">handlers.reference</a> and <a href="handlers.state.html">handlers.state</a>.
+<br><a href="handlers.property.html#.parse">handlers.property.parse</a> parses the attribute name.
+<br><a href="handlers.property.html#.get">handlers.property.get</a> gets the value of the property.
+<br><a href="handlers.property.html#.set">handlers.property.set</a> sets a property.
+<br><a href="handlers.property.html#.has">handlers.property.has</a> checks to see if the property exists.
+<br><a href="handlers.property.html#.unset">handlers.property.unset</a> removes the property.</p></div>
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".get"><span class="type-signature">(private, static) </span>get<span class="signature">(element, name)</span><span class="type-signature"> &rarr; {String|undefined}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line888">line 888</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Gets the value of the WAI-ARIA property from the given
+<code>element</code> and returns it unchanged. The <code>name</code> is
+normalised (see
+<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a>). If
+<code>element</code> is not an element (see <a href="global.html#isElement">isElement</a>) or
+<code>name</code> is not recognised (see
+<a href="handlers.property.html#.has">handlers.property.has</a>) then <code>undefined</code> is returned.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// Markup is:
+// &lt;div id="one" aria-label="test">&lt;/div>
+
+var element = document.getElementById("one");
+handlers.property.get(element, "label"); // -> "test"
+handlers.property.get(element, "busy"); // -> undefined</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Element to access.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>WAI-ARIA property to access.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>WAI-ARIA attribute or undefined if the attribute isn't set.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".has"><span class="type-signature">(private, static) </span>has<span class="signature">(element, name)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line850">line 850</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Checks to see if the given <code>name</code> exists on the given
+<code>element</code>. The <code>name</code> is always normalised (see
+<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a>) and if
+<code>element</code> is not an element (see <a href="global.html#isElement">isElement</a>) then
+<code>false</code> will always be returned.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// Markup is:
+// &lt;div id="one" aria-label="test">&lt;/div>
+
+var element = document.getElementById("one");
+handlers.property.has(element, "label"); // -> true
+handlers.property.has(element, "busy");  // -> false</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Element to test.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>WAI-ARIA property to check.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Whether or not the element has the given property.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".parse"><span class="type-signature">(static) </span>parse<span class="signature">(name)</span><span class="type-signature"> &rarr; {Object.&lt;String>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line707">line 707</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Parses the name and returns an object with the normalised name (see
+<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a> and the
+un-prefixed attribute name.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>handlers.property.parse("busy");
+// -> {full: "aria-busy", stem: "busy"}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Attribute name to parse.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>An object with &quot;full&quot; and &quot;stem&quot; properties.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object.&lt;String></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".set"><span class="type-signature">(private, static) </span>set<span class="signature">(element, name, value, index<span class="signature-attributes">opt</span>, convert<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line788">line 788</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Sets the property of an element. The <code>value</code> is unchanged
+(other than normal string coercion) and the <code>name</code> is
+normalised into a WAI-ARIA property (see
+<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a>).
+<br><br>
+If <code>element</code> is not an element (see <a href="global.html#isElement">isElement</a>) then no
+action will be taken.
+<br><br>
+If <code>value</code> is a function, it is treated like an
+Attribute_callback. This is for consistency with
+<a href="http://api.jquery.com/attr/">jQuery#attr</a>.
+<br><br>
+A <code>convert</code> function can also be passed. That function will
+convert <code>value</code> (if <code>value</code> is a function,
+<code>convert</code> will convert the result) before assigning it. If
+<code>convert</code> is ommitted or not a function then <a href="global.html#identity">identity</a>
+is used so <code>value</code> will not be changed.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Setting a property</p>
+    
+    <pre class="prettyprint"><code>// Markup is:
+// &lt;div id="one">&lt;/div>
+
+var element = document.getElementById("one");
+handlers.property.set(element, "label", "test");
+
+// Now markup is:
+// &lt;div id="one" aria-label="test">&lt;/div></code></pre>
+
+        <p class="code-caption">Setting a property using a function</p>
+    
+    <pre class="prettyprint"><code>// Markup is:
+// &lt;div id="one" aria-label="test">&lt;/div>
+
+var element = document.getElementById("one");
+handlers.property.set(element, "label", function (i, attr) {
+    return this.id + "__" + i + "__" + attr;
+}, 0);
+
+// Now markup is:
+// &lt;div id="one" aria-label="one__0__test">&lt;/div></code></pre>
+
+        <p class="code-caption">Converting the result</p>
+    
+    <pre class="prettyprint"><code>// Markup is:
+// &lt;div id="one" aria-label="test">&lt;/div>
+
+var element = document.getElementById("one");
+handlers.property.set(element, "label", function (i, attr) {
+    return this.id + "__" + i + "__" + attr;
+}, 0, function (value) {
+    return value.toUpperCase();
+});
+
+// Now markup is:
+// &lt;div id="one" aria-label="ONE__0__TEST">&lt;/div></code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Element to have a property set.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>WAI-ARIA property to set.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">?</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Value of the property.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Optional index of <code>element</code> within the jQuery object.
+         This is needed to keep consistency with the
+         <a href="http://api.jquery.com/attr/">jQuery#attr</a> function and
+         should be derived rather than manually passed.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>convert</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>identity</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Optional conversion process. If ommitted, no conversion occurs.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".unset"><span class="type-signature">(private, static) </span>unset<span class="signature">(element, name)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line929">line 929</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Removes a WAI-ARIA attribute from the given <code>element</code>. The
+<code>name</code> if normalised (see
+<a href="external-jQuery.html#.normaliseAria">jQuery.normaliseAria</a>) and if
+<code>element</code> is not an element (see <a href="global.html#isElement">isElement</a>) then no
+action is taken.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// Markup is:
+// &lt;div id="one" aria-label="test">&lt;/div>
+
+var element = document.getElementById("one");
+handlers.property.unset(element, "label");
+
+// Now markup is:
+// &lt;div id="one">&lt;/div></code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Element to modify.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>WAI-ARIA attribute to remove.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Apr 01 2017 23:17:20 GMT+0100 (BST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

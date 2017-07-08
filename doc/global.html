@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Externals</h3><ul><li><a href="external-jQuery.html">jQuery</a><ul class='methods'><li data-type='method'><a href="external-jQuery.html#.normaliseAria">normaliseAria</a></li><li data-type='method'><a href="external-jQuery.html#.normalizeAria">normalizeAria</a></li><li data-type='method'><a href="external-jQuery.html#addRole">addRole</a></li><li data-type='method'><a href="external-jQuery.html#aria">aria</a></li><li data-type='method'><a href="external-jQuery.html#ariaFocusable">ariaFocusable</a></li><li data-type='method'><a href="external-jQuery.html#ariaRef">ariaRef</a></li><li data-type='method'><a href="external-jQuery.html#ariaState">ariaState</a></li><li data-type='method'><a href="external-jQuery.html#identify">identify</a></li><li data-type='method'><a href="external-jQuery.html#removeAria">removeAria</a></li><li data-type='method'><a href="external-jQuery.html#removeAriaRef">removeAriaRef</a></li><li data-type='method'><a href="external-jQuery.html#removeAriaState">removeAriaState</a></li><li data-type='method'><a href="external-jQuery.html#removeRole">removeRole</a></li><li data-type='method'><a href="external-jQuery.html#role">role</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Externals</h3><ul><li><a href="external-jQuery.html">jQuery</a><ul class='methods'><li data-type='method'><a href="external-jQuery.html#.normaliseAria">normaliseAria</a></li><li data-type='method'><a href="external-jQuery.html#.normalizeAria">normalizeAria</a></li><li data-type='method'><a href="external-jQuery.html#addRole">addRole</a></li><li data-type='method'><a href="external-jQuery.html#aria">aria</a></li><li data-type='method'><a href="external-jQuery.html#ariaFocusable">ariaFocusable</a></li><li data-type='method'><a href="external-jQuery.html#ariaRef">ariaRef</a></li><li data-type='method'><a href="external-jQuery.html#ariaState">ariaState</a></li><li data-type='method'><a href="external-jQuery.html#identify">identify</a></li><li data-type='method'><a href="external-jQuery.html#removeAria">removeAria</a></li><li data-type='method'><a href="external-jQuery.html#removeAriaRef">removeAriaRef</a></li><li data-type='method'><a href="external-jQuery.html#removeAriaState">removeAriaState</a></li><li data-type='method'><a href="external-jQuery.html#removeRole">removeRole</a></li><li data-type='method'><a href="external-jQuery.html#role">role</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="handlers.html">handlers</a></li><li><a href="handlers.property.html">property</a><ul class='methods'><li data-type='method'><a href="handlers.property.html#.get">get</a></li><li data-type='method'><a href="handlers.property.html#.has">has</a></li><li data-type='method'><a href="handlers.property.html#.parse">parse</a></li><li data-type='method'><a href="handlers.property.html#.set">set</a></li><li data-type='method'><a href="handlers.property.html#.unset">unset</a></li></ul></li><li><a href="handlers.reference.html">reference</a><ul class='methods'><li data-type='method'><a href="handlers.reference.html#.get">get</a></li><li data-type='method'><a href="handlers.reference.html#.set">set</a></li></ul></li><li><a href="handlers.state.html">state</a><ul class='methods'><li data-type='method'><a href="handlers.state.html#.get">get</a></li><li data-type='method'><a href="handlers.state.html#.read">read</a></li><li data-type='method'><a href="handlers.state.html#.set">set</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#access">access</a></li><li><a href="global.html#identify">identify</a></li><li><a href="global.html#identity">identity</a></li><li><a href="global.html#interpretString">interpretString</a></li><li><a href="global.html#isElement">isElement</a></li><li><a href="global.html#memoise">memoise</a></li><li><a href="global.html#toWords">toWords</a></li></ul>
 </nav>
 
 <div id="main">
@@ -107,6 +107,1412 @@
 
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="access"><span class="type-signature">(private) </span>access<span class="signature">(jQelements, property, value<span class="signature-attributes">opt</span>, type<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {jQuery|<a href="global.html#ARIA_state">ARIA_state</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1294">line 1294</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>This function handles all the heavy lifting of getting or setting WAI-ARIA
+attributes. It is designed to be all that's necessary for
+<a href="external-jQuery.html#aria">jQuery#aria</a>,
+<a href="external-jQuery.html#ariaRef">jQuery#ariaRef</a> and
+<a href="external-jQuery.html#ariaState">jQuery#ariaState</a>. This function will check
+its arguments to determine whether it should be used as a getter or a setter
+and passes the appropriate arguments to the <a href="handlers.html">handlers</a> methods based on
+<code>type</code> (which will default to <a href="handlers.property.html">handlers.property</a> if
+ommitted or not recognised).
+<br><br>
+The return value is based on the type of action being performed. If this
+function is setting then a jQuery object of the matches is returned (which is
+almost always <code>jQelements</code>); if the function is a getter then the
+results are returned for the first element in <code>jQelements</code>.
+<br><br>
+Although this description is not especially extensive, the code should be
+very easy to follow and commented should there be any need to modify it. Once
+the correct arguments are being passed to the appropriate <a href="handlers.html">handlers</a>
+method, they will take care of the rest.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Setting a single property</p>
+    
+    <pre class="prettyprint"><code>// Markup is
+// &lt;div id="one">&lt;/div>
+
+var jQone = $("#one");
+access(jQone, "controls", "two"); // -> jQuery(&lt;div id="one">)
+
+// Now markup is
+// &lt;div id="one" aria-controls="two"></code></pre>
+
+        <p class="code-caption">Setting multiple references</p>
+    
+    <pre class="prettyprint"><code>// Markup is
+// &lt;div id="one">&lt;/div>
+// &lt;div id="two">&lt;/div>
+
+var jQone = $("#one");
+access(jQone, {
+    controls: $("div").eq(1)
+}, "reference"); // -> jQuery(&lt;div id="one">)
+
+// Now markup is
+// &lt;div id="one" aria-controls="two">
+// &lt;div id="two">&lt;/div></code></pre>
+
+        <p class="code-caption">Getting a state</p>
+    
+    <pre class="prettyprint"><code>// Markup is
+// &lt;div id="one" aria-busy="true">&lt;/div>
+
+var jQone = $("#one");
+access(jQone, "busy", undefined, "state"); // -> true</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>jQelements</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">jQuery</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>jQuery object to modify/access.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>property</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Either WAI-ARIA names and values or the WAI-ARIA property name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">?</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Value to set.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>"property"</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Optional attribute type.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Either the jQuery object on which WAI-ARIA properties were set or
+         the values of the WAI-ARIA properties.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">jQuery</span>
+|
+
+<span class="param-type"><a href="global.html#ARIA_state">ARIA_state</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="identify"><span class="type-signature">(private) </span>identify<span class="signature">(reference)</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line366">line 366</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Helper function for identifying the given <code>reference</code>. The ID of
+the first match is returned - see
+<a href="external-jQuery.html#identify">jQuery#identify</a> for full details.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>reference</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#jQuery_param">jQuery_param</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Element to identify.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>ID of the element.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="identity"><span class="type-signature">(private) </span>identity<span class="signature">(x)</span><span class="type-signature"> &rarr; {?}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line390">line 390</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>An identity function that simply returns whatever it is given without
+modifying it. This can be useful for cases when a modification function is
+needed but optional.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>identity("a");           // -> "a"
+identity("a", "b");      // -> "a", only first argument is returned.
+identity.call("b", "a"); // -> "a", context has no effect.</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">?</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Object to return.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Original object.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">?</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="interpretString"><span class="type-signature">(private) </span>interpretString<span class="signature">(string)</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line416">line 416</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Interprets the given object as a string. If the object is <code>null</code>
+or <code>undefined</code>, an empty string is returned.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>interpretString("1");       // -> "1"
+interpretString(1);         // -> "1"
+interpretString([1, 2]);    // -> "1,2"
+interpretString(null);      // -> ""
+interpretString(undefined); // -> ""
+interpretString();          // -> ""</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>string</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">?</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Object to interpret.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Interpreted string.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isElement"><span class="type-signature">(private) </span>isElement<span class="signature">(element)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line443">line 443</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Returns <code>true</code> if the given <code>element</code> is an HTML
+element.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>isElement(document.createElement("div")); // -> true
+isElement(document.body); // -> true
+isElement(document.createTextNode("")); // -> false
+isElement($("body")); // -> false
+isElement($("body")[0]); // -> true</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">?</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Object to test.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>true if <code>element</code> is an HTMLElement.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="memoise"><span class="type-signature">(private) </span>memoise<span class="signature">(handler, resolver<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line511">line 511</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Modifies a function so that the results are retrieved from a cache if
+possible rather than from executing the function again. The cache is publicly
+exposed (as the property <code>cache</code>) to allow it to be cleared,
+forcing the function to re-execute.
+<br><br>
+If defined, the <code>resolver</code> is passed the same arguments as the
+<code>handler</code>; it should return a string and that string will be used
+as the key for <code>cache</code>. If a <code>resolver</code> isn't defined,
+or isn't a function, the arguments are simply joined together as a
+comma-separated string.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Basic example</p>
+    
+    <pre class="prettyprint"><code>var increase = function (number) {
+    console.log(number);
+    return number + 1;
+};
+var memIncrease = memoise(increase);
+
+memIncrease(1);
+// Logs: 1
+// -> 2
+memIncrease(1); // -> 2
+memincrease(2);
+// Logs: 2
+// -> 3
+memIncrease(1); // -> 1
+memIncrease.cache; // -> {"1": 2, "2": 3}</code></pre>
+
+        <p class="code-caption">Specifying a resolver</p>
+    
+    <pre class="prettyprint"><code>var sum = function (numbers) {
+    return numbers.reduce(function (prev, curr) {
+        return prev + curr;
+    }, 0);
+};
+var memSum = memoise(sum, function (numbers) {
+    return JSON.stringify(numbers);
+});
+memSum([1, 2, 3]); // -> 6
+memSum.cache; // -> {"[1,2,3]": 6}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>handler</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Function to convert.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>resolver</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional function for working out the key for the cache.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Converted function.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="toWords"><span class="type-signature">(private) </span>toWords<span class="signature">(string)</span><span class="type-signature"> &rarr; {Array.&lt;String>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line645">line 645</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Converts the given string into an array of the words. The <code>string</code>
+argument is converted into a string before being split - see
+<a href="global.html#interpretString">interpretString</a> for more information.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>toWords("abc def");  // -> ["abc", "def"]
+toWords("abc  def"); // -> ["abc", "def"]
+toWords("")          // -> []
+toWords("   ");      // -> []</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>string</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>String (or other variable type) to break into words.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Words from the string.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;String></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
     
 
     
@@ -1656,7 +3062,7 @@ first will be used when getting information.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Apr 01 2017 21:44:05 GMT+0100 (BST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Apr 01 2017 23:17:20 GMT+0100 (BST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
