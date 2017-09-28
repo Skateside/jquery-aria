@@ -71,4 +71,44 @@ describe("jQuery#ariaRef", function () {
 
     });
 
+    it("should be able to set multiple references", function () {
+
+        var jQdivs = $("<div/><div/>");
+        var jQtest = $("<div/>").ariaRef("labelledby", jQdivs);
+
+        chai.assert.isDefined(jQdivs[0].id);
+        chai.assert.isDefined(jQdivs[1].id);
+        chai.assert.deepEqual(
+            jQtest.attr("aria-labelledby"),
+            jQdivs
+                .map(function () {
+                    return this.id;
+                })
+                .toArray()
+                .join(" ")
+        );
+
+    });
+
+    it("should be able to access multiple references", function () {
+
+        var jQdivs = $("<div id=\"ref-one\"/><div id=\"ref-two\"/>")
+            .appendTo("body");
+        var jQtest = $("<div/>").ariaRef("labelledby", jQdivs);
+        var jQref = jQtest.ariaRef("labelledby");
+
+        chai.assert.equal(jQdivs.lengths, jQref.lengths);
+        chai.assert.deepEqual(
+            jQdivs.map(function () {
+                return this.id;
+            }).toArray(),
+            jQref.map(function () {
+                return this.id;
+            }).toArray()
+        );
+
+        jQdivs.remove();
+
+    });
+
 });

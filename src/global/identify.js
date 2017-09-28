@@ -1,3 +1,6 @@
+/*jslint
+    this
+*/
 /*global
     $
 */
@@ -18,6 +21,11 @@ var identify = function (reference) {
 
     "use strict";
 
-    return $(reference).identify();
+    return $(reference)
+        .map(function () {
+            return $(this).identify();
+        })
+        .toArray()
+        .join(" ") || undefined;
 
 };

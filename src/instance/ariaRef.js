@@ -120,6 +120,22 @@
  * // <button id="button" aria-controls="anonymous0"></button>
  * // <div id="section"></div>
  * // <section id="anonymous0"></section>
+ *
+ * @example <caption>Multiple references</caption>
+ * // Markup is:
+ * // <h1 id="one">One</h1>
+ * // <h2 id="two">Two</h2>
+ * // <div id="div"></div>
+ *
+ * $("#div").ariaRef("labelledby", "#one,#two");
+ *
+ * // Now markup is:
+ * // <h1 id="one">One</h1>
+ * // <h2 id="two">Two</h2>
+ * // <div id="div" aria-labelledby="one two"></div>
+ *
+ * $("#div").ariaRef("labelledby"); // -> $(<h1 id="one">, <h2 id="two">)
+ *
  */
 $.fn.ariaRef = function (property, value) {
 
