@@ -20,7 +20,7 @@
  */
 $.ariaFix = {
 
-    // This is the US English spelling but the ccessibility API defined the
+    // This is the US English spelling but the accessibility API defined the
     // attribute with the double L.
     // https://www.w3.org/TR/wai-aria/states_and_properties#aria-labelledby
     labeledby: "labelledby"

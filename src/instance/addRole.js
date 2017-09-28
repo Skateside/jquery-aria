@@ -1,3 +1,6 @@
+/*jslint
+    this
+*/
 /*global
     $,
     toWords

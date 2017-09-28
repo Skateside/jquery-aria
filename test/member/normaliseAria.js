@@ -41,7 +41,7 @@ describe("jQuery.normaliseAria", function () {
 
         chai.assert.equal(flowto, "aria-flowto");
         chai.assert.isDefined(key);
-        chai.assert.equal($.normaliseAria.cache[key], "aria-flowto");
+        chai.assert.equal($.normaliseAria.cache[key], flowto);
 
     });
 

@@ -20,6 +20,15 @@ var isElement = function (element) {
 
     "use strict";
 
-    return (/^\[object\sHTML[A-Za-z]+Element\]$/).test(element);
+    // relying on polymorphism rather than instanceof is usually wise, but in
+    // this situation it'd be so much eaasier to simply type:
+    // return element instanceof HTMLElement;
+    return (
+        element !== null
+        && element !== undefined
+        && (/^\[object\sHTML(?:[A-Z][a-z]+)?Element\]$/).test(element)
+        && typeof element.nodeName === "string"
+        && typeof element.nodeType === "number"
+    );
 
 };

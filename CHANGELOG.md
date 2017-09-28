@@ -2,8 +2,13 @@
 
 ## Alpha Version
 
+### 0.7.0a
+_2017-04-01_
+- Converting Grunt to gulp.
+- Adding unit tests for private functions.
+
 ### 0.6.1a
-_2017-03-23_ ?
+_2017-03-23_
 - Adding JSLint validation and updated all source files to validate.
 
 ### 0.6.0a

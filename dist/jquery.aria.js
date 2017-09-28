@@ -1,8 +1,8 @@
-/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.6.0a - MIT license - 2017-03-24 */
+/*! jquery-aria (https://github.com/Skateside/jquery-aria#readme) - v0.7.0a - MIT license - 2017-9-28 */
 (function ($) {
     "use strict";
 
-// Source: src/doc/file.js
+// Source: \src\doc\file.js
 /**
  * @file
  * This is a jQuery plugin that adds methods for manipulating WAI-ARIA
@@ -49,17 +49,17 @@
  * [GitHub]{@link https://github.com/Skateside/jquery-aria}.
  *
  * @author James "Skateside" Long <sk85ide@hotmail.com>
- * @version 0.6.0a
+ * @version 0.7.0a
  * @license MIT
  */
 
-// Source: src/doc/external/jQuery.js
+// Source: \src\doc\external\jQuery.js
 /**
  * @external jQuery
  * @see [jQuery]{@link http://jquery.com}
  */
 
-// Source: src/doc/callback/Attribute_Callback.js
+// Source: \src\doc\callback\Attribute_Callback.js
 /**
  * The [jQuery#aria]{@link external:jQuery#aria},
  * [jQuery#ariaRef]{@link external:jQuery#ariaRef} and
@@ -102,7 +102,7 @@
  * // <div id="one" aria-label="[object Undefined]"></div>
  */
 
-// Source: src/doc/typedef/ARIA_state.js
+// Source: \src\doc\typedef\ARIA_state.js
 /**
  * A boolean or the string "mixed" (always in lower case). This type will
  * be undefined when trying to read a state that has not been set on the
@@ -123,7 +123,7 @@
  * $("#four").ariaState("checked");  // -> undefined
  */
 
-// Source: src/doc/typedef/ARIA_hook.js
+// Source: \src\doc\typedef\ARIA_hook.js
 /**
  * A hook for a WAI-ARIA attribute. Every property is optional so there is no
  * need to specify one to execute the default functionality.
@@ -327,7 +327,7 @@
  * // <div id="one"></div>
  */
 
-// Source: src/doc/typedef/jQuery_param.js
+// Source: \src\doc\typedef\jQuery_param.js
 /**
  * Any parameter that can be passed to
  * [jQuery's $ function]{@link http://api.jquery.com/jQuery/}. Be aware that
@@ -337,7 +337,7 @@
  * @typedef {Array|Element|jQuery|NodeList|String} jQuery_param
  */
 
-// Source: src/global/variables.js
+// Source: \src\global\variables.js
 
 
 // A simple check to see if there is a global Proxy function and it's native.
@@ -348,7 +348,7 @@ var IS_PROXY_AVAILABLE = (
     && window.Proxy.toString().indexOf("[native code]") > -1
 );
 
-// Source: src/global/identify.js
+// Source: \src\global\identify.js
 
 
 /**
@@ -369,7 +369,7 @@ var identify = function (reference) {
 
 };
 
-// Source: src/global/identity.js
+// Source: \src\global\identity.js
 /**
  * An identity function that simply returns whatever it is given without
  * modifying it. This can be useful for cases when a modification function is
@@ -393,7 +393,7 @@ var identity = function (x) {
 
 };
 
-// Source: src/global/interpretString.js
+// Source: \src\global\interpretString.js
 /**
  * Interprets the given object as a string. If the object is <code>null</code>
  * or <code>undefined</code>, an empty string is returned.
@@ -421,7 +421,7 @@ var interpretString = function (string) {
 
 };
 
-// Source: src/global/isElement.js
+// Source: \src\global\isElement.js
 /**
  * Returns <code>true</code> if the given <code>element</code> is an HTML
  * element.
@@ -442,11 +442,20 @@ var interpretString = function (string) {
  */
 var isElement = function (element) {
 
-    return (/^\[object\sHTML[A-Za-z]+Element\]$/).test(element);
+    // relying on polymorphism rather than instanceof is usually wise, but in
+    // this situation it'd be so much eaasier to simply type:
+    // return element instanceof HTMLElement;
+    return (
+        element !== null
+        && element !== undefined
+        && (/^\[object\sHTML(?:[A-Z][a-z]+)?Element\]$/).test(element)
+        && typeof element.nodeName === "string"
+        && typeof element.nodeType === "number"
+    );
 
 };
 
-// Source: src/global/memoise.js
+// Source: \src\global\memoise.js
 
 
 /**
@@ -528,7 +537,7 @@ var memoise = function (handler, resolver) {
 
 };
 
-// Source: src/global/normalise.js
+// Source: \src\global\normalise.js
 
 
 /**
@@ -587,7 +596,7 @@ var normalise = memoise(
 
         var prefix = "aria-";
         var lower = interpretString(name).toLowerCase();
-        var full = startsWith.call(lower, prefix)
+        var full = (/^aria-/).test(lower)
             ? lower
             : prefix + lower;
         var stem = full.slice(prefix.length);
@@ -612,34 +621,7 @@ var normalise = memoise(
         }
 );
 
-// Source: src/global/startsWith.js
-
-
-/**
- * A fallback for older browsers that do not understand
- * [String#startsWith]{@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith}
- * without modifiying <code>String.prototype</code> unnecessarily.
- *
- * @global
- * @private
- * @function
- * @param    {String} text
- *           String to search for.
- * @param    {Number} [offset=0]
- *           Offset from which to start.
- * @return   {Boolean}
- *           True if the string starts with <code>text</code>, false otherwise.
- *
- * @example
- * startsWith.call("abcdef", "abc"); // -> true
- */
-var startsWith = String.prototype.startsWith || function (text, offset) {
-
-    return this.indexOf(text, offset) === 0;
-
-};
-
-// Source: src/global/toWords.js
+// Source: \src\global\toWords.js
 
 
 /**
@@ -666,7 +648,7 @@ var toWords = function (string) {
 
 };
 
-// Source: src/global/handlers.js
+// Source: \src\global\handlers.js
 var HANDLER_PROPERTY = "property";
 var HANDLER_REFERENCE = "reference";
 var HANDLER_STATE = "state";
@@ -688,7 +670,7 @@ var HANDLER_STATE = "state";
  */
 var handlers = {};
 
-// Source: src/global/handlers/property.js
+// Source: \src\global\handlers\property.js
 
 
 /**
@@ -961,7 +943,7 @@ handlers[HANDLER_PROPERTY] = {
 
 };
 
-// Source: src/global/handlers/reference.js
+// Source: \src\global\handlers\reference.js
 
 
 /**
@@ -1067,7 +1049,7 @@ handlers[HANDLER_REFERENCE] = {
 
 };
 
-// Source: src/global/handlers/state.js
+// Source: \src\global\handlers\state.js
 
 
 var REGEXP_BOOLEAN = /^(?:true|false)$/;
@@ -1240,7 +1222,7 @@ handlers[HANDLER_STATE] = {
 
 };
 
-// Source: src/global/access.js
+// Source: \src\global\access.js
 
 
 /**
@@ -1341,7 +1323,7 @@ function access(jQelements, property, value, type) {
 
 }
 
-// Source: src/global/removeAttribute.js
+// Source: \src\global\removeAttribute.js
 
 
 
@@ -1377,7 +1359,7 @@ function removeAttribute(name) {
 
 }
 
-// Source: src/member/normaliseAria.js
+// Source: \src\member\normaliseAria.js
 
 
 /**
@@ -1396,7 +1378,7 @@ function removeAttribute(name) {
 $.normalizeAria = normalise;
 $.normaliseAria = normalise;
 
-// Source: src/member/ariaFix.js
+// Source: \src\member\ariaFix.js
 
 
 /**
@@ -1414,7 +1396,7 @@ $.normaliseAria = normalise;
  */
 $.ariaFix = {
 
-    // This is the US English spelling but the ccessibility API defined the
+    // This is the US English spelling but the accessibility API defined the
     // attribute with the double L.
     // https://www.w3.org/TR/wai-aria/states_and_properties#aria-labelledby
     labeledby: "labelledby"
@@ -1440,7 +1422,7 @@ if (IS_PROXY_AVAILABLE) {
 
 }
 
-// Source: src/member/ariaHooks.js
+// Source: \src\member\ariaHooks.js
 
 
 /**
@@ -1489,7 +1471,7 @@ if (IS_PROXY_AVAILABLE) {
  *     },
  *     get: function (element) {
  *         var value = element.getAttribute("aria-level");
- *         var intVal = (Math.max(1, Math.floor(value));
+ *         var intVal = Math.max(1, Math.floor(value));
  *         return (value === null || isNaN(intVal))
  *             ? undefined
  *             : intVal;
@@ -1521,7 +1503,7 @@ $.ariaHooks = {
 
 };
 
-// Source: src/instance/identify.js
+// Source: \src\instance\identify.js
 
 
 
@@ -1596,7 +1578,7 @@ $.fn.identify = function () {
 
 };
 
-// Source: src/instance/aria.js
+// Source: \src\instance\aria.js
 
 
 
@@ -1717,7 +1699,7 @@ $.fn.aria = function (property, value) {
 
 };
 
-// Source: src/instance/ariaRef.js
+// Source: \src\instance\ariaRef.js
 
 
 
@@ -1846,7 +1828,7 @@ $.fn.ariaRef = function (property, value) {
 
 };
 
-// Source: src/instance/ariaState.js
+// Source: \src\instance\ariaState.js
 
 
 
@@ -1945,7 +1927,7 @@ $.fn.ariaState = function (property, value) {
 
 };
 
-// Source: src/instance/removeAria.js
+// Source: \src\instance\removeAria.js
 
 
 $.fn.extend({
@@ -1980,7 +1962,7 @@ $.fn.extend({
 
 });
 
-// Source: src/instance/role.js
+// Source: \src\instance\role.js
 
 
 
@@ -2040,7 +2022,8 @@ $.fn.role = function (role) {
 
 };
 
-// Source: src/instance/addRole.js
+// Source: \src\instance\addRole.js
+
 
 
 /**
@@ -2109,7 +2092,7 @@ $.fn.addRole = function (role) {
 
 };
 
-// Source: src/instance/removeRole.js
+// Source: \src\instance\removeRole.js
 
 
 
@@ -2189,7 +2172,7 @@ $.fn.removeRole = function (role) {
 
 };
 
-// Source: src/instance/ariaFocusable.js
+// Source: \src\instance\ariaFocusable.js
 
 
 

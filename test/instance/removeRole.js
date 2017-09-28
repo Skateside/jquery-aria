@@ -19,6 +19,8 @@ describe("jQuery#removeRole", function () {
 
         jQdiv.removeRole("alert");
         chai.assert.equal(jQdiv.role(), "presentation");
+        jQdiv.removeRole("");
+        chai.assert.equal(jQdiv.role(), "presentation");
 
     });
 
