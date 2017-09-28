@@ -2,6 +2,10 @@
 
 ## Alpha Version
 
+### 0.8.0a
+_2017-09-28_
+- Allowing `jQuery#ariaRef` to handle multiple references.
+
 ### 0.7.0a
 _2017-04-01_
 - Converting Grunt to gulp.
