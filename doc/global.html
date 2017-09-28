@@ -26,11 +26,11 @@
 </nav>
 
 <div id="main">
-
+    
     <h1 class="page-title">Global</h1>
+    
 
-
-
+    
 
 
 
@@ -38,128 +38,128 @@
 <section>
 
 <header>
-
+    
         <h2>
-
+        
         </h2>
-
-
+        
+    
 </header>
 
 <article>
     <div class="container-overview">
-
-
+    
+        
 
 <dl class="details">
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
 
 
+        
 
-
-
-
+        
+    
     </div>
 
+    
 
+    
 
+    
 
+     
 
+    
 
+    
 
-
-
-
-
-
-
-
+    
         <h3 class="subsection-title">Methods</h3>
 
+        
+            
 
-
-
-
+    
 
     <h4 class="name" id="access"><span class="type-signature">(private) </span>access<span class="signature">(jQelements, property, value<span class="signature-attributes">opt</span>, type<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {jQuery|<a href="global.html#ARIA_state">ARIA_state</a>}</span></h4>
 
-
+    
 
 
 
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1294">line 1294</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line1305">line 1305</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -197,197 +197,197 @@ method, they will take care of the rest.</p>
 
 
     <h5>Examples</h5>
-
+    
         <p class="code-caption">Setting a single property</p>
-
+    
     <pre class="prettyprint"><code>// Markup is// &lt;div id="one">&lt;/div>var jQone = $("#one");access(jQone, "controls", "two"); // -> jQuery(&lt;div id="one">)// Now markup is// &lt;div id="one" aria-controls="two"></code></pre>
 
         <p class="code-caption">Setting multiple references</p>
-
+    
     <pre class="prettyprint"><code>// Markup is// &lt;div id="one">&lt;/div>// &lt;div id="two">&lt;/div>var jQone = $("#one");access(jQone, {    controls: $("div").eq(1)}, "reference"); // -> jQuery(&lt;div id="one">)// Now markup is// &lt;div id="one" aria-controls="two">// &lt;div id="two">&lt;/div></code></pre>
 
         <p class="code-caption">Getting a state</p>
-
+    
     <pre class="prettyprint"><code>// Markup is// &lt;div id="one" aria-busy="true">&lt;/div>var jQone = $("#one");access(jQone, "busy", undefined, "state"); // -> true</code></pre>
 
 
 
 
     <h5>Parameters:</h5>
-
+    
 
 <table class="params">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
-
+        
         <th>Attributes</th>
+        
 
-
-
+        
         <th>Default</th>
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>jQelements</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">jQuery</span>
 
 
-
+            
             </td>
 
-
+            
                 <td class="attributes">
+                
 
+                
 
-
-
-
+                
                 </td>
+            
 
-
-
+            
                 <td class="default">
-
+                
                 </td>
-
+            
 
             <td class="description last"><p>jQuery object to modify/access.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>property</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">Object</span>
 |
 
 <span class="param-type">String</span>
 
 
-
+            
             </td>
 
-
+            
                 <td class="attributes">
+                
 
+                
 
-
-
-
+                
                 </td>
+            
 
-
-
+            
                 <td class="default">
-
+                
                 </td>
-
+            
 
             <td class="description last"><p>Either WAI-ARIA names and values or the WAI-ARIA property name.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>value</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">?</span>
 
 
-
+            
             </td>
 
-
+            
                 <td class="attributes">
-
+                
                     &lt;optional><br>
+                
 
+                
 
-
-
-
+                
                 </td>
+            
 
-
-
+            
                 <td class="default">
-
+                
                 </td>
-
+            
 
             <td class="description last"><p>Value to set.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>type</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">String</span>
 
 
-
+            
             </td>
 
-
+            
                 <td class="attributes">
-
+                
                     &lt;optional><br>
+                
 
+                
 
-
-
-
+                
                 </td>
+            
 
-
-
+            
                 <td class="default">
-
+                
                     <code>"property"</code>
-
+                
                 </td>
-
+            
 
             <td class="description last"><p>Optional attribute type.</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -406,7 +406,7 @@ method, they will take care of the rest.</p>
 
 <h5>Returns:</h5>
 
-
+        
 <div class="param-desc">
     <p>Either the jQuery object on which WAI-ARIA properties were set or
          the values of the WAI-ARIA properties.</p>
@@ -419,7 +419,7 @@ method, they will take care of the rest.</p>
         Type
     </dt>
     <dd>
-
+        
 <span class="param-type">jQuery</span>
 |
 
@@ -429,59 +429,59 @@ method, they will take care of the rest.</p>
     </dd>
 </dl>
 
+    
 
 
+        
+            
 
-
-
-
-
+    
 
     <h4 class="name" id="identify"><span class="type-signature">(private) </span>identify<span class="signature">(reference)</span><span class="type-signature"> &rarr; {String}</span></h4>
 
-
+    
 
 
 
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line366">line 366</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line367">line 367</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -505,50 +505,50 @@ the first match is returned - see
 
 
     <h5>Parameters:</h5>
-
+    
 
 <table class="params">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
+        
 
-
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>reference</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type"><a href="global.html#jQuery_param">jQuery_param</a></span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Element to identify.</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -567,7 +567,7 @@ the first match is returned - see
 
 <h5>Returns:</h5>
 
-
+        
 <div class="param-desc">
     <p>ID of the element.</p>
 </div>
@@ -579,66 +579,66 @@ the first match is returned - see
         Type
     </dt>
     <dd>
-
+        
 <span class="param-type">String</span>
 
 
     </dd>
 </dl>
 
+    
 
 
+        
+            
 
-
-
-
-
+    
 
     <h4 class="name" id="identity"><span class="type-signature">(private) </span>identity<span class="signature">(x)</span><span class="type-signature"> &rarr; {?}</span></h4>
 
-
+    
 
 
 
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line390">line 390</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line396">line 396</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -660,57 +660,57 @@ needed but optional.</p>
 
 
     <h5>Example</h5>
-
+    
     <pre class="prettyprint"><code>identity("a");           // -> "a"identity("a", "b");      // -> "a", only first argument is returned.identity.call("b", "a"); // -> "a", context has no effect.</code></pre>
 
 
 
 
     <h5>Parameters:</h5>
-
+    
 
 <table class="params">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
+        
 
-
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>x</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">?</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Object to return.</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -729,7 +729,7 @@ needed but optional.</p>
 
 <h5>Returns:</h5>
 
-
+        
 <div class="param-desc">
     <p>Original object.</p>
 </div>
@@ -741,66 +741,66 @@ needed but optional.</p>
         Type
     </dt>
     <dd>
-
+        
 <span class="param-type">?</span>
 
 
     </dd>
 </dl>
 
+    
 
 
+        
+            
 
-
-
-
-
+    
 
     <h4 class="name" id="interpretString"><span class="type-signature">(private) </span>interpretString<span class="signature">(string)</span><span class="type-signature"> &rarr; {String}</span></h4>
 
-
+    
 
 
 
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line416">line 416</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line422">line 422</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -821,57 +821,57 @@ or <code>undefined</code>, an empty string is returned.</p>
 
 
     <h5>Example</h5>
-
+    
     <pre class="prettyprint"><code>interpretString("1");       // -> "1"interpretString(1);         // -> "1"interpretString([1, 2]);    // -> "1,2"interpretString(null);      // -> ""interpretString(undefined); // -> ""interpretString();          // -> ""</code></pre>
 
 
 
 
     <h5>Parameters:</h5>
-
+    
 
 <table class="params">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
+        
 
-
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>string</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">?</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Object to interpret.</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -890,7 +890,7 @@ or <code>undefined</code>, an empty string is returned.</p>
 
 <h5>Returns:</h5>
 
-
+        
 <div class="param-desc">
     <p>Interpreted string.</p>
 </div>
@@ -902,66 +902,66 @@ or <code>undefined</code>, an empty string is returned.</p>
         Type
     </dt>
     <dd>
-
+        
 <span class="param-type">String</span>
 
 
     </dd>
 </dl>
 
+    
 
 
+        
+            
 
-
-
-
-
+    
 
     <h4 class="name" id="isElement"><span class="type-signature">(private) </span>isElement<span class="signature">(element)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
 
-
+    
 
 
 
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line443">line 443</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line449">line 449</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -982,57 +982,57 @@ element.</p>
 
 
     <h5>Example</h5>
-
+    
     <pre class="prettyprint"><code>isElement(document.createElement("div")); // -> trueisElement(document.body); // -> trueisElement(document.createTextNode("")); // -> falseisElement($("body")); // -> falseisElement($("body")[0]); // -> true</code></pre>
 
 
 
 
     <h5>Parameters:</h5>
-
+    
 
 <table class="params">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
+        
 
-
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>element</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">?</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Object to test.</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -1051,7 +1051,7 @@ element.</p>
 
 <h5>Returns:</h5>
 
-
+        
 <div class="param-desc">
     <p>true if <code>element</code> is an HTMLElement.</p>
 </div>
@@ -1063,66 +1063,66 @@ element.</p>
         Type
     </dt>
     <dd>
-
+        
 <span class="param-type">Boolean</span>
 
 
     </dd>
 </dl>
 
+    
 
 
+        
+            
 
-
-
-
-
+    
 
     <h4 class="name" id="memoise"><span class="type-signature">(private) </span>memoise<span class="signature">(handler, resolver<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {function}</span></h4>
 
-
+    
 
 
 
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line511">line 511</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line517">line 517</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -1151,106 +1151,106 @@ comma-separated string.</p>
 
 
     <h5>Examples</h5>
-
+    
         <p class="code-caption">Basic example</p>
-
+    
     <pre class="prettyprint"><code>var increase = function (number) {    console.log(number);    return number + 1;};var memIncrease = memoise(increase);memIncrease(1);// Logs: 1// -> 2memIncrease(1); // -> 2memincrease(2);// Logs: 2// -> 3memIncrease(1); // -> 1memIncrease.cache; // -> {"1": 2, "2": 3}</code></pre>
 
         <p class="code-caption">Specifying a resolver</p>
-
+    
     <pre class="prettyprint"><code>var sum = function (numbers) {    return numbers.reduce(function (prev, curr) {        return prev + curr;    }, 0);};var memSum = memoise(sum, function (numbers) {    return JSON.stringify(numbers);});memSum([1, 2, 3]); // -> 6memSum.cache; // -> {"[1,2,3]": 6}</code></pre>
 
 
 
 
     <h5>Parameters:</h5>
-
+    
 
 <table class="params">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
-
+        
         <th>Attributes</th>
+        
 
-
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>handler</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">function</span>
 
 
-
+            
             </td>
 
-
+            
                 <td class="attributes">
+                
 
+                
 
-
-
-
+                
                 </td>
+            
 
-
-
+            
 
             <td class="description last"><p>Function to convert.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>resolver</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">function</span>
 
 
-
+            
             </td>
 
-
+            
                 <td class="attributes">
-
+                
                     &lt;optional><br>
+                
 
+                
 
-
-
-
+                
                 </td>
+            
 
-
-
+            
 
             <td class="description last"><p>Optional function for working out the key for the cache.</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -1269,7 +1269,7 @@ comma-separated string.</p>
 
 <h5>Returns:</h5>
 
-
+        
 <div class="param-desc">
     <p>Converted function.</p>
 </div>
@@ -1281,66 +1281,66 @@ comma-separated string.</p>
         Type
     </dt>
     <dd>
-
+        
 <span class="param-type">function</span>
 
 
     </dd>
 </dl>
 
+    
 
 
+        
+            
 
-
-
-
-
+    
 
     <h4 class="name" id="toWords"><span class="type-signature">(private) </span>toWords<span class="signature">(string)</span><span class="type-signature"> &rarr; {Array.&lt;String>}</span></h4>
 
-
+    
 
 
 
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line645">line 645</a>
+        <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line651">line 651</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -1362,57 +1362,57 @@ argument is converted into a string before being split - see
 
 
     <h5>Example</h5>
-
+    
     <pre class="prettyprint"><code>toWords("abc def");  // -> ["abc", "def"]toWords("abc  def"); // -> ["abc", "def"]toWords("")          // -> []toWords("   ");      // -> []</code></pre>
 
 
 
 
     <h5>Parameters:</h5>
-
+    
 
 <table class="params">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
+        
 
-
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>string</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">String</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>String (or other variable type) to break into words.</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -1431,7 +1431,7 @@ argument is converted into a string before being split - see
 
 <h5>Returns:</h5>
 
-
+        
 <div class="param-desc">
     <p>Words from the string.</p>
 </div>
@@ -1443,24 +1443,24 @@ argument is converted into a string before being split - see
         Type
     </dt>
     <dd>
-
+        
 <span class="param-type">Array.&lt;String></span>
 
 
     </dd>
 </dl>
 
+    
 
 
+        
+    
 
-
-
-
-
+    
         <h3 class="subsection-title">Type Definitions</h3>
 
-
-
+        
+                
 <h4 class="name" id="ARIA_hook">ARIA_hook</h4>
 
 
@@ -1469,195 +1469,195 @@ argument is converted into a string before being split - see
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line127">line 127</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
 
     <h5 class="subsection-title">Properties:</h5>
 
-
+    
 
 <table class="props">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
-
+        
         <th>Attributes</th>
+        
 
-
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>set</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type"><a href="global.html#ARIA_hook_set">ARIA_hook_set</a></span>
 
 
-
+            
             </td>
 
-
+            
                 <td class="attributes">
-
+                
                     &lt;optional><br>
+                
 
-
-
+                
                 </td>
+            
 
-
-
+            
 
             <td class="description last"><p>Handles setting the attribute.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>get</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type"><a href="global.html#ARIA_hook_get">ARIA_hook_get</a></span>
 
 
-
+            
             </td>
 
-
+            
                 <td class="attributes">
-
+                
                     &lt;optional><br>
+                
 
-
-
+                
                 </td>
+            
 
-
-
+            
 
             <td class="description last"><p>Handles getting the attribute.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>has</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type"><a href="global.html#ARIA_hook_has">ARIA_hook_has</a></span>
 
 
-
+            
             </td>
 
-
+            
                 <td class="attributes">
-
+                
                     &lt;optional><br>
+                
 
-
-
+                
                 </td>
+            
 
-
-
+            
 
             <td class="description last"><p>Handlers checking whether or not the attribute is assigned.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>unset</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type"><a href="global.html#ARIA_hook_unset">ARIA_hook_unset</a></span>
 
 
-
+            
             </td>
 
-
+            
                 <td class="attributes">
-
+                
                     &lt;optional><br>
+                
 
-
-
+                
                 </td>
+            
 
-
-
+            
 
             <td class="description last"><p>Handles removing the attribute.</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -1683,7 +1683,7 @@ you need to completely control attribute/property setting.</p>
     <h5>Type:</h5>
     <ul>
         <li>
-
+            
 <span class="param-type">Object</span>
 
 
@@ -1695,56 +1695,56 @@ you need to completely control attribute/property setting.</p>
 
 
 
+            
+                
 
-
-
-
+    
 
     <h4 class="name" id="ARIA_hook_get"><span class="type-signature"></span>ARIA_hook_get<span class="signature">(element, attribute)</span><span class="type-signature"> &rarr; {Boolean|Number|String}</span></h4>
 
-
+    
 
 
 
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line211">line 211</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -1771,82 +1771,82 @@ infinite loop.</p>
 
 
     <h5>Example</h5>
-
+    
         <p class="code-caption">Getting a fictitious "volume" attribute</p>
-
+    
     <pre class="prettyprint"><code>$.ariaHooks.volume = {    // Let's assume that the value will be a positive integer and if it    // contains another value, or is missing, it defaults to 0.    get: function (element, attribute) {        var value = element.getAttribute(attribute);        return (value === null || isNaN(value) || value &lt; 0)            ? 0            : Math.floor(value);    }};// Markup is:// &lt;div id="one" aria-volume="5">&lt;/div>// &lt;div id="two" aria-volume="loud">&lt;/div>$("#one").aria("volume"); // -> 5$("#two").aria("volume"); // -> 0</code></pre>
 
 
 
 
     <h5>Parameters:</h5>
-
+    
 
 <table class="params">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
+        
 
-
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>element</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">HTMLElement</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Element whose attribute value should be returned.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>attribute</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">String</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Full attribute name, lower case and including &quot;aria-&quot; prefix.</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -1865,7 +1865,7 @@ infinite loop.</p>
 
 <h5>Returns:</h5>
 
-
+        
 <div class="param-desc">
     <p>Value of the attribute.</p>
 </div>
@@ -1877,7 +1877,7 @@ infinite loop.</p>
         Type
     </dt>
     <dd>
-
+        
 <span class="param-type">Boolean</span>
 |
 
@@ -1890,59 +1890,59 @@ infinite loop.</p>
     </dd>
 </dl>
 
+    
 
 
+            
+                
 
-
-
-
-
+    
 
     <h4 class="name" id="ARIA_hook_has"><span class="type-signature"></span>ARIA_hook_has<span class="signature">(element, attribute)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
 
-
+    
 
 
 
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line249">line 249</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -1965,82 +1965,82 @@ before getting occurs (and the <a href="global.html#ARIA_hook_get">ARIA_hook_get
 
 
     <h5>Example</h5>
-
+    
         <p class="code-caption">Checking for a fictitious "volume" attribute</p>
-
+    
     <pre class="prettyprint"><code>$.ariaHooks.volume = {    get: function (element, attribute) {        console.log("hi");        return element.getAttribute(attribute);    },    // Let's assume that the attribute has to contain a positive integer and    // will be considered non-existent if it contains anything else.    has: function (element, attribute) {        var value = element.getAttribute(attribute);        var intVal = parseInt(value, 10);        return value !== null &amp;&amp; intVal === +value &amp;&amp; intVal &lt;= 0;    }};// Markup is:// &lt;div id="one" aria-volume="5">&lt;/div>// &lt;div id="two" aria-volume="loud">&lt;/div>$("#one").aria("volume");// Logs: "hi"// -> "5"$("#two").aria("volume"); // -> undefined</code></pre>
 
 
 
 
     <h5>Parameters:</h5>
-
+    
 
 <table class="params">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
+        
 
-
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>element</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">HTMLElement</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Element whose attribute should be checked.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>attribute</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">String</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Full attribute name, lower case and including &quot;aria-&quot; prefix.</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -2059,7 +2059,7 @@ before getting occurs (and the <a href="global.html#ARIA_hook_get">ARIA_hook_get
 
 <h5>Returns:</h5>
 
-
+        
 <div class="param-desc">
     <p>Whether or not the attribute exists on the element (true if it
          does, false otherwise).</p>
@@ -2072,66 +2072,66 @@ before getting occurs (and the <a href="global.html#ARIA_hook_get">ARIA_hook_get
         Type
     </dt>
     <dd>
-
+        
 <span class="param-type">Boolean</span>
 
 
     </dd>
 </dl>
 
+    
 
 
+            
+                
 
-
-
-
-
+    
 
     <h4 class="name" id="ARIA_hook_set"><span class="type-signature"></span>ARIA_hook_set<span class="signature">(element, value, attribute)</span><span class="type-signature"> &rarr; {?}</span></h4>
 
-
+    
 
 
 
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line149">line 149</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -2160,68 +2160,68 @@ infinite loop.</p>
 
 
     <h5>Example</h5>
-
+    
         <p class="code-caption">Setting fictitious "volume" or "soundsetup" attributes</p>
-
+    
     <pre class="prettyprint"><code>$.ariaHooks.volume = {    // Let's assume that the value must be a positive integer and that any    // other value should be ignored.    set: function (element, value, attribute) {        var posInt = Math.floor(Math.abs(value));        return isNaN(posInt)            ? undefined            : posInt;    }};$.ariaHooks.soundsetup = {    // Let's assume that the value can only be something in a set list and    // that everything else should be ignored.    set: function (element, value, attribute) {        var values = ["mono", "stereo", "5.1"];        return values.indexOf(value) > -1            ? value            : undefined;    }};// Markup is:// &lt;div id="one">&lt;/div>// &lt;div id="two">&lt;/div>$("#one").aria({    volume: 5,    soundsetup: "mono"});$("#two").aria({    volume: "loud",    soundsetup: "legendary"});// Now markup is:// &lt;div id="one" aria-volume="5" aria-soundsetup="mono">&lt;/div>// &lt;div id="two">&lt;/div></code></pre>
 
 
 
 
     <h5>Parameters:</h5>
-
+    
 
 <table class="params">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
+        
 
-
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>element</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">HTMLElement</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Element whose attribute should be modified.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>value</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">Boolean</span>
 |
 
@@ -2231,40 +2231,40 @@ infinite loop.</p>
 <span class="param-type">String</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Value of the attribute in the form given to the aria function.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>attribute</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">String</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Full attribute name, lower case and including &quot;aria-&quot; prefix.</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -2283,7 +2283,7 @@ infinite loop.</p>
 
 <h5>Returns:</h5>
 
-
+        
 <div class="param-desc">
     <p>Possible conversion of the value.</p>
 </div>
@@ -2295,66 +2295,66 @@ infinite loop.</p>
         Type
     </dt>
     <dd>
-
+        
 <span class="param-type">?</span>
 
 
     </dd>
 </dl>
 
+    
 
 
+            
+                
 
-
-
-
-
+    
 
     <h4 class="name" id="ARIA_hook_unset"><span class="type-signature"></span>ARIA_hook_unset<span class="signature">(element, attribute)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
 
-
+    
 
 
 
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line289">line 289</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -2384,82 +2384,82 @@ create an infinite loop.</p>
 
 
     <h5>Example</h5>
-
+    
         <p class="code-caption">Removing a fictitious "volume" attribute</p>
-
+    
     <pre class="prettyprint"><code>$.ariaHooks.volume = {    // Let's assume that there is also a "soundsetup" attribute and that it    // requires the "volume" attribute to exist, thus if "volume" is removed,    // "soundsetup" should be removed as well.    unset: function (element, attribute) {        element.removeAttribute("aria-soundsetup");        return true;    }};// Markup is:// &lt;div id="one" aria-volume="5" aria-soundsetup="mono">&lt;/div>$("#one").removeAria("volume");// Now markup is// &lt;div id="one">&lt;/div></code></pre>
 
 
 
 
     <h5>Parameters:</h5>
-
+    
 
 <table class="params">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
+        
 
-
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>element</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">HTMLElement</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Element whose attribute should be removed.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>attribute</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">String</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Full attribute name, lower case and including &quot;aria-&quot; prefix.</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -2478,7 +2478,7 @@ create an infinite loop.</p>
 
 <h5>Returns:</h5>
 
-
+        
 <div class="param-desc">
     <p>Whether or not the attribute should be removed.</p>
 </div>
@@ -2490,18 +2490,18 @@ create an infinite loop.</p>
         Type
     </dt>
     <dd>
-
+        
 <span class="param-type">Boolean</span>
 
 
     </dd>
 </dl>
 
+    
 
 
-
-
-
+            
+                
 <h4 class="name" id="ARIA_state">ARIA_state</h4>
 
 
@@ -2510,42 +2510,42 @@ create an infinite loop.</p>
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line106">line 106</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -2563,7 +2563,7 @@ element.</p>
     <h5>Type:</h5>
     <ul>
         <li>
-
+            
 <span class="param-type">Boolean</span>
 |
 
@@ -2581,61 +2581,61 @@ element.</p>
 
 
     <h5>Example</h5>
-
+    
     <pre class="prettyprint"><code>// Markup is// &lt;div id="one" aria-checked="true">&lt;/div>// &lt;div id="two" aria-checked="false">&lt;/div>// &lt;div id="three" aria-checked="mixed">&lt;/div>// &lt;div id="four">&lt;/div>$("#one").ariaState("checked");   // -> true$("#two").ariaState("checked");   // -> false$("#three").ariaState("checked"); // -> "mixed"$("#four").ariaState("checked");  // -> undefined</code></pre>
 
 
 
+            
+                
 
-
-
-
+    
 
     <h4 class="name" id="Attribute_Callback"><span class="type-signature"></span>Attribute_Callback<span class="signature">(index, attr)</span><span class="type-signature"> &rarr; {String}</span></h4>
 
-
+    
 
 
 
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line63">line 63</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -2666,89 +2666,89 @@ for more information and examples.</p>
 
 
     <h5>Examples</h5>
-
+    
     <pre class="prettyprint"><code>$("#one").aria("label", function (i, attr) {    return "Test";});// is the same as$("#one").aria("label", "Test");</code></pre>
 
         <p class="code-caption">Elements without the attribute pass undefined</p>
-
+    
     <pre class="prettyprint"><code>// Markup is// &lt;div id="one">&lt;/div>$("#one").aria("label", function (i, attr) {    return Object.prototype.toString.call(attr);});// Now markup is// &lt;div id="one" aria-label="[object Undefined]">&lt;/div></code></pre>
 
 
 
 
     <h5>Parameters:</h5>
-
+    
 
 <table class="params">
     <thead>
     <tr>
-
+        
         <th>Name</th>
-
+        
 
         <th>Type</th>
 
+        
 
-
-
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>index</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">Number</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>The index of the current element from within the overall jQuery
           collection.</p></td>
         </tr>
 
-
+    
 
         <tr>
-
+            
                 <td class="name"><code>attr</code></td>
-
+            
 
             <td class="type">
-
-
+            
+                
 <span class="param-type">String</span>
 |
 
 <span class="param-type">undefined</span>
 
 
-
+            
             </td>
 
+            
 
-
-
+            
 
             <td class="description last"><p>Current attribute value (undefined if the element does not
           currently have the attribute assigned).</p></td>
         </tr>
 
-
+    
     </tbody>
 </table>
 
@@ -2767,7 +2767,7 @@ for more information and examples.</p>
 
 <h5>Returns:</h5>
 
-
+        
 <div class="param-desc">
     <p>The value that should be passed to the function.</p>
 </div>
@@ -2779,18 +2779,18 @@ for more information and examples.</p>
         Type
     </dt>
     <dd>
-
+        
 <span class="param-type">String</span>
 
 
     </dd>
 </dl>
 
+    
 
 
-
-
-
+            
+                
 <h4 class="name" id="jQuery_param">jQuery_param</h4>
 
 
@@ -2799,42 +2799,42 @@ for more information and examples.</p>
 
 <dl class="details">
 
-
+    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="jquery.aria.js.html">jquery.aria.js</a>, <a href="jquery.aria.js.html#line331">line 331</a>
     </li></ul></dd>
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </dl>
 
 
@@ -2853,7 +2853,7 @@ first will be used when getting information.</p>
     <h5>Type:</h5>
     <ul>
         <li>
-
+            
 <span class="param-type">Array</span>
 |
 
@@ -2877,10 +2877,10 @@ first will be used when getting information.</p>
 
 
 
+            
+    
 
-
-
-
+    
 </article>
 
 </section>
@@ -2893,7 +2893,7 @@ first will be used when getting information.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Sep 28 2017 14:23:54 GMT+0100 (GMT Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Sep 28 2017 14:55:35 GMT+0100 (GMT Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

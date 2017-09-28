@@ -106,7 +106,12 @@ handlers[HANDLER_REFERENCE] = {
         var handler = handlers[HANDLER_PROPERTY];
 
         return handler.has(element, name)
-            ? $("#" + handler.get(element, name))
+            ? $(
+                handler.get(element, name)
+                    .split(" ")
+                    .map(document.getElementById, document)
+                    .filter(Boolean)
+            )
             : undefined;
 
     }

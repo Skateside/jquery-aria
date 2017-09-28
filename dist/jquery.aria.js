@@ -351,6 +351,7 @@ var IS_PROXY_AVAILABLE = (
 // Source: \src\global\identify.js
 
 
+
 /**
  * Helper function for identifying the given <code>reference</code>. The ID of
  * the first match is returned - see
@@ -365,7 +366,12 @@ var IS_PROXY_AVAILABLE = (
  */
 var identify = function (reference) {
 
-    return $(reference).identify();
+    return $(reference)
+        .map(function () {
+            return $(this).identify();
+        })
+        .toArray()
+        .join(" ") || undefined;
 
 };
 
@@ -1042,7 +1048,12 @@ handlers[HANDLER_REFERENCE] = {
         var handler = handlers[HANDLER_PROPERTY];
 
         return handler.has(element, name)
-            ? $("#" + handler.get(element, name))
+            ? $(
+                handler.get(element, name)
+                    .split(" ")
+                    .map(document.getElementById, document)
+                    .filter(Boolean)
+            )
             : undefined;
 
     }
@@ -1816,6 +1827,22 @@ $.fn.aria = function (property, value) {
  * // <button id="button" aria-controls="anonymous0"></button>
  * // <div id="section"></div>
  * // <section id="anonymous0"></section>
+ *
+ * @example <caption>Multiple references</caption>
+ * // Markup is:
+ * // <h1 id="one">One</h1>
+ * // <h2 id="two">Two</h2>
+ * // <div id="div"></div>
+ *
+ * $("#div").ariaRef("labelledby", "#one,#two");
+ *
+ * // Now markup is:
+ * // <h1 id="one">One</h1>
+ * // <h2 id="two">Two</h2>
+ * // <div id="div" aria-labelledby="one two"></div>
+ *
+ * $("#div").ariaRef("labelledby"); // -> $(<h1 id="one">, <h2 id="two">)
+ *
  */
 $.fn.ariaRef = function (property, value) {
 
